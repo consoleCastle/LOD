@@ -1,4 +1,5 @@
 ﻿using System;
+using LOD.Classes;
 
 namespace LOD
 {
@@ -6,7 +7,8 @@ namespace LOD
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Ollo?!");
+            StartGame newGame = new StartGame();
+            newGame.Start();
         }
     }
 }
