@@ -7,7 +7,7 @@ namespace LOD
     {
         static void Main(string[] args)
         {
-            StartGame newGame = new StartGame();
+            PlayGame newGame = new PlayGame();
             newGame.Start();
         }
     }
