@@ -6,14 +6,22 @@ using LOD.Classes;
 
 namespace LOD.Classes
 {
-    class StartGame
+    class PlayGame
     {
+        GameData data = new GameData();
         public void Start()
         {
-            GameData data = new GameData();
-
             Console.WriteLine(data.TitleArt);
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
+            LoadingAnimation loading = new LoadingAnimation();
+            loading.Delay = 500;
+            while (true)
+            {
+                loading.Run("Loading", sequenceCode: 1);
+            }
+        }
+        public void GameOver()
+        {
             Console.WriteLine("You have died.");
             Thread.Sleep(1000);
             Console.WriteLine(data.Gameover);
