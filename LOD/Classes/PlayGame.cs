@@ -25,15 +25,24 @@ namespace LOD.Classes
               //Change player location if necessary
 
         }
-        public void ThanksForPlaying()
-        {
-            //Print thank you message and roll credits
-            //Close console app
+        public void RunLoadingAnimation(int seconds)
+        {   
+            //LoadingAnimation loading = new LoadingAnimation();
+            //loading.Delay = 500;
+            //while (seconds > 0)
+            //{
+            //    loading.Run("Loading", sequenceCode: 1);
+            //}
         }
         public void Reset()
         {
             //Run reset player flags
             //Run reset player location (?)
+        }
+        public void ThanksForPlaying()
+        {
+            //Print thank you message and roll credits
+            //Close console app
         }
         public void End(EndType endType)
         {
@@ -52,19 +61,6 @@ namespace LOD.Classes
             //Ask player if they would like to play again
               //If "yes" run Start()
               //If "no" run ThanksForPlaying()
-        }
-        public void RunLoadingAnimation(int seconds)
-        {
-            /*
-            Thread.Sleep(5000);
-            
-            LoadingAnimation loading = new LoadingAnimation();
-            loading.Delay = 500;
-            while (true)
-            {
-                loading.Run("Loading", sequenceCode: 1);
-            }
-            */
         }
     }
 }
