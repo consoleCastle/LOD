@@ -17,8 +17,12 @@ namespace LOD.Classes
             // Add timer / loading screen
             // Print setting and character exposition
             // Start room sequence (starts at top of mountain, player works through rooms)
-            // if character triggers game ending
-              // Run End(with passed endtype class)
+            //(This may not be where this process lives but) When player chooses option below is all the things that should happen
+              //Check if player triggered game ending
+                //IF Player triggered game ending
+                  // Run End(with passed endtype class)
+              //Change player flags/status as necessary
+              //Change player location if necessary
 
         }
         public void ThanksForPlaying()
