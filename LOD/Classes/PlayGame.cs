@@ -27,7 +27,7 @@ namespace LOD.Classes
         }
         public void ThanksForPlaying()
         {
-            //Print thank you message and credits
+            //Print thank you message and roll credits
             //Close console app
         }
         public void Reset()
@@ -38,20 +38,20 @@ namespace LOD.Classes
         public void End(EndType endType)
         {
             //If endtype is equal to gameover
-            //Console.WriteLine(EndType.Message);
-            //Thread.Sleep(1000);
-            //Console.WriteLine(data.Gameover);
+              //Console.WriteLine(EndType.Message);
+              //Thread.Sleep(1000);
+              //Console.WriteLine(data.Gameover);
 
-            //If endtype is equal to success
-            //Console.WriteLine(EndType.Message);
-            //Thread.Sleep(1000);
-            //Console.WriteLine(data.Success);
+            //Else If endtype is equal to success
+              //Console.WriteLine(EndType.Message);
+              //Thread.Sleep(1000);
+              //Console.WriteLine(data.Success);
 
             //Run Reset()
             //Thread.Sleep(5000);
             //Ask player if they would like to play again
-            //If "yes" run Start()
-            //If "no" run ThanksForPlaying()
+              //If "yes" run Start()
+              //If "no" run ThanksForPlaying()
         }
         public void RunLoadingAnimation(int seconds)
         {
