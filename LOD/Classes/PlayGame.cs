@@ -14,8 +14,7 @@ namespace LOD.Classes
             Console.WriteLine(data.lineSpacer);
             Console.WriteLine(data.TitleArt);
             Console.WriteLine(data.lineSpacer);
-            // Add timer / loading screen
-            // Print setting and character exposition
+            // Print beginning setting and character exposition
             // Start room sequence (starts at top of mountain, player works through rooms)
             //(This may not be where this process lives but) When player chooses option below is all the things that should happen
               //Check if player triggered game ending
@@ -29,7 +28,7 @@ namespace LOD.Classes
         {   
             //LoadingAnimation loading = new LoadingAnimation();
             //loading.Delay = 500;
-            //while (seconds > 0)
+            //while (true)
             //{
             //    loading.Run("Loading", sequenceCode: 1);
             //}
@@ -46,15 +45,13 @@ namespace LOD.Classes
         }
         public void End(EndType endType)
         {
-            //If endtype is equal to gameover
-              //Console.WriteLine(EndType.Message);
-              //Thread.Sleep(1000);
+            //Console.WriteLine(endType.Message);
+            //Thread.Sleep(1000);
+            
+            //If endtype.IsGameover is true
               //Console.WriteLine(data.Gameover);
-
-            //Else If endtype is equal to success
-              //Console.WriteLine(EndType.Message);
-              //Thread.Sleep(1000);
-              //Console.WriteLine(data.Success);
+            //Else If endtype.IsGameover is false
+              //Console.WriteLine(data.Victory);
 
             //Run Reset()
             //Thread.Sleep(5000);
