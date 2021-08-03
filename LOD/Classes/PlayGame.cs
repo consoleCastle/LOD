@@ -3,25 +3,42 @@ using System.Threading;
 using System.Collections.Generic;
 using System.Text;
 using LOD.Classes;
+using LOD.Tools;
 
 namespace LOD.Classes
 {
     class PlayGame
     {
         GameData data = new GameData();
+        Typewriter typewriter = new Typewriter();
         public void Start()
         {
-            Console.WriteLine(data.lineSpacer);
+            Console.Clear();
+
+            typewriter.GiveMeSpace();
             Console.WriteLine(data.TitleArt);
-            Console.WriteLine(data.lineSpacer);
-            // Print beginning setting and character exposition
+            //typewriter.Type(data.TitleArt);
+            typewriter.GiveMeSpace();
+
+            PlayerFlags playerFlags = new PlayerFlags();
+            playerFlags.Reset();
+
+            typewriter.Type(data.Exposition);
+            typewriter.GiveMeSpace();
+
             // Start room sequence (starts at top of mountain, player works through rooms)
             //(This may not be where this process lives but) When player chooses option below is all the things that should happen
-              //Check if player triggered game ending
-                //IF Player triggered game ending
-                  // Run End(with passed endtype class)
-              //Change player flags/status as necessary
-              //Change player location if necessary
+            //Check if player triggered game ending
+            //IF Player triggered game ending
+            // Run End(with passed endtype class)
+            //Change player flags/status as necessary
+            //Change player location if necessary
+
+            EndType newEnd = new EndType();
+            newEnd.IsGameover = true;
+            newEnd.CauseMessage = "This is a test Gameover message";
+
+            End(newEnd);
 
         }
         public void RunLoadingAnimation(int seconds)
@@ -35,29 +52,41 @@ namespace LOD.Classes
         }
         public void Reset()
         {
-            //Run reset player flags
-            //Run reset player location (?)
+            //Run reset rooms
+              //roomSequence.reset() - In example
         }
         public void ThanksForPlaying()
         {
-            //Print thank you message and roll credits
-            //Close console app
+            Console.WriteLine("Thanks for playing!!!");
         }
         public void End(EndType endType)
         {
-            //Console.WriteLine(endType.Message);
-            //Thread.Sleep(1000);
-            
-            //If endtype.IsGameover is true
-              //Console.WriteLine(data.Gameover);
-            //Else If endtype.IsGameover is false
-              //Console.WriteLine(data.Victory);
+            Console.WriteLine(endType.CauseMessage);
+            typewriter.GiveMeSpace();
+
+            if (endType.IsGameover)
+            {
+                Console.WriteLine(data.GameoverArt);
+            }
+            else
+            {
+                Console.WriteLine(data.VictoryArt);
+            }
 
             //Run Reset()
-            //Thread.Sleep(5000);
-            //Ask player if they would like to play again
-              //If "yes" run Start()
-              //If "no" run ThanksForPlaying()
+            Thread.Sleep(5000);
+            typewriter.GiveMeSpace();
+            Console.WriteLine("Would you like to play again? Respond with YES or NO.");
+            typewriter.GiveMeSpace();
+            string UserResponse = Console.ReadLine().ToLower();
+            if ((UserResponse == "yes") || (UserResponse == "y"))
+            {
+                Start();
+            }
+            else
+            {
+                ThanksForPlaying();
+            }
         }
     }
 }
