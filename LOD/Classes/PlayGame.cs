@@ -26,7 +26,7 @@ namespace LOD.Classes
             typewriter.Type(data.Exposition);
             typewriter.GiveMeSpace();
 
-            // Start room sequence (starts at top of mountain, player works through rooms)
+            // Start room sequence (starts at top of mountain [room 0], player works through rooms)
             //(This may not be where this process lives but) When player chooses option below is all the things that should happen
             //Check if player triggered game ending
             //IF Player triggered game ending
