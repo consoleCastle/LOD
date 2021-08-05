@@ -23,7 +23,11 @@ namespace LOD.Classes
             PlayerFlags playerFlags = new PlayerFlags();
             playerFlags.Reset();
 
-            typewriter.Type(data.Exposition);
+            int slowSpeed = (int)Typewriter.Speed.slow;
+            int moderateSpeed = (int)Typewriter.Speed.moderate;
+            int fastSpeed = (int)Typewriter.Speed.fast;
+
+            typewriter.Type(data.Exposition, moderateSpeed);
             typewriter.GiveMeSpace();
 
             // Start room sequence (starts at top of mountain [room 0], player works through rooms)

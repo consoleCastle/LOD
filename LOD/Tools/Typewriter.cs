@@ -7,7 +7,13 @@ namespace LOD.Tools
 {
     class Typewriter
     {
-        public void Type(string message)
+        public enum Speed
+        {
+            slow = 100,
+            moderate = 50,
+            fast = 25
+        }
+        public void Type(string message, int speed)
         {
             for (var i = 0; i < message.Length; i++)
             {
@@ -17,7 +23,7 @@ namespace LOD.Tools
                 {
                     Thread.Sleep(150);
                 }
-                Thread.Sleep(50);
+                Thread.Sleep(speed);
             }
 
             Console.WriteLine("");
