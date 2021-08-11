@@ -10,7 +10,7 @@
    
 ### Plan
 
-![GameFlowImage](LOD\LOD\Utils\ReadMe_GameFlowImg.jpg)
+![GameFlowImage](\LOD\Utils\ReadMe_GameFlowImg.jpg)
 
 ### SetUp
 
