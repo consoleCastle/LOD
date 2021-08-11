@@ -1,4 +1,4 @@
-## The Legend of Dallen: A console Adventure
+## The Legend of Dallen: A Console Adventure
 
 ### Story
 
