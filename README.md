@@ -1,12 +1,12 @@
 ## The Legend of Dallen: A Console Adventure
 
-### Story
+### Introduction
 
-  - Add info here
+  - You open your eyes and find yourself stranded in a strange world. Can you locate the ruler of this world, evade the dangers, and find your way out?
   
 ### Gameplay
 
-   - Add info here
+   - This simple console adventure is powered by finding the correct events in the correct order. Enter an event before you are ready, and you may just get eaten. Find and collect the three sacred stones in order to open the door and escape the strange world.
    
 ### Plan
 
