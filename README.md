@@ -2,15 +2,15 @@
 
 ### Story
 
-  -Add info here
+  - Add info here
   
 ### Gameplay
 
-   -Add info here
+   - Add info here
    
 ### Plan
 
-![GameFlowImage](LOD\LOD\Utils\ReadMe_GameFlowImg.jpg)
+![GameFlowImage](\LOD\LOD\Utils\ReadMe_GameFlowImg.jpg)
 
 ### SetUp
 
