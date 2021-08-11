@@ -1,18 +1,18 @@
-# The Legend of Dallen: A console Adventure
+## The Legend of Dallen: A console Adventure
 
-## Story
+### Story
 
   -Add info here
   
-## Gameplay
+### Gameplay
 
    -Add info here
    
-## Plan
+### Plan
 
-![GameFlowImage](\Utils\ReadMe_GameFlowImg.jpg)
+![GameFlowImage](LOD\Utils\ReadMe_GameFlowImg.jpg)
 
-## SetUp
+### SetUp
 
   1. Download this repository to your local machine.
   2. Build Project
