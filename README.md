@@ -10,7 +10,7 @@
    
 ### Plan
 
-![GameFlowImage](LOD\Utils\ReadMe_GameFlowImg.jpg)
+![GameFlowImage](https://github.com/consoleCastle/LOD/blob/master/LOD/Utils/ReadMe_GameFlowImg.jpg)
 
 ### SetUp
 
