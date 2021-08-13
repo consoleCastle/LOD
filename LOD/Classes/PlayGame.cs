@@ -44,6 +44,9 @@ namespace LOD.Classes
 
             End(newEnd);
 
+            UserCommonMenu userMenu = new UserCommonMenu();
+            userMenu.MenuPrompt();
+
         }
         public void RunLoadingAnimation(int seconds)
         {   
