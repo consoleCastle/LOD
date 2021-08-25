@@ -15,10 +15,11 @@ namespace LOD.Classes
         {
             Console.Clear();
 
+            Console.ForegroundColor = ConsoleColor.Yellow;
             typewriter.GiveMeSpace();
             Console.WriteLine(data.TitleArt);
-            //typewriter.Type(data.TitleArt);
             typewriter.GiveMeSpace();
+            Console.ForegroundColor = ConsoleColor.White;
 
             PlayerFlags playerFlags = new PlayerFlags();
             playerFlags.Reset();
@@ -27,8 +28,12 @@ namespace LOD.Classes
             int moderateSpeed = (int)Typewriter.Speed.moderate;
             int fastSpeed = (int)Typewriter.Speed.fast;
 
+            //ConsoleHelper.SetCurrentFont("Lucida Console", 12);
+
+            //index into string at character limit do whitespace vs char check
             typewriter.Type(data.Exposition, moderateSpeed);
             typewriter.GiveMeSpace();
+
 
             // Start room sequence (starts at top of mountain [room 0], player works through rooms)
             //(This may not be where this process lives but) When player chooses option below is all the things that should happen
@@ -36,7 +41,7 @@ namespace LOD.Classes
             //IF Player triggered game ending
             // Run End(with passed endtype class)
             //Change player flags/status as necessary
-            //Change player location if necessary
+            //Change location if necessary
 
             EndType newEnd = new EndType();
             newEnd.IsGameover = true;
@@ -49,15 +54,16 @@ namespace LOD.Classes
         {   
             //LoadingAnimation loading = new LoadingAnimation();
             //loading.Delay = 500;
-            //while (true)
+            //while (true) ---->Need logic to determine how long loading animation runs for
             //{
             //    loading.Run("Loading", sequenceCode: 1);
             //}
         }
         public void Reset()
         {
+            //Need to reset all flags, options, and rooms to their defaults
             //Run reset rooms
-              //roomSequence.reset() - In example
+              //roomSequence.reset() - For example
         }
         public void ThanksForPlaying()
         {
@@ -70,13 +76,16 @@ namespace LOD.Classes
 
             if (endType.IsGameover)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(data.GameoverArt);
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine(data.VictoryArt);
             }
 
+            Console.ForegroundColor = ConsoleColor.White;
             //Run Reset()
             Thread.Sleep(5000);
             typewriter.GiveMeSpace();
