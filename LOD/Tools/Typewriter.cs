@@ -15,11 +15,12 @@ namespace LOD.Tools
         }
         public void Type(string message, int speed)
         {
-            PrintWithLineBreaks(0, message, speed);
+            TypeWithLineBreaks(0, message, speed);
         }
 
-        public void PrintWithLineBreaks(int indexStart, string message, int speed)
+        public void TypeWithLineBreaks(int indexStart, string message, int speed)
         {
+            //Stopping Condition
             if (message.Length - indexStart <= Console.WindowWidth)
             {
                 for (var i = indexStart; i < message.Length; i++)
@@ -52,7 +53,8 @@ namespace LOD.Tools
                     Thread.Sleep(speed);
                 }
                 Console.WriteLine("");
-                PrintWithLineBreaks(endIndex + 1, message, speed);
+                // Recursion, yay
+                TypeWithLineBreaks(endIndex + 1, message, speed);
             }
         }
 
