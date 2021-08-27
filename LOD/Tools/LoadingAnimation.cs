@@ -3,7 +3,7 @@ using System.Threading;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LOD.Classes
+namespace LOD.Tools
 {
     class LoadingAnimation
     {
