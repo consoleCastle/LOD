@@ -15,6 +15,14 @@ namespace LOD.Classes
         {
             Console.Clear();
 
+            string prompt = "Welcome to the User Menu";
+            string[] options = { "Show Map", "Show Title", "Exit" };
+            Menu userMenu = new Menu(prompt, options);
+            userMenu.Run();
+
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey(true);
+
             Console.ForegroundColor = ConsoleColor.Yellow;
             typewriter.GiveMeSpace();
             Console.WriteLine(data.TitleArt);
@@ -35,6 +43,8 @@ namespace LOD.Classes
             typewriter.GiveMeSpace();
 
 
+
+
             // Start room sequence (starts at top of mountain [room 0], player works through rooms)
             //(This may not be where this process lives but) When player chooses option below is all the things that should happen
             //Check if player triggered game ending
@@ -48,9 +58,6 @@ namespace LOD.Classes
             newEnd.CauseMessage = "This is a test Gameover message";
 
             End(newEnd);
-
-            UserCommonMenu userMenu = new UserCommonMenu();
-            userMenu.MenuPrompt();
 
         }
         public void RunLoadingAnimation(int seconds)
