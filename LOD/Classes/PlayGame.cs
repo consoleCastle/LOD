@@ -30,18 +30,8 @@ namespace LOD.Classes
 
             //ConsoleHelper.SetCurrentFont("Lucida Console", 12);
 
-            //index into string at character limit do whitespace vs char check
-            typewriter.Type(data.Exposition, moderateSpeed);
+            typewriter.Type(data.Exposition, fastSpeed);
             typewriter.GiveMeSpace();
-
-
-            // Start room sequence (starts at top of mountain [room 0], player works through rooms)
-            //(This may not be where this process lives but) When player chooses option below is all the things that should happen
-            //Check if player triggered game ending
-            //IF Player triggered game ending
-            // Run End(with passed endtype class)
-            //Change player flags/status as necessary
-            //Change location if necessary
 
             EndType newEnd = new EndType();
             newEnd.IsGameover = true;

@@ -18,9 +18,15 @@ namespace LOD.Tools
             TypeWithLineBreaks(0, message, speed);
         }
 
+        public void GiveMeSpace()
+        {
+            Thread.Sleep(500);
+            Console.WriteLine(new string('-', 100));
+            Thread.Sleep(500);
+        }
+
         public void TypeWithLineBreaks(int indexStart, string message, int speed)
         {
-            //Stopping Condition
             if (message.Length - indexStart <= Console.WindowWidth)
             {
                 for (var i = indexStart; i < message.Length; i++)
@@ -53,16 +59,9 @@ namespace LOD.Tools
                     Thread.Sleep(speed);
                 }
                 Console.WriteLine("");
-                // Recursion, yay
                 TypeWithLineBreaks(endIndex + 1, message, speed);
             }
         }
 
-        public void GiveMeSpace()
-        {
-            Thread.Sleep(500);
-            Console.WriteLine(new string('-', 100));
-            Thread.Sleep(500);
-        }
     }
 }
