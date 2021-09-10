@@ -17,6 +17,7 @@ namespace LOD.Classes
             LoadingAnimation loading = new LoadingAnimation();
             loading.Delay = 500;
             Console.WriteLine(data.CurrentRoom.Description);
+            string userCommand = Console.ReadLine();
             while (true)
             {
                 loading.Run("Loading", sequenceCode: 1);
