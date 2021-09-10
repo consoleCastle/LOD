@@ -10,11 +10,8 @@ namespace LOD.Classes
     class PlayGame
     {
         GameData data = new GameData();
-<<<<<<< HEAD
         Room current_room {get; set;}
-=======
         Typewriter typewriter = new Typewriter();
->>>>>>> master
         public void Start()
         {
             Console.Clear();
@@ -22,17 +19,6 @@ namespace LOD.Classes
             Console.ForegroundColor = ConsoleColor.Yellow;
             typewriter.GiveMeSpace();
             Console.WriteLine(data.TitleArt);
-<<<<<<< HEAD
-            //Thread.Sleep(5000);
-            LoadingAnimation loading = new LoadingAnimation();
-            loading.Delay = 500;
-            Console.WriteLine(data.CurrentRoom.Description);
-            string userCommand = Console.ReadLine();
-            while (true)
-            {
-                loading.Run("Loading", sequenceCode: 1);
-            }
-=======
             typewriter.GiveMeSpace();
             Console.ForegroundColor = ConsoleColor.White;
 
@@ -73,7 +59,6 @@ namespace LOD.Classes
             //{
             //    loading.Run("Loading", sequenceCode: 1);
             //}
->>>>>>> master
         }
         public void Reset()
         {
