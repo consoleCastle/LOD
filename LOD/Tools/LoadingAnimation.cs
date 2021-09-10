@@ -3,7 +3,7 @@ using System.Threading;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LOD.Classes
+namespace LOD.Tools
 {
     class LoadingAnimation
     {
@@ -17,7 +17,6 @@ namespace LOD.Classes
             counter = 0;
             sequence = new string[,]
             {
-                //{ "=>              ", "==>           ", "===>         ", "====>        ", "=====>       ","======>      ","=======>     ","========>    ","=========>   ","==========>  ","===========> ","============>", "=============>", "==============>" },
                 { ".                      ","..","...", "...@/", "...@/.","...@/..", "...@/...", @"...@/...\<>/", @"...@/...\<>/.",@"...@/...\<>/..",@"...@/...\<>/...",@"...@/...\<>/...o°o",@"...@/...\<>/...o°o",@"...@/...\<>/...o°o.",@"...@/...\<>/...o°o..",@"...@/...\<>/...o°o..." },
             };
             totalSequences = sequence.GetLength(0);
