@@ -56,10 +56,6 @@ namespace LOD.Classes
                     {
                         SelectedIndex--;
                     }
-                    //else if (SelectedIndex == Options.Length - 1)
-                    //{
-                    //    SelectedIndex = 0;
-                    //}
                     else if (SelectedIndex == 0)
                     {
                         SelectedIndex = Options.Length - 1;

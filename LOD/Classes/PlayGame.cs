@@ -13,21 +13,21 @@ namespace LOD.Classes
         Typewriter typewriter = new Typewriter();
         public void Start()
         {
-            Console.Clear();
-
-            string prompt = "Welcome to the User Menu";
-            string[] options = { "Show Map", "Show Title", "Exit" };
-            Menu userMenu = new Menu(prompt, options);
-            userMenu.Run();
-
-            Console.WriteLine("Press any key to exit...");
-            Console.ReadKey(true);
-
             Console.ForegroundColor = ConsoleColor.Yellow;
             typewriter.GiveMeSpace();
-            Console.WriteLine(data.TitleArt);
+            Console.WriteLine(data.TitleArt);                 
             typewriter.GiveMeSpace();
             Console.ForegroundColor = ConsoleColor.White;
+
+            ConsoleKey keyPressed;
+            Console.WriteLine("Press 'm' to show the menu");
+            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+            keyPressed = keyInfo.Key;
+            if (keyPressed == ConsoleKey.M)
+            {
+                RunMenu();
+            }
+
 
             PlayerFlags playerFlags = new PlayerFlags();
             playerFlags.Reset();
@@ -110,6 +110,50 @@ namespace LOD.Classes
             {
                 ThanksForPlaying();
             }
+        }
+        private void RunMenu()
+        {
+                string prompt = "Welcome to the User Menu";
+                string[] options = { "Show Map", "Win the Game!", "Exit Game", "Close Menu" };
+                Menu userMenu = new Menu(prompt, options);
+                int selectedIndex = userMenu.Run();
+
+                switch(selectedIndex)
+                {
+                    case 0:
+                        ShowMap();
+                        break;
+                    case 1:
+                        ShowVictory();
+                        break;
+                    case 2:
+                        ExitGame();
+                        break;
+                    case 3:
+                        Console.Clear();
+                        break;
+            }
+
+        }
+        private void ShowMap()
+        {
+            Console.WriteLine(data.Map);
+            Console.WriteLine("Press any key to return to the menu...");
+            Console.ReadKey(true);
+            RunMenu();
+        }
+        private void ShowVictory()
+        {
+            Console.WriteLine(data.VictoryArt);
+            Console.WriteLine("Press any key to return to the menu...");
+            Console.ReadKey(true);
+            RunMenu();
+        }
+        private void ExitGame()
+        {
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey(true);
+            Environment.Exit(0);
         }
     }
 }
