@@ -54,7 +54,6 @@ namespace LOD.Classes
 ░ ░   ░   ░   ▒   ░      ░      ░   ░ ░ ░ ▒       ░░     ░     ░░   ░ 
       ░       ░  ░       ░      ░  ░    ░ ░        ░     ░  ░   ░     
                                                   ░     ";
-<<<<<<< HEAD:LOD/Classes/GameData.cs
         public Room CurrentRoom { get; set; } 
         public GameData()
         {
@@ -74,11 +73,25 @@ namespace LOD.Classes
             test_room_1.Choices.Add("1", test_starting_room);
             return test_starting_room;
         }
-=======
-
+        public void CheckStatement (string userCommand)
+        {
+            switch(userCommand)
+            {
+                case "Menu":
+                    //TODO make the menu come up
+                    break;
+                default:
+                    if(!CurrentRoom.Choices.ContainsKey(userCommand))
+                    {
+                        Console.WriteLine("That is not a valid choice");
+                        break;
+                    }
+                    CurrentRoom = CurrentRoom.Choices[userCommand];
+                    break;
+            }
+        }
         public string Exposition { get; } = "A bright flash of light blinds your eyes as the world around you dissolves. After a moment of disorientation you find yourself standing in a small courtyard atop a calm mountain. What happened? How did you get here? How do you get home? The answers are hidden in the world around you.";
         //newline
 
->>>>>>> master:LOD/Utils/GameData.cs
     }
 }
