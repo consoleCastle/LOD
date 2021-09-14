@@ -24,8 +24,13 @@ namespace LOD.Classes
             loading.Delay = 500;
             PlayerFlags playerFlags = new PlayerFlags();
             playerFlags.Reset();
-            Console.WriteLine(data.CurrentRoom.Description);
-            string userCommand = Console.ReadLine();
+            EndType newEnd = new EndType();
+            while(!newEnd.IsGameover)
+            {
+                Console.WriteLine(data.CurrentRoom.Description);
+                string userCommand = Console.ReadLine();
+                data.CheckStatement(userCommand);
+            }
 /*            while (true)
             {
                 loading.Run("Loading", sequenceCode: 1);
@@ -53,7 +58,7 @@ namespace LOD.Classes
             //Change player flags/status as necessary
             //Change location if necessary
 
-            EndType newEnd = new EndType();
+            
             newEnd.IsGameover = true;
             newEnd.CauseMessage = "This is a test Gameover message";
 
