@@ -25,17 +25,7 @@ namespace LOD.Classes
             PlayerFlags playerFlags = new PlayerFlags();
             playerFlags.Reset();
             EndType newEnd = new EndType();
-            while(!newEnd.IsGameover)
-            {
-                Console.WriteLine(data.CurrentRoom.Description);
-                string userCommand = Console.ReadLine();
-                data.CheckStatement(userCommand);
-                if (data.IsDead())
-                {
-                    newEnd.IsGameover = true;
-                    newEnd.CauseMessage = data.CurrentRoom.Description;
-                }
-            }
+          
 /*            while (true)
             {
                 loading.Run("Loading", sequenceCode: 1);
@@ -63,9 +53,22 @@ namespace LOD.Classes
             //Change player flags/status as necessary
             //Change location if necessary
 
-            
+
             //newEnd.IsGameover = true;
             //newEnd.CauseMessage = "This is a test Gameover message";
+            data.CurrentRoom = data.SetUpRooms();
+            while (!newEnd.IsGameover)
+            {
+                Console.WriteLine(data.CurrentRoom.Description);
+                string userCommand = Console.ReadLine();
+                data.CheckStatement(playerFlags,userCommand);
+                data.CheckFlags(playerFlags, newEnd);
+                if (data.IsDead())
+                {
+                    newEnd.IsGameover = true;
+                    newEnd.CauseMessage = data.CurrentRoom.Description;
+                }
+            }
 
             End(newEnd);
 
@@ -94,7 +97,7 @@ namespace LOD.Classes
             Console.WriteLine(endType.CauseMessage);
             typewriter.GiveMeSpace();
 
-            if (endType.IsGameover)
+            if (!endType.IsGoodEnding)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(data.GameoverArt);
