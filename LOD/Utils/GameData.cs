@@ -62,9 +62,9 @@ namespace LOD.Classes
 
         public Room SetUpRooms()
         {
-            Room test_starting_room = new Room("This is the default description before you flip a switch in room 1. In room 2, ypu die. Instructions: Type the number of your choice and hit enter.\n1. Go to Room 1\n2.Go to Room 2");
-            Room test_room_1 = new Room("There is a switch in this room. Neato! Type 'A' to flip it. (A is for Action)\n1. Go back to the starting room\nA. Flip the switch!");
-            Room test_room_2 = new Room("Oh no! You died!");
+            Room test_starting_room = new Room("test_starting_room", "This is the default description before you flip a switch in room 1. In room 2, ypu die. Instructions: Type the number of your choice and hit enter.\n1. Go to Room 1\n2.Go to Room 2");
+            Room test_room_1 = new Room("test_room_1", "There is a switch in this room. Neato! Type 'A' to flip it. (A is for Action)\n1. Go back to the starting room\nA. Flip the switch!");
+            Room test_room_2 = new Room("test_room_2", "Oh no! You died!");
 
 
             test_starting_room.Choices.Add("1", test_room_1);
@@ -89,6 +89,14 @@ namespace LOD.Classes
                     CurrentRoom = CurrentRoom.Choices[userCommand];
                     break;
             }
+        }
+        public Boolean IsDead()
+        {
+            if (CurrentRoom.Name == "test_room_2")
+            {
+                return true;
+            }
+            return false;
         }
         public string Exposition { get; } = "A bright flash of light blinds your eyes as the world around you dissolves. After a moment of disorientation you find yourself standing in a small courtyard atop a calm mountain. What happened? How did you get here? How do you get home? The answers are hidden in the world around you.";
         //newline

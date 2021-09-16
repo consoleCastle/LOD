@@ -30,6 +30,11 @@ namespace LOD.Classes
                 Console.WriteLine(data.CurrentRoom.Description);
                 string userCommand = Console.ReadLine();
                 data.CheckStatement(userCommand);
+                if (data.IsDead())
+                {
+                    newEnd.IsGameover = true;
+                    newEnd.CauseMessage = data.CurrentRoom.Description;
+                }
             }
 /*            while (true)
             {
@@ -59,8 +64,8 @@ namespace LOD.Classes
             //Change location if necessary
 
             
-            newEnd.IsGameover = true;
-            newEnd.CauseMessage = "This is a test Gameover message";
+            //newEnd.IsGameover = true;
+            //newEnd.CauseMessage = "This is a test Gameover message";
 
             End(newEnd);
 
