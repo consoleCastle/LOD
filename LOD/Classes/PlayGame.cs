@@ -19,11 +19,20 @@ namespace LOD.Classes
             Console.ForegroundColor = ConsoleColor.Yellow;
             typewriter.GiveMeSpace();
             Console.WriteLine(data.TitleArt);
+            //Thread.Sleep(5000);
+            LoadingAnimation loading = new LoadingAnimation();
+            loading.Delay = 500;
+            PlayerFlags playerFlags = new PlayerFlags();
+            playerFlags.Reset();
+            EndType newEnd = new EndType();
+          
+/*            while (true)
+            {
+                loading.Run("Loading", sequenceCode: 1);
+            }*/
             typewriter.GiveMeSpace();
             Console.ForegroundColor = ConsoleColor.White;
 
-            PlayerFlags playerFlags = new PlayerFlags();
-            playerFlags.Reset();
 
             int slowSpeed = (int)Typewriter.Speed.slow;
             int moderateSpeed = (int)Typewriter.Speed.moderate;
@@ -44,9 +53,22 @@ namespace LOD.Classes
             //Change player flags/status as necessary
             //Change location if necessary
 
-            EndType newEnd = new EndType();
-            newEnd.IsGameover = true;
-            newEnd.CauseMessage = "This is a test Gameover message";
+
+            //newEnd.IsGameover = true;
+            //newEnd.CauseMessage = "This is a test Gameover message";
+            data.CurrentRoom = data.SetUpRooms();
+            while (!newEnd.IsGameover)
+            {
+                Console.WriteLine(data.CurrentRoom.Description);
+                string userCommand = Console.ReadLine();
+                data.CheckStatement(playerFlags,userCommand);
+                data.CheckFlags(playerFlags, newEnd);
+                if (data.IsDead())
+                {
+                    newEnd.IsGameover = true;
+                    newEnd.CauseMessage = data.CurrentRoom.Description;
+                }
+            }
 
             End(newEnd);
 
@@ -75,7 +97,7 @@ namespace LOD.Classes
             Console.WriteLine(endType.CauseMessage);
             typewriter.GiveMeSpace();
 
-            if (endType.IsGameover)
+            if (!endType.IsGoodEnding)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(data.GameoverArt);
