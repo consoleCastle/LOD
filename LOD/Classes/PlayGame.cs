@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Text;
 using LOD.Classes;
 using LOD.Tools;
+using LOD.Utils;
 
 namespace LOD.Classes
 {
     class PlayGame
     {
-        GameData data = new GameData();
+        AsciiArt art = new AsciiArt();
         Room current_room {get; set;}
         Typewriter typewriter = new Typewriter();
         public void Start()
@@ -18,41 +19,20 @@ namespace LOD.Classes
 
             Console.ForegroundColor = ConsoleColor.Yellow;
             typewriter.GiveMeSpace();
-            Console.WriteLine(data.TitleArt);
-            //Thread.Sleep(5000);
-            LoadingAnimation loading = new LoadingAnimation();
-            loading.Delay = 500;
-            PlayerFlags playerFlags = new PlayerFlags();
-            playerFlags.Reset();
-            EndType newEnd = new EndType();
-          
-/*            while (true)
-            {
-                loading.Run("Loading", sequenceCode: 1);
-            }*/
+            Console.WriteLine(art.TitleArt);
             typewriter.GiveMeSpace();
             Console.ForegroundColor = ConsoleColor.White;
 
+            PlayerFlags playerFlags = new PlayerFlags();
+            playerFlags.Reset();
+            EndType newEnd = new EndType();
 
             int slowSpeed = (int)Typewriter.Speed.slow;
             int moderateSpeed = (int)Typewriter.Speed.moderate;
             int fastSpeed = (int)Typewriter.Speed.fast;
 
-            //ConsoleHelper.SetCurrentFont("Lucida Console", 12);
-
-            //index into string at character limit do whitespace vs char check
-            typewriter.Type(data.Exposition, moderateSpeed);
+            typewriter.Type(art.Exposition, fastSpeed);
             typewriter.GiveMeSpace();
-
-
-            // Start room sequence (starts at top of mountain [room 0], player works through rooms)
-            //(This may not be where this process lives but) When player chooses option below is all the things that should happen
-            //Check if player triggered game ending
-            //IF Player triggered game ending
-            // Run End(with passed endtype class)
-            //Change player flags/status as necessary
-            //Change location if necessary
-
 
             //newEnd.IsGameover = true;
             //newEnd.CauseMessage = "This is a test Gameover message";
@@ -73,17 +53,10 @@ namespace LOD.Classes
             End(newEnd);
 
         }
-        public void RunLoadingAnimation(int seconds)
-        {   
-            //LoadingAnimation loading = new LoadingAnimation();
-            //loading.Delay = 500;
-            //while (true) ---->Need logic to determine how long loading animation runs for
-            //{
-            //    loading.Run("Loading", sequenceCode: 1);
-            //}
-        }
+
         public void Reset()
         {
+            //TODO
             //Need to reset all flags, options, and rooms to their defaults
             //Run reset rooms
               //roomSequence.reset() - For example
@@ -100,12 +73,12 @@ namespace LOD.Classes
             if (!endType.IsGoodEnding)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(data.GameoverArt);
+                Console.WriteLine(art.GameoverArt);
             }
             else
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine(data.VictoryArt);
+                Console.WriteLine(art.VictoryArt);
             }
 
             Console.ForegroundColor = ConsoleColor.White;
