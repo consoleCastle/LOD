@@ -9,9 +9,9 @@ namespace LOD.Tools
     {
         public enum Speed
         {
-            slow = 100,
-            moderate = 40,
-            fast = 10
+            slow = 95,
+            moderate = 60,
+            fast = 33
         }
         public void Type(string message, int speed)
         {

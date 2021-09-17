@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Text;
 using LOD.Classes;
 using LOD.Tools;
+using LOD.Utils;
 
 namespace LOD.Classes
 {
     class PlayGame
     {
-        GameData data = new GameData();
+        AsciiArt art = new AsciiArt();
         Typewriter typewriter = new Typewriter();
         public void Start()
         {
@@ -17,7 +18,7 @@ namespace LOD.Classes
 
             Console.ForegroundColor = ConsoleColor.Yellow;
             typewriter.GiveMeSpace();
-            Console.WriteLine(data.TitleArt);
+            Console.WriteLine(art.TitleArt);
             typewriter.GiveMeSpace();
             Console.ForegroundColor = ConsoleColor.White;
 
@@ -28,9 +29,8 @@ namespace LOD.Classes
             int moderateSpeed = (int)Typewriter.Speed.moderate;
             int fastSpeed = (int)Typewriter.Speed.fast;
 
-            //ConsoleHelper.SetCurrentFont("Lucida Console", 12);
 
-            typewriter.Type(data.Exposition, fastSpeed);
+            typewriter.Type(art.Exposition, fastSpeed);
             typewriter.GiveMeSpace();
 
             EndType newEnd = new EndType();
@@ -40,17 +40,10 @@ namespace LOD.Classes
             End(newEnd);
 
         }
-        public void RunLoadingAnimation(int seconds)
-        {   
-            //LoadingAnimation loading = new LoadingAnimation();
-            //loading.Delay = 500;
-            //while (true) ---->Need logic to determine how long loading animation runs for
-            //{
-            //    loading.Run("Loading", sequenceCode: 1);
-            //}
-        }
+
         public void Reset()
         {
+            //TODO
             //Need to reset all flags, options, and rooms to their defaults
             //Run reset rooms
               //roomSequence.reset() - For example
@@ -67,12 +60,12 @@ namespace LOD.Classes
             if (endType.IsGameover)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(data.GameoverArt);
+                Console.WriteLine(art.GameoverArt);
             }
             else
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine(data.VictoryArt);
+                Console.WriteLine(art.VictoryArt);
             }
 
             Console.ForegroundColor = ConsoleColor.White;
