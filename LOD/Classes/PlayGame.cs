@@ -11,6 +11,7 @@ namespace LOD.Classes
     class PlayGame
     {
         AsciiArt art = new AsciiArt();
+        Room current_room {get; set;}
         Typewriter typewriter = new Typewriter();
         public void Start()
         {
@@ -24,18 +25,30 @@ namespace LOD.Classes
 
             PlayerFlags playerFlags = new PlayerFlags();
             playerFlags.Reset();
+            EndType newEnd = new EndType();
 
             int slowSpeed = (int)Typewriter.Speed.slow;
             int moderateSpeed = (int)Typewriter.Speed.moderate;
             int fastSpeed = (int)Typewriter.Speed.fast;
 
-
             typewriter.Type(art.Exposition, fastSpeed);
             typewriter.GiveMeSpace();
 
-            EndType newEnd = new EndType();
-            newEnd.IsGameover = true;
-            newEnd.CauseMessage = "This is a test Gameover message";
+            //newEnd.IsGameover = true;
+            //newEnd.CauseMessage = "This is a test Gameover message";
+            data.CurrentRoom = data.SetUpRooms();
+            while (!newEnd.IsGameover)
+            {
+                Console.WriteLine(data.CurrentRoom.Description);
+                string userCommand = Console.ReadLine();
+                data.CheckStatement(playerFlags,userCommand);
+                data.CheckFlags(playerFlags, newEnd);
+                if (data.IsDead())
+                {
+                    newEnd.IsGameover = true;
+                    newEnd.CauseMessage = data.CurrentRoom.Description;
+                }
+            }
 
             End(newEnd);
 
@@ -57,7 +70,7 @@ namespace LOD.Classes
             Console.WriteLine(endType.CauseMessage);
             typewriter.GiveMeSpace();
 
-            if (endType.IsGameover)
+            if (!endType.IsGoodEnding)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(art.GameoverArt);
@@ -84,5 +97,6 @@ namespace LOD.Classes
                 ThanksForPlaying();
             }
         }
+        
     }
 }
