@@ -11,6 +11,7 @@ namespace LOD.Classes
     class PlayGame
     {
         AsciiArt art = new AsciiArt();
+        GameData data = new GameData();
         Room current_room {get; set;}
         Typewriter typewriter = new Typewriter();
         public void Start()
