@@ -1,4 +1,4 @@
-﻿using System;
+﻿<<<<<<< HEAD
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,12 +8,10 @@ namespace LOD.Classes
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public Dictionary<string, Room> Directions { get; set; }
-        public Room(string name, string description)
+        public Dictionary<string, Room> Choices { get; set; }        public Room(string name, string description)
         {
             Name = name;
             Description = description;
-            Directions = new Dictionary<string, Room>();
-        }
+            Choices = new Dictionary<string, Room>();        }
     }
 }

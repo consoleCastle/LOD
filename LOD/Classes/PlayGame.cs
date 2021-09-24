@@ -4,17 +4,22 @@ using System.Collections.Generic;
 using System.Text;
 using LOD.Classes;
 using LOD.Tools;
+using LOD.Utils;
 
 namespace LOD.Classes
 {
     class PlayGame
     {
+        AsciiArt art = new AsciiArt();
         GameData data = new GameData();
         Typewriter typewriter = new Typewriter();
         public void Start()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             typewriter.GiveMeSpace();
+            Console.WriteLine(art.TitleArt);
+            typewriter.GiveMeSpace();
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(data.TitleArt);                 
             typewriter.GiveMeSpace();
             Console.ForegroundColor = ConsoleColor.White;
@@ -31,17 +36,30 @@ namespace LOD.Classes
 
             PlayerFlags playerFlags = new PlayerFlags();
             playerFlags.Reset();
+            EndType newEnd = new EndType();
 
             int slowSpeed = (int)Typewriter.Speed.slow;
             int moderateSpeed = (int)Typewriter.Speed.moderate;
             int fastSpeed = (int)Typewriter.Speed.fast;
 
-            //ConsoleHelper.SetCurrentFont("Lucida Console", 12);
-
-            //index into string at character limit do whitespace vs char check
-            typewriter.Type(data.Exposition, moderateSpeed);
+            typewriter.Type(art.Exposition, fastSpeed);
             typewriter.GiveMeSpace();
 
+            //newEnd.IsGameover = true;
+            //newEnd.CauseMessage = "This is a test Gameover message";
+            data.CurrentRoom = data.SetUpRooms();
+            while (!newEnd.IsGameover)
+            {
+                Console.WriteLine(data.CurrentRoom.Description);
+                string userCommand = Console.ReadLine();
+                data.CheckStatement(playerFlags,userCommand);
+                data.CheckFlags(playerFlags, newEnd);
+                if (data.IsDead())
+                {
+                    newEnd.IsGameover = true;
+                    newEnd.CauseMessage = data.CurrentRoom.Description;
+                }
+            }
 
 
 
@@ -60,6 +78,7 @@ namespace LOD.Classes
             End(newEnd);
 
         }
+
         public void RunLoadingAnimation(int seconds)
         {   
             //LoadingAnimation loading = new LoadingAnimation();
@@ -71,6 +90,7 @@ namespace LOD.Classes
         }
         public void Reset()
         {
+            //TODO
             //Need to reset all flags, options, and rooms to their defaults
             //Run reset rooms
               //roomSequence.reset() - For example
@@ -84,15 +104,15 @@ namespace LOD.Classes
             Console.WriteLine(endType.CauseMessage);
             typewriter.GiveMeSpace();
 
-            if (endType.IsGameover)
+            if (!endType.IsGoodEnding)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(data.GameoverArt);
+                Console.WriteLine(art.GameoverArt);
             }
             else
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine(data.VictoryArt);
+                Console.WriteLine(art.VictoryArt);
             }
 
             Console.ForegroundColor = ConsoleColor.White;
