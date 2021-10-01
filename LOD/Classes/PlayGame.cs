@@ -18,6 +18,7 @@ namespace LOD.Classes
         {
             Console.Clear();
 
+            //Testing Merge conflicts1
             Console.ForegroundColor = ConsoleColor.Yellow;
             typewriter.GiveMeSpace();
             Console.WriteLine(art.TitleArt);
@@ -34,13 +35,6 @@ namespace LOD.Classes
 
             typewriter.Type(art.Exposition, fastSpeed);
             typewriter.GiveMeSpace();
-
-            /*Adding bad comments to trigger a merge conflict*/
-            /*Adding bad comments to trigger a merge conflict*/
-            /*Adding bad comments to trigger a merge conflict*/
-            /*Adding bad comments to trigger a merge conflict*/
-            /*Adding bad comments to trigger a merge conflict*/
-            /*Adding bad comments to trigger a merge conflict*/
 
             //newEnd.IsGameover = true;
             //newEnd.CauseMessage = "This is a test Gameover message";
