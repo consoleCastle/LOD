@@ -16,7 +16,7 @@ namespace LOD.Tools
         public void Type(string message, int speed)
         {
             TypeWithLineBreaks(0, message, speed);
-            //Testing Merge conflicts
+            //Testing Merge conflicts2
         }
 
         public void GiveMeSpace()
