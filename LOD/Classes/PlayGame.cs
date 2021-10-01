@@ -12,27 +12,17 @@ namespace LOD.Classes
     {
         AsciiArt art = new AsciiArt();
         GameData data = new GameData();
+        Room current_room {get; set;}
         Typewriter typewriter = new Typewriter();
         public void Start()
         {
+            Console.Clear();
+
             Console.ForegroundColor = ConsoleColor.Yellow;
             typewriter.GiveMeSpace();
             Console.WriteLine(art.TitleArt);
             typewriter.GiveMeSpace();
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine(data.TitleArt);                 
-            typewriter.GiveMeSpace();
-            Console.ForegroundColor = ConsoleColor.White;
-
-            ConsoleKey keyPressed;
-            Console.WriteLine("Press 'm' to show the menu");
-            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
-            keyPressed = keyInfo.Key;
-            if (keyPressed == ConsoleKey.M)
-            {
-                RunMenu();
-            }
-
 
             PlayerFlags playerFlags = new PlayerFlags();
             playerFlags.Reset();
@@ -47,38 +37,77 @@ namespace LOD.Classes
 
             //newEnd.IsGameover = true;
             //newEnd.CauseMessage = "This is a test Gameover message";
-            data.CurrentRoom = data.SetUpRooms();
+            data.CurrentRoom = SetUpRooms();
             while (!newEnd.IsGameover)
             {
                 Console.WriteLine(data.CurrentRoom.Description);
                 string userCommand = Console.ReadLine();
-                data.CheckStatement(playerFlags,userCommand);
-                data.CheckFlags(playerFlags, newEnd);
-                if (data.IsDead())
+                CheckStatement(playerFlags,userCommand);
+                CheckFlags(playerFlags, newEnd);
+                if (IsDead())
                 {
                     newEnd.IsGameover = true;
                     newEnd.CauseMessage = data.CurrentRoom.Description;
                 }
             }
 
-
-
-            // Start room sequence (starts at top of mountain [room 0], player works through rooms)
-            //(This may not be where this process lives but) When player chooses option below is all the things that should happen
-            //Check if player triggered game ending
-            //IF Player triggered game ending
-            // Run End(with passed endtype class)
-            //Change player flags/status as necessary
-            //Change location if necessary
-
-            EndType newEnd = new EndType();
-            newEnd.IsGameover = true;
-            newEnd.CauseMessage = "This is a test Gameover message";
-
             End(newEnd);
 
         }
+<<<<<<< HEAD
+        public Room SetUpRooms()
+        {
+            Room test_starting_room = new Room("test_starting_room", "This is the default description before you flip a switch in room 1. In room 2, you die. Instructions: Type the number of your choice and hit enter.\n1. Go to Room 1\n2. Go to Room 2");
+            Room test_room_1 = new Room("test_room_1", "There is a switch in this room. Neato! Type 'a' to flip it. (a is for Action)\n1. Go back to the starting room\nA. Flip the switch!");
+            Room test_room_2 = new Room("test_room_2", "Oh no! You died!");
 
+
+            test_starting_room.Choices.Add("1", test_room_1);
+            test_starting_room.Choices.Add("2", test_room_2);
+
+            test_room_1.Choices.Add("1", test_starting_room);
+            return test_starting_room;
+        }
+        public void CheckStatement(PlayerFlags playerFlags, string userCommand)
+        {
+            switch (userCommand)
+            {
+                case "a":
+                    if (data.CurrentRoom.Name == "test_room_1")
+                    {
+                        playerFlags.Three_Stones_Collected = true;
+                    }
+                    break;
+                case "Menu":
+                    //TODO make the menu come up
+                    break;
+                default:
+                    if (!data.CurrentRoom.Choices.ContainsKey(userCommand))
+                    {
+                        Console.WriteLine("That is not a valid choice");
+                        break;
+                    }
+                    data.CurrentRoom = data.CurrentRoom.Choices[userCommand];
+                    break;
+            }
+        }
+        public void CheckFlags(PlayerFlags playerFlags, EndType endType)
+        {
+            if (playerFlags.Three_Stones_Collected)
+            {
+                data.CurrentRoom.Description = "You're a winner baby!";
+                endType.IsGoodEnding = true;
+                endType.IsGameover = true;
+            }
+        }
+        public Boolean IsDead()
+        {
+            if (data.CurrentRoom.Name == "test_room_2")
+            {
+                return true;
+            }
+            return false;
+        }
         public void RunLoadingAnimation(int seconds)
         {   
             //LoadingAnimation loading = new LoadingAnimation();
@@ -88,6 +117,9 @@ namespace LOD.Classes
             //    loading.Run("Loading", sequenceCode: 1);
             //}
         }
+=======
+
+>>>>>>> 94f67ff6fde13b58af7036e2fbeba0037fc8ec28
         public void Reset()
         {
             //TODO
@@ -131,49 +163,6 @@ namespace LOD.Classes
                 ThanksForPlaying();
             }
         }
-        private void RunMenu()
-        {
-                string prompt = "Welcome to the User Menu";
-                string[] options = { "Show Map", "Win the Game!", "Exit Game", "Close Menu" };
-                Menu userMenu = new Menu(prompt, options);
-                int selectedIndex = userMenu.Run();
-
-                switch(selectedIndex)
-                {
-                    case 0:
-                        ShowMap();
-                        break;
-                    case 1:
-                        ShowVictory();
-                        break;
-                    case 2:
-                        ExitGame();
-                        break;
-                    case 3:
-                        Console.Clear();
-                        break;
-            }
-
-        }
-        private void ShowMap()
-        {
-            Console.WriteLine(data.Map);
-            Console.WriteLine("Press any key to return to the menu...");
-            Console.ReadKey(true);
-            RunMenu();
-        }
-        private void ShowVictory()
-        {
-            Console.WriteLine(data.VictoryArt);
-            Console.WriteLine("Press any key to return to the menu...");
-            Console.ReadKey(true);
-            RunMenu();
-        }
-        private void ExitGame()
-        {
-            Console.WriteLine("Press any key to exit...");
-            Console.ReadKey(true);
-            Environment.Exit(0);
-        }
+        
     }
 }
