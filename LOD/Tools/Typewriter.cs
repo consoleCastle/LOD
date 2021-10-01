@@ -11,26 +11,30 @@ namespace LOD.Tools
         {
             slow = 95,
             moderate = 60,
+            /*Adding bad comments to trigger a merge conflict*/
             fast = 33
         }
+        /*Adding bad comments to trigger a merge conflict*/
         public void Type(string message, int speed)
         {
             TypeWithLineBreaks(0, message, speed);
         }
 
-        public void GiveMeSpace()
-        {
-            Thread.Sleep(500);
-            Console.WriteLine(new string('-', 100));
-            Thread.Sleep(500);
-        }
+        /*        public void GiveMeSpace()
+                {
+                    Thread.Sleep(500);
+                    Console.WriteLine(new string('-', 100));
+                    Thread.Sleep(500);
+                }*/
 
+        /*Adding bad comments to trigger a merge conflict*/
         public void TypeWithLineBreaks(int indexStart, string message, int speed)
         {
             if (message.Length - indexStart <= Console.WindowWidth)
             {
                 for (var i = indexStart; i < message.Length; i++)
                 {
+                    /*Adding bad comments to trigger a merge conflict*/
                     char currentChar = message[i];
                     Console.Write(currentChar);
                     if ((currentChar == '.') || (currentChar == '?') || (currentChar == '!') || (currentChar == ','))
@@ -58,6 +62,7 @@ namespace LOD.Tools
                     }
                     Thread.Sleep(speed);
                 }
+                /*Adding bad comments to trigger a merge conflict*/
                 Console.WriteLine("");
                 TypeWithLineBreaks(endIndex + 1, message, speed);
             }
