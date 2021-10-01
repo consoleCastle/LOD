@@ -18,26 +18,33 @@ namespace LOD.Classes
         {
             Console.Clear();
 
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            typewriter.GiveMeSpace();
-            Console.WriteLine(art.TitleArt);
-            typewriter.GiveMeSpace();
-            Console.ForegroundColor = ConsoleColor.White;
+            /*            Console.ForegroundColor = ConsoleColor.Yellow;
+                        typewriter.GiveMeSpace();
+                        Console.WriteLine(art.TitleArt);
+                        typewriter.GiveMeSpace();
+                        Console.ForegroundColor = ConsoleColor.White;
 
-            PlayerFlags playerFlags = new PlayerFlags();
-            playerFlags.Reset();
-            EndType newEnd = new EndType();
+                        PlayerFlags playerFlags = new PlayerFlags();
+                        playerFlags.Reset();
+                        EndType newEnd = new EndType();
 
-            int slowSpeed = (int)Typewriter.Speed.slow;
-            int moderateSpeed = (int)Typewriter.Speed.moderate;
-            int fastSpeed = (int)Typewriter.Speed.fast;
+                        int slowSpeed = (int)Typewriter.Speed.slow;
+                        int moderateSpeed = (int)Typewriter.Speed.moderate;
+                        int fastSpeed = (int)Typewriter.Speed.fast;
 
-            typewriter.Type(art.Exposition, fastSpeed);
-            typewriter.GiveMeSpace();
+                        typewriter.Type(art.Exposition, fastSpeed);
+                        typewriter.GiveMeSpace();*/
+
+            /*Adding bad comments to trigger a merge conflict*/
+            /*Adding bad comments to trigger a merge conflict*/
+            /*Adding bad comments to trigger a merge conflict*/
+            /*Adding bad comments to trigger a merge conflict*/
+            /*Adding bad comments to trigger a merge conflict*/
 
             //newEnd.IsGameover = true;
             //newEnd.CauseMessage = "This is a test Gameover message";
             data.CurrentRoom = data.SetUpRooms();
+            /*Adding bad comments to trigger a merge conflict*/
             while (!newEnd.IsGameover)
             {
                 Console.WriteLine(data.CurrentRoom.Description);
