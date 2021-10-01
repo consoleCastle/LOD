@@ -16,7 +16,6 @@ namespace LOD.Classes
         Typewriter typewriter = new Typewriter();
         public void Start()
         {
-            //Adding a bad comment to create a merge conflict
             Console.Clear();
 
             Console.ForegroundColor = ConsoleColor.Yellow;
