@@ -40,3 +40,16 @@ namespace LOD.Tools
         }
     }
 }
+
+/*
+ * How to Call this
+ *         public void RunLoadingAnimation(int seconds)
+        {   
+            //LoadingAnimation loading = new LoadingAnimation();
+            //loading.Delay = 500;
+            //while (true) ---->Need logic to determine how long loading animation runs for
+            //{
+            //    loading.Run("Loading", sequenceCode: 1);
+            //}
+        }
+ */
