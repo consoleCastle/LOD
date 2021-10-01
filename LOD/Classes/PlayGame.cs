@@ -12,7 +12,7 @@ namespace LOD.Classes
     {
         AsciiArt art = new AsciiArt();
         GameData data = new GameData();
-        Room current_room {get; set;}
+        Room current_room { get; set; }
         Typewriter typewriter = new Typewriter();
         public void Start()
         {
@@ -42,7 +42,7 @@ namespace LOD.Classes
             {
                 Console.WriteLine(data.CurrentRoom.Description);
                 string userCommand = Console.ReadLine();
-                CheckStatement(playerFlags,userCommand);
+                CheckStatement(playerFlags, userCommand);
                 CheckFlags(playerFlags, newEnd);
                 if (IsDead())
                 {
@@ -54,7 +54,6 @@ namespace LOD.Classes
             End(newEnd);
 
         }
-
         public Room SetUpRooms()
         {
             Room test_starting_room = new Room("test_starting_room", "This is the default description before you flip a switch in room 1. In room 2, you die. Instructions: Type the number of your choice and hit enter.\n1. Go to Room 1\n2. Go to Room 2");
@@ -109,7 +108,7 @@ namespace LOD.Classes
             return false;
         }
         public void RunLoadingAnimation(int seconds)
-        {   
+        {
             //LoadingAnimation loading = new LoadingAnimation();
             //loading.Delay = 500;
             //while (true) ---->Need logic to determine how long loading animation runs for
@@ -117,13 +116,12 @@ namespace LOD.Classes
             //    loading.Run("Loading", sequenceCode: 1);
             //}
         }
-
         public void Reset()
         {
             //TODO
             //Need to reset all flags, options, and rooms to their defaults
             //Run reset rooms
-              //roomSequence.reset() - For example
+            //roomSequence.reset() - For example
         }
         public void ThanksForPlaying()
         {
@@ -161,6 +159,6 @@ namespace LOD.Classes
                 ThanksForPlaying();
             }
         }
-        
+
     }
 }
