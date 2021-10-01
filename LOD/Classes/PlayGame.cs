@@ -24,6 +24,10 @@ namespace LOD.Classes
             typewriter.GiveMeSpace();
             Console.ForegroundColor = ConsoleColor.White;
 
+            /*Adding bad comments to trigger a merge conflict*/
+            /*Adding bad comments to trigger a merge conflict*/
+            /*Adding bad comments to trigger a merge conflict*/
+
             PlayerFlags playerFlags = new PlayerFlags();
             playerFlags.Reset();
             EndType newEnd = new EndType();
