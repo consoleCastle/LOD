@@ -54,7 +54,7 @@ namespace LOD.Classes
             End(newEnd);
 
         }
-<<<<<<< HEAD
+
         public Room SetUpRooms()
         {
             Room test_starting_room = new Room("test_starting_room", "This is the default description before you flip a switch in room 1. In room 2, you die. Instructions: Type the number of your choice and hit enter.\n1. Go to Room 1\n2. Go to Room 2");
@@ -117,9 +117,7 @@ namespace LOD.Classes
             //    loading.Run("Loading", sequenceCode: 1);
             //}
         }
-=======
 
->>>>>>> 94f67ff6fde13b58af7036e2fbeba0037fc8ec28
         public void Reset()
         {
             //TODO
