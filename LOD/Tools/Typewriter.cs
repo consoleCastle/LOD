@@ -20,13 +20,14 @@ namespace LOD.Tools
             TypeWithLineBreaks(0, message, speed);
         }
 
-        public void GiveMeSpace()
-        {
-            Thread.Sleep(500);
-            Console.WriteLine(new string('-', 100));
-            Thread.Sleep(500);
-        }
+        /*        public void GiveMeSpace()
+                {
+                    Thread.Sleep(500);
+                    Console.WriteLine(new string('-', 100));
+                    Thread.Sleep(500);
+                }*/
 
+        /*Adding bad comments to trigger a merge conflict*/
         public void TypeWithLineBreaks(int indexStart, string message, int speed)
         {
             if (message.Length - indexStart <= Console.WindowWidth)
