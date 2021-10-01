@@ -22,6 +22,7 @@ namespace LOD.Classes
             typewriter.GiveMeSpace();
             Console.WriteLine(art.TitleArt);
             typewriter.GiveMeSpace();
+            /*Adding bad comments to trigger a merge conflict*/
             Console.ForegroundColor = ConsoleColor.White;
 
             PlayerFlags playerFlags = new PlayerFlags();
