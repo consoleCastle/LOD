@@ -40,6 +40,7 @@ namespace LOD.Classes
             /*Adding bad comments to trigger a merge conflict*/
             /*Adding bad comments to trigger a merge conflict*/
             /*Adding bad comments to trigger a merge conflict*/
+            /*Adding bad comments to trigger a merge conflict*/
 
             //newEnd.IsGameover = true;
             //newEnd.CauseMessage = "This is a test Gameover message";
