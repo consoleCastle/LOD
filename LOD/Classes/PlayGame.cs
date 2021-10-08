@@ -10,6 +10,7 @@ namespace LOD.Classes
 {
     class PlayGame
     {
+        // Added comments for merge conflict testing- MASTER
         AsciiArt art = new AsciiArt();
         GameData data = new GameData();
         Room current_room { get; set; }
