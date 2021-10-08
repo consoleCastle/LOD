@@ -10,12 +10,14 @@ namespace LOD.Classes
 {
     class PlayGame
     {
+        // Added comments for merge conflict testing- TESTING
         AsciiArt art = new AsciiArt();
         GameData data = new GameData();
         Room current_room { get; set; }
         Typewriter typewriter = new Typewriter();
         public void Start()
         {
+            // Added comments for merge conflict testing- TESTING
             Console.Clear();
 
             Console.ForegroundColor = ConsoleColor.Yellow;
