@@ -18,6 +18,7 @@ namespace LOD.Classes
         {
             Console.Clear();
 
+            // Added comments for merge conflict testing- MASTER
             Console.ForegroundColor = ConsoleColor.Yellow;
             typewriter.GiveMeSpace();
             Console.WriteLine(art.TitleArt);
@@ -54,6 +55,7 @@ namespace LOD.Classes
             End(newEnd);
 
         }
+        // Added comments for merge conflict testing- MASTER
         public Room SetUpRooms()
         {
             Room test_starting_room = new Room("test_starting_room", "This is the default description before you flip a switch in room 1. In room 2, you die. Instructions: Type the number of your choice and hit enter.\n1. Go to Room 1\n2. Go to Room 2");
