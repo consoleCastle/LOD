@@ -7,7 +7,7 @@ namespace LOD.Tools
 {
     class Typewriter
     {
-        // Added comments for merge conflict testing- MASTER2
+        // Added comments for merge conflict testing- TESTING
         public enum Speed
         {
             slow = 95,
