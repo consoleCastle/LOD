@@ -16,9 +16,9 @@ namespace LOD.Tools
         public void Type(string message, int speed)
         {
             TypeWithLineBreaks(0, message, speed);
-            //Testing Merge conflicts_testing
         }
 
+        // Added comments for merge conflict testing- TESTING
         public void GiveMeSpace()
         {
             Thread.Sleep(500);
@@ -26,7 +26,6 @@ namespace LOD.Tools
             Thread.Sleep(500);
         }
 
-        //Testing Merge conflicts_testing
         public void TypeWithLineBreaks(int indexStart, string message, int speed)
         {
             if (message.Length - indexStart <= Console.WindowWidth)

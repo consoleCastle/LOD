@@ -18,14 +18,13 @@ namespace LOD.Classes
         {
             Console.Clear();
 
-            //Testing Merge conflicts_testing
+            // Added comments for merge conflict testing- TESTING
             Console.ForegroundColor = ConsoleColor.Yellow;
             typewriter.GiveMeSpace();
             Console.WriteLine(art.TitleArt);
             typewriter.GiveMeSpace();
             Console.ForegroundColor = ConsoleColor.White;
 
-            //Testing Merge conflicts_testing
             PlayerFlags playerFlags = new PlayerFlags();
             playerFlags.Reset();
             EndType newEnd = new EndType();
@@ -58,6 +57,7 @@ namespace LOD.Classes
 
         }
 
+        // Added comments for merge conflict testing- TESTING
         public void Reset()
         {
             //TODO
