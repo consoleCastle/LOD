@@ -11,8 +11,7 @@ namespace LOD.Classes
     class PlayGame
     {
         AsciiArt art = new AsciiArt();
-        GameData data = new GameData();
-        Room current_room { get; set; }
+        //GameData data = new GameData();
         Typewriter typewriter = new Typewriter();
         public void Start()
         {
@@ -37,71 +36,50 @@ namespace LOD.Classes
 
             //newEnd.IsGameover = true;
             //newEnd.CauseMessage = "This is a test Gameover message";
-            data.CurrentRoom = SetUpRooms();
+            GameData.CurrentRoom = SetUpRooms();
             while (!newEnd.IsGameover)
             {
-                Console.WriteLine(data.CurrentRoom.Description);
-                string userCommand = Console.ReadLine();
-                CheckStatement(playerFlags, userCommand);
+                GameData.CurrentRoom = GameData.CurrentRoom.ShowMenu(GameData.CurrentRoom.Description, GameData.CurrentRoom.Options);
                 CheckFlags(playerFlags, newEnd);
                 if (IsDead())
                 {
                     newEnd.IsGameover = true;
-                    newEnd.CauseMessage = data.CurrentRoom.Description;
+                    newEnd.CauseMessage = GameData.CurrentRoom.Description;
                 }
             }
 
             End(newEnd);
-
         }
-        public Room SetUpRooms()
+
+        public static Room SetUpRooms()
         {
-            Room test_starting_room = new Room("test_starting_room", "This is the default description before you flip a switch in room 1. In room 2, you die. Instructions: Type the number of your choice and hit enter.\n1. Go to Room 1\n2. Go to Room 2");
-            Room test_room_1 = new Room("test_room_1", "There is a switch in this room. Neato! Type 'a' to flip it. (a is for Action)\n1. Go back to the starting room\nA. Flip the switch!");
-            Room test_room_2 = new Room("test_room_2", "Oh no! You died!");
+            GameData roomData = new GameData();
+
+            Room test_starting_room = new Room("test_starting_room", roomData.RoomOneDescription, roomData.RoomOneOptions);
+            Room test_room_1 = new Room("test_room_1", roomData.RoomTwoDescription, roomData.RoomTwoOptions);
+            Room test_room_2 = new Room("test_room_2", roomData.RoomThreeDescription);
 
 
             test_starting_room.Choices.Add("1", test_room_1);
             test_starting_room.Choices.Add("2", test_room_2);
 
             test_room_1.Choices.Add("1", test_starting_room);
+
             return test_starting_room;
         }
-        public void CheckStatement(PlayerFlags playerFlags, string userCommand)
-        {
-            switch (userCommand)
-            {
-                case "a":
-                    if (data.CurrentRoom.Name == "test_room_1")
-                    {
-                        playerFlags.Three_Stones_Collected = true;
-                    }
-                    break;
-                case "Menu":
-                    //TODO make the menu come up
-                    break;
-                default:
-                    if (!data.CurrentRoom.Choices.ContainsKey(userCommand))
-                    {
-                        Console.WriteLine("That is not a valid choice");
-                        break;
-                    }
-                    data.CurrentRoom = data.CurrentRoom.Choices[userCommand];
-                    break;
-            }
-        }
+
         public void CheckFlags(PlayerFlags playerFlags, EndType endType)
         {
             if (playerFlags.Three_Stones_Collected)
             {
-                data.CurrentRoom.Description = "You're a winner baby!";
+                GameData.CurrentRoom.Description = "You're a winner baby!";
                 endType.IsGoodEnding = true;
                 endType.IsGameover = true;
             }
         }
         public Boolean IsDead()
         {
-            if (data.CurrentRoom.Name == "test_room_2")
+            if (GameData.CurrentRoom.Name == "test_room_2")
             {
                 return true;
             }
