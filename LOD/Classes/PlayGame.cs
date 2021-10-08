@@ -18,7 +18,7 @@ namespace LOD.Classes
         {
             Console.Clear();
 
-            // Added comments for merge conflict testing- MASTER
+            // Added comments for merge conflict testing- TESTING
             Console.ForegroundColor = ConsoleColor.Yellow;
             typewriter.GiveMeSpace();
             Console.WriteLine(art.TitleArt);

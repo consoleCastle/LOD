@@ -26,7 +26,7 @@ namespace LOD.Tools
             Thread.Sleep(500);
         }
 
-        // Added comments for merge conflict testing- MASTER
+        // Added comments for merge conflict testing- TESTING
         public void TypeWithLineBreaks(int indexStart, string message, int speed)
         {
             if (message.Length - indexStart <= Console.WindowWidth)
