@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using LOD.Utils;
 
-namespace LOD.Classes
+namespace LOD.Tools
 {
     class Menu
     {
@@ -48,6 +49,10 @@ namespace LOD.Classes
             {
                 Console.Clear();
                 ShowMenu();
+                if (GameData.CurrentRoom.Name == "test_starting_room")
+                {
+                    Console.WriteLine("Press 'm' to show Common Menu.");
+                }
                 ConsoleKeyInfo keyInfo = Console.ReadKey(true);
                 keyPressed = keyInfo.Key;
                 if (keyPressed == ConsoleKey.UpArrow)
@@ -61,7 +66,8 @@ namespace LOD.Classes
                         SelectedIndex = Options.Length - 1;
                     }
                 }
-                else if (keyPressed == ConsoleKey.DownArrow) {
+                else if (keyPressed == ConsoleKey.DownArrow) 
+                {
                     if (SelectedIndex >= 0 && SelectedIndex < Options.Length - 1)
                     {
                         SelectedIndex++;
@@ -70,6 +76,10 @@ namespace LOD.Classes
                     {
                         SelectedIndex = 0;
                     }
+                }
+                else if (keyPressed == ConsoleKey.M)
+                {
+                    CommonMenu.ShowCommonMenu();
                 }
 
             } while (keyPressed != ConsoleKey.Enter);

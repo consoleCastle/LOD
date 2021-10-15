@@ -20,9 +20,8 @@ namespace LOD.Classes
             Choices = new Dictionary<string, Room>();
         }
 
-        public Room ShowMenu(string[] options)
+        public Room ShowMenu(string prompt, string[] options)
         {
-            string prompt = "Options";
             Menu roomMenu = new Menu(prompt, options);
             int selectedIndex = roomMenu.Run();
             string selection = (selectedIndex + 1).ToString();
