@@ -25,12 +25,31 @@ namespace LOD.Tools
             Thread.Sleep(500);
         }
 
+        public void Skip(string message)
+        {
+            Console.Clear();
+            Console.WriteLine(message);
+        }
+
+        public void LetUserKnowTheyCanSkip()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine("Press s to skip...");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
         public void TypeWithLineBreaks(int indexStart, string message, int speed)
         {
             if (message.Length - indexStart <= Console.WindowWidth)
             {
                 for (var i = indexStart; i < message.Length; i++)
                 {
+                    if (Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.S)
+                    {
+                        Console.Clear();
+                        Console.WriteLine(message);
+                        return;
+                    }
                     char currentChar = message[i];
                     Console.Write(currentChar);
                     if ((currentChar == '.') || (currentChar == '?') || (currentChar == '!') || (currentChar == ','))
@@ -48,8 +67,14 @@ namespace LOD.Tools
                 {
                     endIndex--;
                 }
+                LetUserKnowTheyCanSkip();
                 for (var i = indexStart; i <= endIndex; i++)
                 {
+                    if (Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.S)
+                    {
+                        Skip(message);
+                        return;
+                    }
                     char currentChar = message[i];
                     Console.Write(currentChar);
                     if ((currentChar == '.') || (currentChar == '?') || (currentChar == '!') || (currentChar == ','))
