@@ -10,11 +10,13 @@ namespace LOD.Tools
         private int SelectedIndex;
         private string[] Options;
         private string Prompt;
+        private bool ShowCommonMenuPrompt;
 
-        public Menu(string prompt, string[] options)
+        public Menu(string prompt, string[] options, bool commonPrompt = false)
         {
             Prompt = prompt;
             Options = options;
+            ShowCommonMenuPrompt = commonPrompt;
             SelectedIndex = 0;
         }
 
@@ -49,7 +51,7 @@ namespace LOD.Tools
             {
                 Console.Clear();
                 ShowMenu();
-                if (GameData.CurrentRoom.Name == "test_starting_room")
+                if (ShowCommonMenuPrompt)
                 {
                     Console.WriteLine("Press 'm' to show Common Menu.");
                 }
