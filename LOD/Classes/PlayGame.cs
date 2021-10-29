@@ -10,13 +10,10 @@ namespace LOD.Classes
 {
     class PlayGame
     {
-        // Added comments for merge conflict testing- TESTING
         AsciiArt art = new AsciiArt();
-        //GameData data = new GameData();
         Typewriter typewriter = new Typewriter();
         public void Start()
         {
-            // Added comments for merge conflict testing- MASTER
             Console.Clear();
 
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -36,8 +33,6 @@ namespace LOD.Classes
             typewriter.Type(art.Exposition, fastSpeed);
             typewriter.GiveMeSpace();
 
-            //newEnd.IsGameover = true;
-            //newEnd.CauseMessage = "This is a test Gameover message";
             GameData.CurrentRoom = SetUpRooms();
             while (!newEnd.IsGameover)
             {
@@ -87,22 +82,7 @@ namespace LOD.Classes
             }
             return false;
         }
-        public void RunLoadingAnimation(int seconds)
-        {
-            //LoadingAnimation loading = new LoadingAnimation();
-            //loading.Delay = 500;
-            //while (true) ---->Need logic to determine how long loading animation runs for
-            //{
-            //    loading.Run("Loading", sequenceCode: 1);
-            //}
-        }
-        public void Reset()
-        {
-            //TODO
-            //Need to reset all flags, options, and rooms to their defaults
-            //Run reset rooms
-            //roomSequence.reset() - For example
-        }
+
         public void ThanksForPlaying()
         {
             Console.WriteLine("Thanks for playing!!!");
@@ -124,7 +104,7 @@ namespace LOD.Classes
             }
 
             Console.ForegroundColor = ConsoleColor.White;
-            //Run Reset()
+
             Thread.Sleep(5000);
             typewriter.GiveMeSpace();
             Console.WriteLine("Would you like to play again? Respond with YES or NO.");

@@ -7,14 +7,12 @@ namespace LOD.Tools
 {
     class Typewriter
     {
-        // Added comments for merge conflict testing- TESTING
         public enum Speed
         {
             slow = 95,
             moderate = 60,
             fast = 33
         }
-        // Added comments for merge conflict testing- MASTER2
         public void Type(string message, int speed)
         {
             TypeWithLineBreaks(0, message, speed);
