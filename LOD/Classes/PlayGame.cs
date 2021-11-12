@@ -37,14 +37,29 @@ namespace LOD.Classes
 
             //newEnd.IsGameover = true;
             //newEnd.CauseMessage = "This is a test Gameover message";
-            data.CurrentRoom = SetUpRooms();
+            GameRooms gamerooms = new GameRooms();
+            data.CurrentRoom = gamerooms.mountain_top;
             while (!newEnd.IsGameover)
             {
                 Console.WriteLine(data.CurrentRoom.Description);
+                Console.WriteLine("");
+                Console.WriteLine("Choose a location to go to next >");
+                //for (int i = 0; i<data.CurrentRoom.Choices.Count; i++)
+                //{
+
+                //}
+                var i = 0;
+                foreach (KeyValuePair<string, Room> choice in data.CurrentRoom.Choices)
+                {
+                    Console.WriteLine(choice.Key + ". " + data.CurrentRoom.Options[i]);
+                    i++;
+                }
+                Console.WriteLine("");
                 string userCommand = Console.ReadLine();
                 CheckStatement(playerFlags, userCommand);
-                CheckFlags(playerFlags, newEnd);
-                if (IsDead())
+                CheckRoom(playerFlags, newEnd);
+                CheckFlags(playerFlags, newEnd, gamerooms);
+                if (IsDead(playerFlags))
                 {
                     newEnd.IsGameover = true;
                     newEnd.CauseMessage = data.CurrentRoom.Description;
@@ -54,29 +69,10 @@ namespace LOD.Classes
             End(newEnd);
 
         }
-        public Room SetUpRooms()
-        {
-            Room test_starting_room = new Room("test_starting_room", "This is the default description before you flip a switch in room 1. In room 2, you die. Instructions: Type the number of your choice and hit enter.\n1. Go to Room 1\n2. Go to Room 2");
-            Room test_room_1 = new Room("test_room_1", "There is a switch in this room. Neato! Type 'a' to flip it. (a is for Action)\n1. Go back to the starting room\nA. Flip the switch!");
-            Room test_room_2 = new Room("test_room_2", "Oh no! You died!");
-
-
-            test_starting_room.Choices.Add("1", test_room_1);
-            test_starting_room.Choices.Add("2", test_room_2);
-
-            test_room_1.Choices.Add("1", test_starting_room);
-            return test_starting_room;
-        }
         public void CheckStatement(PlayerFlags playerFlags, string userCommand)
         {
             switch (userCommand)
             {
-                case "a":
-                    if (data.CurrentRoom.Name == "test_room_1")
-                    {
-                        playerFlags.Three_Stones_Collected = true;
-                    }
-                    break;
                 case "Menu":
                     //TODO make the menu come up
                     break;
@@ -90,19 +86,53 @@ namespace LOD.Classes
                     break;
             }
         }
-        public void CheckFlags(PlayerFlags playerFlags, EndType endType)
+        public void CheckRoom(PlayerFlags playerflags, EndType newEnd)
+        {
+            switch(data.CurrentRoom.Name)
+            {
+                case "open_door":
+                    newEnd.IsGameover = true;
+                    newEnd.IsGoodEnding = true;
+                    break;
+                case "dojo":
+                    playerflags.Slightly_JiuJitsu_Proficient = true;
+                    break;
+            }
+        }
+        public void CheckFlags(PlayerFlags playerFlags, EndType endType, GameRooms gamerooms)
         {
             if (playerFlags.Three_Stones_Collected)
             {
-                data.CurrentRoom.Description = "You're a winner baby!";
-                endType.IsGoodEnding = true;
-                endType.IsGameover = true;
+                gamerooms.temple_door.Choices.Add("3", gamerooms.open_door);
+            }
+            if (playerFlags.Shia_Defeated)
+            {
+                gamerooms.forest_entrance.Description = "You have entered a lush and peaceful forest. The evil has been purged and the trees sigh in relief. You can see a tree village deeper in the forest. You also see a path leading back up the mountain.";
+                gamerooms.forest_village.Description = "A peaceful village of forest elves lives in the trees! Their elder approaches you: ‘Thank you for saving our village traveler! You are always welcome here.";
+                gamerooms.forest_village.Choices.Clear();
+                Array.Clear(gamerooms.forest_village.Options, 0, gamerooms.forest_village.Options.Length);
+                gamerooms.forest_village.Choices.Add("1", gamerooms.forest_entrance);
+                gamerooms.forest_village.Options[0] = "Go back to the forest entrance";
+                gamerooms.forest_village.Choices.Add("2", gamerooms.dojo);
+                gamerooms.forest_village.Options[1] = "Go into the dojo";
+
+                gamerooms.dojo.Choices.Add("2", gamerooms.open_mind_room);
+            }
+            if (playerFlags.Slightly_JiuJitsu_Proficient)
+            {
+                gamerooms.dojo.Description = "You enter the school. There are many students in white uniforms punching logs and throwing rocks. The school leader approaches you: ‘IF YOU CAN DODGE A ROCK, YOU CAN BODY SLAM A MONSTER!’ She hurls a rock at you but you barely get out of the way in time. ‘You have learned much, young grasshopper. You remind me of another student I once had… he had incredible power. I accidently called him by the wrong name once and he went wild with rage!";
+                gamerooms.dark_woods.Description = "TODO: Shia victory sequence";
+            }
+            if (playerFlags.Open_Mind)
+            {
+                gamerooms.open_mind_room.Description = "“You already know the way, now go punch something.";
             }
         }
-        public Boolean IsDead()
+        public Boolean IsDead(PlayerFlags playerFlags)
         {
-            if (data.CurrentRoom.Name == "test_room_2")
+            if (data.CurrentRoom.Name == "dark_woods" && !playerFlags.Slightly_JiuJitsu_Proficient)
             {
+                data.CurrentRoom.Description = "you dead";
                 return true;
             }
             return false;
