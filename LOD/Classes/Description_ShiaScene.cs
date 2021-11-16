@@ -7,7 +7,7 @@ using LOD.Utils;
 
 namespace LOD.Classes
 {
-    class TestDescription_ShiaScene
+    class Description_ShiaScene
     {
         AsciiArt art = new AsciiArt();
 
@@ -20,7 +20,7 @@ namespace LOD.Classes
             Thread.Sleep(900);
         }
 
-        public void PlayDarkWoodsScene_Failure()
+        public void PlayDarkWoodsScene_Defeat()
         {
             Typewriter typewriter = new Typewriter();
             int slowSpeed = (int)Typewriter.Speed.slow;
@@ -91,5 +91,5 @@ namespace LOD.Classes
 }
 
 // To call this scene:
-// TestDescription_ShiaScene shiaScene = new TestDescription_ShiaScene();
-// testDecription.PlayDarkWoodsScene_Victory();
+// Description_ShiaScene shiaScene = new TestDescription_ShiaScene();
+// shiaScene.PlayDarkWoodsScene_Victory();

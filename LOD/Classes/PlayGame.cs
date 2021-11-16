@@ -11,8 +11,8 @@ namespace LOD.Classes
     class PlayGame
     {
         AsciiArt art = new AsciiArt();
-        //GameData data = new GameData();
         Typewriter typewriter = new Typewriter();
+
         public void Start()
         {
             Console.Clear();
@@ -34,8 +34,6 @@ namespace LOD.Classes
             typewriter.Type(art.Exposition, fastSpeed);
             typewriter.GiveMeSpace();
 
-            //newEnd.IsGameover = true;
-            //newEnd.CauseMessage = "This is a test Gameover message";
             GameData.CurrentRoom = SetUpRooms();
             while (!newEnd.IsGameover)
             {

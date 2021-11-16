@@ -46,8 +46,7 @@ namespace LOD.Tools
                 {
                     if (Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.S)
                     {
-                        Console.Clear();
-                        Console.WriteLine(message);
+                        Skip(message);
                         return;
                     }
                     char currentChar = message[i];
