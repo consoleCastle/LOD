@@ -11,8 +11,6 @@ namespace LOD.Classes
     class PlayGame
     {
         AsciiArt art = new AsciiArt();
-        GameData data = new GameData();
-        Room current_room { get; set; }
         Typewriter typewriter = new Typewriter();
         public void Start()
         {
@@ -34,24 +32,18 @@ namespace LOD.Classes
 
             typewriter.Type(art.Exposition, fastSpeed);
             typewriter.GiveMeSpace();
-
-            //newEnd.IsGameover = true;
-            //newEnd.CauseMessage = "This is a test Gameover message";
             GameRooms gamerooms = new GameRooms();
-            data.CurrentRoom = gamerooms.mountain_top;
+            GameData.CurrentRoom = gamerooms.mountain_top;
             while (!newEnd.IsGameover)
             {
-                Console.WriteLine(data.CurrentRoom.Description);
+                Console.WriteLine(GameData.CurrentRoom.Description);
                 Console.WriteLine("");
                 Console.WriteLine("Choose a location to go to next >");
-                //for (int i = 0; i<data.CurrentRoom.Choices.Count; i++)
-                //{
 
-                //}
                 var i = 0;
-                foreach (KeyValuePair<string, Room> choice in data.CurrentRoom.Choices)
+                foreach (KeyValuePair<string, Room> choice in GameData.CurrentRoom.Choices)
                 {
-                    Console.WriteLine(choice.Key + ". " + data.CurrentRoom.Options[i]);
+                    Console.WriteLine(choice.Key + ". " + GameData.CurrentRoom.Options[i]);
                     i++;
                 }
                 Console.WriteLine("");
@@ -62,12 +54,11 @@ namespace LOD.Classes
                 if (IsDead(playerFlags))
                 {
                     newEnd.IsGameover = true;
-                    newEnd.CauseMessage = data.CurrentRoom.Description;
+                    newEnd.CauseMessage = GameData.CurrentRoom.Description;
                 }
             }
 
             End(newEnd);
-
         }
         public void CheckStatement(PlayerFlags playerFlags, string userCommand)
         {
@@ -77,18 +68,18 @@ namespace LOD.Classes
                     //TODO make the menu come up
                     break;
                 default:
-                    if (!data.CurrentRoom.Choices.ContainsKey(userCommand))
+                    if (!GameData.CurrentRoom.Choices.ContainsKey(userCommand))
                     {
                         Console.WriteLine("That is not a valid choice");
                         break;
                     }
-                    data.CurrentRoom = data.CurrentRoom.Choices[userCommand];
+                    GameData.CurrentRoom = GameData.CurrentRoom.Choices[userCommand];
                     break;
             }
         }
         public void CheckRoom(PlayerFlags playerflags, EndType newEnd)
         {
-            switch(data.CurrentRoom.Name)
+            switch(GameData.CurrentRoom.Name)
             {
                 case "open_door":
                     newEnd.IsGameover = true;
@@ -130,29 +121,14 @@ namespace LOD.Classes
         }
         public Boolean IsDead(PlayerFlags playerFlags)
         {
-            if (data.CurrentRoom.Name == "dark_woods" && !playerFlags.Slightly_JiuJitsu_Proficient)
+            if (GameData.CurrentRoom.Name == "dark_woods" && !playerFlags.Slightly_JiuJitsu_Proficient)
             {
-                data.CurrentRoom.Description = "you dead";
+                GameData.CurrentRoom.Description = "you dead";
                 return true;
             }
             return false;
         }
-        public void RunLoadingAnimation(int seconds)
-        {
-            //LoadingAnimation loading = new LoadingAnimation();
-            //loading.Delay = 500;
-            //while (true) ---->Need logic to determine how long loading animation runs for
-            //{
-            //    loading.Run("Loading", sequenceCode: 1);
-            //}
-        }
-        public void Reset()
-        {
-            //TODO
-            //Need to reset all flags, options, and rooms to their defaults
-            //Run reset rooms
-            //roomSequence.reset() - For example
-        }
+
         public void ThanksForPlaying()
         {
             Console.WriteLine("Thanks for playing!!!");
@@ -174,7 +150,7 @@ namespace LOD.Classes
             }
 
             Console.ForegroundColor = ConsoleColor.White;
-            //Run Reset()
+
             Thread.Sleep(5000);
             typewriter.GiveMeSpace();
             Console.WriteLine("Would you like to play again? Respond with YES or NO.");
