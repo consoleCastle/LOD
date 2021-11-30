@@ -4,52 +4,52 @@ using System.Text;
 
 namespace LOD.Tools
 {
-    class TauntGenerator
+    static class TauntGenerator
     {
-        string[] relations = {
+        static string[] relations = {
             "mother",
             "father",
             "grandmother",
             "grandfather",
             "first crush"
         };
-        string[] insultingAnimalsAndObjects = {
+        static string[] insultingAnimalsAndObjects = {
             "hamster",
             "microwave oven",
             "rusty acordian",
             "hard boiled egg",
             "fat but charming toad"
         };
-        string[] smells = {
+        static string[] smells = {
             "elderberries",
             "garbage",
             "gym shorts",
             "fine cheese",
             "Michael Bay's Transformers"
         };
-        string[] insultingPlurals = {
+        static string[] insultingPlurals = {
             "smelly dogs",
             "dumb people",
             "idiots",
             "insurance salespeople",
             "weirdos"
         };
-        string[] sadFollowUpPhrases = {
+        static string[] sadFollowUpPhrases = {
             "nobody likes you",
             "you will never find happiness",
             "children make fun of you",
             "I am actually sorry for you",
             "babies cry when they see you"
         };
-        string[] insultingAdjectives = {
+        static string[] insultingAdjectives = {
             "ugly",
             "dumb",
             "smelly",
             "actually, factually a potted plant",
             "a loser"
         };
-        Random random = new Random();
-        public string Taunt()
+        static Random random = new Random();
+        static public string Taunt()
         {
             string relation = relations[random.Next(0, relations.Length)];
             string insultingAnimalAndObject = insultingAnimalsAndObjects[random.Next(0, insultingAnimalsAndObjects.Length)];
