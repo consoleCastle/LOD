@@ -20,8 +20,9 @@ namespace LOD.Classes
         public Room dojo = new Room("dojo", "You enter the school. There are many students in white uniforms punching logs and throwing rocks. The sensei approaches you: ‘IF YOU CAN DODGE A ROCK, YOU CAN BODY SLAM A MONSTER!’ She hurls a rock into your stomach and you double over in pain. She is disappointed, and your training begins. You push yourself through an 80’s style training montage and become slightly more proficient in Jiu-Jitsu.");
         public Room open_mind_room = new Room("open_mind_room", "You must look within yourself to save yourself from your other self. Only then will your true self reveal itself.");
         public Room vilage_wall = new Room("vilage_wall", $"A great stone wall looms over you. Through the village entrance, you can see what seems to be moving rocks scattered about the village. It may be a mirage? As you approach, an immense, iron-wrought gate crashes shut over the entrance with a CLANG. Atop the gate a man in chainmail armor and a well-groomed mustache appears. In an outrageous French accent, the man shouts down at you: ‘{TauntGenerator.Taunt()}’. The taunt cuts deep and you have no retort. The frustration is too much to bear and you feel that you must turn back to compose yourself.");
-        public Room taunt = new Room("taunt", "TODO: Insert random taunt here");
-        public Room desert_vilage = new Room("desert_vilage", "");
+        public Room taunt = new Room("taunt", $"{TauntGenerator.Taunt()}");
+        public Room desert_vilage = new Room("desert_vilage", "You walk among dilapidated buildings and several boulders that are randomly strewn about. Suddenly they come alive! It is a society of stone golems! Their leader approaches you:‘Hey. You look tasty. Want play game? If win- you get good!’ He shows you the traditional game of his people. It’s called ‘take the last rock to win.’ The rules are pretty simple.");
+        public Room rock_room = new Room("rock_room", "");
         public GameRooms()
         {
             mountain_top.Options = new string[4];
