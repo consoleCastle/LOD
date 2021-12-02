@@ -11,7 +11,6 @@ namespace LOD.Classes
     class PlayGame
     {
         AsciiArt art = new AsciiArt();
-        //GameData data = new GameData();
         Typewriter typewriter = new Typewriter();
         public void Start()
         {
@@ -33,15 +32,26 @@ namespace LOD.Classes
 
             typewriter.Type(art.Exposition, fastSpeed);
             typewriter.GiveMeSpace();
-
-            //newEnd.IsGameover = true;
-            //newEnd.CauseMessage = "This is a test Gameover message";
-            GameData.CurrentRoom = SetUpRooms();
+            GameRooms gamerooms = new GameRooms();
+            GameData.CurrentRoom = gamerooms.mountain_top;
             while (!newEnd.IsGameover)
             {
-                GameData.CurrentRoom = GameData.CurrentRoom.ShowMenu(GameData.CurrentRoom.Description, GameData.CurrentRoom.Options);
-                CheckFlags(playerFlags, newEnd);
-                if (IsDead())
+                Console.WriteLine(GameData.CurrentRoom.Description);
+                Console.WriteLine("");
+                Console.WriteLine("Choose a location to go to next >");
+
+                var i = 0;
+                foreach (KeyValuePair<string, Room> choice in GameData.CurrentRoom.Choices)
+                {
+                    Console.WriteLine(choice.Key + ". " + GameData.CurrentRoom.Options[i]);
+                    i++;
+                }
+                Console.WriteLine("");
+                string userCommand = Console.ReadLine();
+                CheckStatement(playerFlags, userCommand);
+                CheckRoom(playerFlags, newEnd);
+                CheckFlags(playerFlags, newEnd, gamerooms);
+                if (IsDead(playerFlags))
                 {
                     newEnd.IsGameover = true;
                     newEnd.CauseMessage = GameData.CurrentRoom.Description;
@@ -50,57 +60,75 @@ namespace LOD.Classes
 
             End(newEnd);
         }
-
-        public static Room SetUpRooms()
+        public void CheckStatement(PlayerFlags playerFlags, string userCommand)
         {
-            GameData roomData = new GameData();
-
-            Room test_starting_room = new Room("test_starting_room", roomData.RoomOneDescription, roomData.RoomOneOptions);
-            Room test_room_1 = new Room("test_room_1", roomData.RoomTwoDescription, roomData.RoomTwoOptions);
-            Room test_room_2 = new Room("test_room_2", roomData.RoomThreeDescription);
-
-
-            test_starting_room.Choices.Add("1", test_room_1);
-            test_starting_room.Choices.Add("2", test_room_2);
-
-            test_room_1.Choices.Add("1", test_starting_room);
-
-            return test_starting_room;
+            switch (userCommand)
+            {
+                case "Menu":
+                    //TODO make the menu come up
+                    break;
+                default:
+                    if (!GameData.CurrentRoom.Choices.ContainsKey(userCommand))
+                    {
+                        Console.WriteLine("That is not a valid choice");
+                        break;
+                    }
+                    GameData.CurrentRoom = GameData.CurrentRoom.Choices[userCommand];
+                    break;
+            }
         }
-
-        public void CheckFlags(PlayerFlags playerFlags, EndType endType)
+        public void CheckRoom(PlayerFlags playerflags, EndType newEnd)
+        {
+            switch(GameData.CurrentRoom.Name)
+            {
+                case "open_door":
+                    newEnd.IsGameover = true;
+                    newEnd.IsGoodEnding = true;
+                    break;
+                case "dojo":
+                    playerflags.Slightly_JiuJitsu_Proficient = true;
+                    break;
+            }
+        }
+        public void CheckFlags(PlayerFlags playerFlags, EndType endType, GameRooms gamerooms)
         {
             if (playerFlags.Three_Stones_Collected)
             {
-                GameData.CurrentRoom.Description = "You're a winner baby!";
-                endType.IsGoodEnding = true;
-                endType.IsGameover = true;
+                gamerooms.temple_door.Choices.Add("3", gamerooms.open_door);
+            }
+            if (playerFlags.Shia_Defeated)
+            {
+                gamerooms.forest_entrance.Description = "You have entered a lush and peaceful forest. The evil has been purged and the trees sigh in relief. You can see a tree village deeper in the forest. You also see a path leading back up the mountain.";
+                gamerooms.forest_village.Description = "A peaceful village of forest elves lives in the trees! Their elder approaches you: ‘Thank you for saving our village traveler! You are always welcome here.";
+                gamerooms.forest_village.Choices.Clear();
+                Array.Clear(gamerooms.forest_village.Options, 0, gamerooms.forest_village.Options.Length);
+                gamerooms.forest_village.Choices.Add("1", gamerooms.forest_entrance);
+                gamerooms.forest_village.Options[0] = "Go back to the forest entrance";
+                gamerooms.forest_village.Choices.Add("2", gamerooms.dojo);
+                gamerooms.forest_village.Options[1] = "Go into the dojo";
+
+                gamerooms.dojo.Choices.Add("2", gamerooms.open_mind_room);
+            }
+            if (playerFlags.Slightly_JiuJitsu_Proficient)
+            {
+                gamerooms.dojo.Description = "You enter the school. There are many students in white uniforms punching logs and throwing rocks. The school leader approaches you: ‘IF YOU CAN DODGE A ROCK, YOU CAN BODY SLAM A MONSTER!’ She hurls a rock at you but you barely get out of the way in time. ‘You have learned much, young grasshopper. You remind me of another student I once had… he had incredible power. I accidently called him by the wrong name once and he went wild with rage!";
+                gamerooms.dark_woods.Description = "TODO: Shia victory sequence";
+            }
+            if (playerFlags.Open_Mind)
+            {
+                gamerooms.open_mind_room.Description = "“You already know the way, now go punch something.";
             }
         }
-        public Boolean IsDead()
+        public Boolean IsDead(PlayerFlags playerFlags)
         {
-            if (GameData.CurrentRoom.Name == "test_room_2")
+            if (GameData.CurrentRoom.Name == "dark_woods" && !playerFlags.Slightly_JiuJitsu_Proficient)
             {
+                GameData.CurrentRoom.Description = "you dead";
                 return true;
             }
             return false;
         }
-        public void RunLoadingAnimation(int seconds)
-        {
-            //LoadingAnimation loading = new LoadingAnimation();
-            //loading.Delay = 500;
-            //while (true) ---->Need logic to determine how long loading animation runs for
-            //{
-            //    loading.Run("Loading", sequenceCode: 1);
-            //}
-        }
-        public void Reset()
-        {
-            //TODO
-            //Need to reset all flags, options, and rooms to their defaults
-            //Run reset rooms
-            //roomSequence.reset() - For example
-        }
+
         public void ThanksForPlaying()
         {
             Console.WriteLine("Thanks for playing!!!");
@@ -122,7 +150,7 @@ namespace LOD.Classes
             }
 
             Console.ForegroundColor = ConsoleColor.White;
-            //Run Reset()
+
             Thread.Sleep(5000);
             typewriter.GiveMeSpace();
             Console.WriteLine("Would you like to play again? Respond with YES or NO.");
