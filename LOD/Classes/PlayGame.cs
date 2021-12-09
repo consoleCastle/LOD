@@ -20,11 +20,15 @@ namespace LOD.Classes
             typewriter.GiveMeSpace();
             Console.WriteLine(art.TitleArt);
             typewriter.GiveMeSpace();
-            Console.ForegroundColor = ConsoleColor.White;
 
             PlayerFlags playerFlags = new PlayerFlags();
             playerFlags.Reset();
             EndType newEnd = new EndType();
+
+            Console.WriteLine("Press ENTER to begin...");
+            while (Console.ReadKey().Key != ConsoleKey.Enter) { }
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Clear();
 
             int slowSpeed = (int)Typewriter.Speed.slow;
             int moderateSpeed = (int)Typewriter.Speed.moderate;
@@ -32,23 +36,18 @@ namespace LOD.Classes
 
             typewriter.Type(art.Exposition, fastSpeed);
             typewriter.GiveMeSpace();
+
+            Console.WriteLine("Press ENTER to proceed to the mountain top...");
+            while (Console.ReadKey().Key != ConsoleKey.Enter) { }
+
             GameRooms gamerooms = new GameRooms();
             GameData.CurrentRoom = gamerooms.mountain_top;
             while (!newEnd.IsGameover)
             {
                 Console.WriteLine(GameData.CurrentRoom.Description);
                 Console.WriteLine("");
-                Console.WriteLine("Choose a location to go to next >");
+                GameData.CurrentRoom = GameData.CurrentRoom.ShowMenu(GameData.CurrentRoom.Description, GameData.CurrentRoom.Options);
 
-                var i = 0;
-                foreach (KeyValuePair<string, Room> choice in GameData.CurrentRoom.Choices)
-                {
-                    Console.WriteLine(choice.Key + ". " + GameData.CurrentRoom.Options[i]);
-                    i++;
-                }
-                Console.WriteLine("");
-                string userCommand = Console.ReadLine();
-                CheckStatement(playerFlags, userCommand);
                 CheckRoom(playerFlags, newEnd);
                 CheckFlags(playerFlags, newEnd, gamerooms);
                 if (IsDead(playerFlags))
@@ -111,7 +110,7 @@ namespace LOD.Classes
             }
             if (playerFlags.Slightly_JiuJitsu_Proficient)
             {
-                gamerooms.dojo.Description = "You enter the school. There are many students in white uniforms punching logs and throwing rocks. The school leader approaches you: ‘IF YOU CAN DODGE A ROCK, YOU CAN BODY SLAM A MONSTER!’ She hurls a rock at you but you barely get out of the way in time. ‘You have learned much, young grasshopper. You remind me of another student I once had… he had incredible power. I accidently called him by the wrong name once and he went wild with rage!";
+                gamerooms.dojo.Description = "You enter the school. There are many students in white uniforms punching logs and throwing rocks. The school leader approaches you: ‘IF YOU CAN DODGE A ROCK, YOU CAN BODY SLAM A MONSTER!’ She hurls a rock at you but you barely get out of the way in time. ‘You have learned much, young grasshopper. You remind me of another student I once had… he had incredible power. I accidentally called him by the wrong name once and he went wild with rage!";
                 gamerooms.dark_woods.Description = "TODO: Shia victory sequence";
             }
             if (playerFlags.Open_Mind)
