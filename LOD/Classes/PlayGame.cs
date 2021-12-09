@@ -47,10 +47,13 @@ namespace LOD.Classes
                     i++;
                 }
                 Console.WriteLine("");
+                //Console.WriteLine(GameData.CurrentRoom.Name);
+                //Console.WriteLine(playerFlags.Open_Mind);
+                //Console.WriteLine(playerFlags.Slightly_JiuJitsu_Proficient);
                 string userCommand = Console.ReadLine();
                 CheckStatement(userCommand);
-                CheckRoom(playerFlags, newEnd, gamerooms);
                 CheckFlags(playerFlags, newEnd, gamerooms);
+                CheckRoom(playerFlags, newEnd, gamerooms);
                 if (IsDead(playerFlags))
                 {
                     newEnd.IsGameover = true;
@@ -119,6 +122,12 @@ namespace LOD.Classes
         {
             switch(GameData.CurrentRoom.Name)
             {
+                case "open_mind_room":
+                    playerflags.Open_Mind = true;
+                    break;
+                case "dark_woods":
+                    if (playerflags.Slightly_JiuJitsu_Proficient) playerflags.Shia_Defeated = true;
+                    break;
                 case "open_door":
                     newEnd.IsGameover = true;
                     newEnd.IsGoodEnding = true;
@@ -159,6 +168,9 @@ namespace LOD.Classes
                         }
                         Console.WriteLine($"There are {rockGame.rockCount} rocks left.");
                         if (rockGame.rockCount == 0) break;
+                        Console.WriteLine("How many rocks will you take?");
+                        Console.WriteLine("1. 1 rock");
+                        Console.WriteLine("2. 2 rocks");
                         string newUserCommand = Console.ReadLine();
                         CheckStatement(newUserCommand, rockGame);
                     }
@@ -200,8 +212,13 @@ namespace LOD.Classes
                 gamerooms.forest_vilage.Options[0] = "Go back to the forest entrance";
                 gamerooms.forest_vilage.Choices.Add("2", gamerooms.dojo);
                 gamerooms.forest_vilage.Options[1] = "Go into the dojo";
-
+                
+                gamerooms.dojo.Choices.Clear();
+                Array.Clear(gamerooms.dojo.Options, 0, gamerooms.dojo.Options.Length);
+                gamerooms.dojo.Choices.Add("1", gamerooms.forest_vilage);
+                gamerooms.dojo.Options[0] = "Go back to the village";
                 gamerooms.dojo.Choices.Add("2", gamerooms.open_mind_room);
+                gamerooms.dojo.Options[1] = "Open your mind";
             }
             if (playerFlags.Slightly_JiuJitsu_Proficient)
             {

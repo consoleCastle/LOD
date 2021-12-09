@@ -59,7 +59,7 @@ namespace LOD.Classes
             forest_vilage.Choices.Add("3", dojo);
             forest_vilage.Options[2] = "Go into the dojo";
 
-            dojo.Options = new string[1];
+            dojo.Options = new string[2];
             dojo.Choices.Add("1", forest_vilage);
             dojo.Options[0] = "Go back to the village";
 
@@ -86,6 +86,12 @@ namespace LOD.Classes
             taunt.Options = new string[1];
             taunt.Choices.Add("1", vilage_wall);
             taunt.Options[0] = "Gather your wits and try again";
+
+            desert_vilage.Options = new string[2];
+            desert_vilage.Choices.Add("1", rock_room);
+            desert_vilage.Options[0] = "Play the Rock Game";
+            desert_vilage.Choices.Add("2", desert);
+            desert_vilage.Options[1] = "Go back to the desert";
         }
     }
 }
