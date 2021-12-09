@@ -11,6 +11,7 @@ namespace LOD.Tools
         private string[] Options;
         private string Prompt;
         private bool ShowCommonMenuPrompt;
+        private int renderCounter;
 
         public Menu(string prompt, string[] options, bool commonPrompt = false)
         {
@@ -18,11 +19,19 @@ namespace LOD.Tools
             Options = options;
             ShowCommonMenuPrompt = commonPrompt;
             SelectedIndex = 0;
+            renderCounter = 1;
         }
 
         private void ShowMenu()
         {
-            Console.WriteLine(Prompt);
+            if (renderCounter > 1)
+            {
+                Console.WriteLine("Future Typewriter");
+            }
+            else
+            {
+                Console.WriteLine(Prompt);
+            }
             for(int i = 0; i < Options.Length; i++)
             {
                 string currentOption = Options[i];
@@ -42,6 +51,7 @@ namespace LOD.Tools
                 Console.WriteLine($"{prefix} << {currentOption} >>");
             }
             Console.ResetColor();
+            renderCounter++;
         }
 
         public int Run()
