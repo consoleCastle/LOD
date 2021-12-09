@@ -22,7 +22,8 @@ namespace LOD.Classes
 
         public Room ShowMenu(string prompt, string[] options)
         {
-            Menu roomMenu = new Menu(prompt, options);
+            bool showCommonPrompt = Name == "mountain_top" ? true : false;
+            Menu roomMenu = new Menu(prompt, options, showCommonPrompt);
             int selectedIndex = roomMenu.Run();
             string selection = (selectedIndex + 1).ToString();
 

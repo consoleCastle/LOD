@@ -6,17 +6,17 @@ namespace LOD.Classes
 {
     class GameRooms
     {
-        public Room mountain_top = new Room("mountain_top", "A small courtyard atop of a mountain. There is an ancient temple in front of you and there are three paths down the mountain. One leads to a massive green forest, one leads to a rocky hot desert and one leads to a bleak icy tundra. You notice a stone in the corner of the courtyard with a message carved into it… ‘dallen was here’. Where will you go?");
-        public Room temple_door = new Room("temple_door", "Dust and cobwebs cover everything, this place is very old. There is a massive stone door and ancient writing on the wall. What will you do?");
-        public Room forest_entrance = new Room("forest_entrance", "You have entered a lush and peaceful forest… yet you can’t shake the feeling that you are being watched. You can see a tree village deeper in the forest. You also see a path leading back up the mountain.");
-        public Room desert = new Room("desert", "You stand upon the sand dunes of the desert. The sun overhead is very hot and you are parched, you had better get moving soon. There is a pathway leading back up to the top of the mountain behind you. Ahead of you, in the distance you see a large wall encircling what seems like an abandoned village.");
+        public Room mountain_top = new Room("mountain_top", "A small courtyard atop of a mountain. There is an ancient temple in front of you and there are three paths down the mountain. One leads to a massive green forest, one leads to a rocky hot desert and one leads to a bleak icy tundra. You notice a stone in the corner of the courtyard with a message carved into it… ‘dallen was here’. Where will you go?\n");
+        public Room temple_door = new Room("temple_door", "Dust and cobwebs cover everything, this place is very old. There is a massive stone door and ancient writing on the wall. What will you do?\n");
+        public Room forest_entrance = new Room("forest_entrance", "You have entered a lush and peaceful forest… yet you can’t shake the feeling that you are being watched. You can see a tree village deeper in the forest. You also see a path leading back up the mountain.\n");
+        public Room desert = new Room("desert", "You stand upon the sand dunes of the desert. The sun overhead is very hot and you are parched, you had better get moving soon. There is a pathway leading back up to the top of the mountain behind you. Ahead of you, in the distance you see a large wall encircling what seems like an abandoned village.\n");
         public Room icy_tundra = new Room("icy_tundra", "");
-        public Room read_the_wall = new Room("read_the_wall", "TODO: print creation myth and reveal objective to the player");
-        public Room open_door = new Room("open_door", "The great stone door cracks open slowly to a heavenly bright light. You step over the threshold. You have escaped the strange world!");
-        public Room forest_village = new Room("forest_village", "A peaceful village of forest elves lives in the trees! Their elder approaches you: ‘Greetings traveler, welcome to our village. Magic stones you say? Yes I have one, I would be willing to give it to you if you can defeat the monster in the dark woods that has been terrorizing my people. I recommend Jiu-Jitsu training from our local dojo.");
-        public Room dark_woods = new Room("dark_woods", "TODO: defeated by shia sequence");
-        public Room dojo = new Room("dojo", "You enter the school. There are many students in white uniforms punching logs and throwing rocks. The sensei approaches you: ‘IF YOU CAN DODGE A ROCK, YOU CAN BODY SLAM A MONSTER!’ She hurls a rock into your stomach and you double over in pain. She is disappointed, and your training begins. You push yourself through an 80’s style training montage and become slightly more proficient in Jiu-Jitsu.");
-        public Room open_mind_room = new Room("open_mind_room", "You must look within yourself to save yourself from your other self. Only then will your true self reveal itself.");
+        public Room read_the_wall = new Room("read_the_wall", "TODO: print creation myth and reveal objective to the player\n");
+        public Room open_door = new Room("open_door", "The great stone door cracks open slowly to a heavenly bright light. You step over the threshold. You have escaped the strange world!\n");
+        public Room forest_village = new Room("forest_village", "A peaceful village of forest elves lives in the trees! Their elder approaches you: ‘Greetings traveler, welcome to our village. Magic stones you say? Yes I have one, I would be willing to give it to you if you can defeat the monster in the dark woods that has been terrorizing my people. I recommend Jiu-Jitsu training from our local dojo.\n");
+        public Room dark_woods = new Room("dark_woods", "TODO: defeated by shia sequence\n");
+        public Room dojo = new Room("dojo", "You enter the school. There are many students in white uniforms punching logs and throwing rocks. The sensei approaches you: ‘IF YOU CAN DODGE A ROCK, YOU CAN BODY SLAM A MONSTER!’ She hurls a rock into your stomach and you double over in pain. She is disappointed, and your training begins. You push yourself through an 80’s style training montage and become slightly more proficient in Jiu-Jitsu.\n");
+        public Room open_mind_room = new Room("open_mind_room", "You must look within yourself to save yourself from your other self. Only then will your true self reveal itself.\n");
         public Room village_wall = new Room("village_wall", "");
         public GameRooms()
         {
@@ -28,7 +28,7 @@ namespace LOD.Classes
             mountain_top.Choices.Add("3", desert);
             mountain_top.Options[2] = "Go to the Desert";
             mountain_top.Choices.Add("4", icy_tundra);
-            mountain_top.Options[3] = "Go to the Tundra";
+            mountain_top.Options[3] = "Go to the Tundra (NOT YET BUILT)";
 
             temple_door.Options = new string[2];
             temple_door.Choices.Add("1", mountain_top);
