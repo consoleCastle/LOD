@@ -106,6 +106,7 @@ namespace LOD.Classes
             {
                 gamerooms.forest_entrance.Description = "You have entered a lush and peaceful forest. The evil has been purged and the trees sigh in relief. You can see a tree village deeper in the forest. You also see a path leading back up the mountain.";
                 gamerooms.forest_village.Description = "A peaceful village of forest elves lives in the trees! Their elder approaches you: ‘Thank you for saving our village traveler! You are always welcome here.";
+                
                 gamerooms.forest_village.Choices.Clear();
                 Array.Clear(gamerooms.forest_village.Options, 0, gamerooms.forest_village.Options.Length);
                 gamerooms.forest_village.Choices.Add("1", gamerooms.forest_entrance);

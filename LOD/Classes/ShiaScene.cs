@@ -38,8 +38,7 @@ namespace LOD.Classes
             typewriter.Type("Your Leg!", fastSpeed);
             Thread.Sleep(300);
             typewriter.Type("It's caught in a bear trap!", fastSpeed);
-            typewriter.Type("You are eaten by ACTUAL CANNIBAL Shia LeBeuof.", moderateSpeed);
-            return "";
+            return "You are eaten by ACTUAL CANNIBAL Shia LeBeuof.";
         }
         public string Victory()
         {
@@ -63,11 +62,17 @@ namespace LOD.Classes
             Thread.Sleep(300);
             typewriter.Type("After a horrific gasp, he falls to the ground, dead.", slowSpeed);
             Thread.Sleep(1100);
-            typewriter.GiveMeSpace();
-            Console.WriteLine("<<< Go Back to forest entrance >>>");
-            typewriter.GiveMeSpace();
+            Console.Clear();
+            Console.WriteLine("It's Over...");
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("*  <<< Go Back to forest entrance >>>");
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.White;
             Thread.Sleep(8000);
+            Console.ForegroundColor = ConsoleColor.Red;
             typewriter.Type("WAIT!", moderateSpeed);
+            Console.ForegroundColor = ConsoleColor.White;
             Thread.Sleep(300);
             typewriter.Type("He isn't dead!!", fastSpeed);
             PrintShiaArt(art.ShiaSurprise, ConsoleColor.Yellow);
