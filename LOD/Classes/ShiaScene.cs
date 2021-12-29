@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using LOD.Tools;
 using LOD.Utils;
@@ -80,7 +78,7 @@ namespace LOD.Classes
             Thread.Sleep(400);
             typewriter.Type("and death in his eyes,", fastSpeed);
             Thread.Sleep(400);
-            typewriter.Type("but you can do jiu-jitsuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu and you bodyslam superstar", fastSpeed);
+            typewriter.Type("but you can do jiu-jitsuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu and you bodyslam superstar", fastSpeed);
             PrintShiaArt(art.Shia4, ConsoleColor.Red);
             typewriter.Type("Legendary fight with", moderateSpeed);
             PrintShiaArt(art.Shia5, ConsoleColor.Red);
@@ -94,7 +92,7 @@ namespace LOD.Classes
             Thread.Sleep(2000);
             typewriter.Type("His head topples to the floor, expressionless. You are finally safe... from", slowSpeed);
             PrintShiaArt(art.Shia8, ConsoleColor.Red);
-            return "From behind you the village elder appears. He exclaims, ‘Thank you for saving us from that ancient evil. Take this stone as a token of our eternal gratitude!";
+            return "From behind you the village elder appears. He exclaims, ‘Thank you for saving us from that ancient evil. Take this stone as a token of our eternal gratitude!'";
         }
     }
 }
