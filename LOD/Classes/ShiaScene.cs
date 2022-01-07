@@ -7,7 +7,7 @@ using LOD.Utils;
 
 namespace LOD.Classes
 {
-    class TestDescription_ShiaScene
+    class ShiaScene
     {
         AsciiArt art = new AsciiArt();
 
@@ -20,13 +20,14 @@ namespace LOD.Classes
             Thread.Sleep(900);
         }
 
-        public void PlayDarkWoodsScene_Failure()
+        public string Defeat()
         {
             Typewriter typewriter = new Typewriter();
             int slowSpeed = (int)Typewriter.Speed.slow;
             int moderateSpeed = (int)Typewriter.Speed.moderate;
             int fastSpeed = (int)Typewriter.Speed.fast;
 
+            Console.Clear();
             typewriter.Type("You’re walking in the woods. There’s no one around and your phone is dead. Out of the corner of your eye you spot him,", slowSpeed);
             PrintShiaArt(art.Shia1, ConsoleColor.Red);
             typewriter.Type("He’s following you, about thirty feet back. He gets down on all fours and breaks into a sprint. He’s gaining on you!", moderateSpeed);
@@ -37,15 +38,16 @@ namespace LOD.Classes
             typewriter.Type("Your Leg!", fastSpeed);
             Thread.Sleep(300);
             typewriter.Type("It's caught in a bear trap!", fastSpeed);
-            typewriter.Type("You are eaten by ACTUAL CANNIBAL Shia LeBeuof.", moderateSpeed);
+            return "You are eaten by ACTUAL CANNIBAL Shia LeBeuof.";
         }
-        public void PlayDarkWoodsScene_Victory()
+        public string Victory()
         {
             Typewriter typewriter = new Typewriter();
             int slowSpeed = (int)Typewriter.Speed.slow;
             int moderateSpeed = (int)Typewriter.Speed.moderate;
             int fastSpeed = (int)Typewriter.Speed.fast;
 
+            Console.Clear();
             typewriter.Type("You’re walking in the woods. There’s no one around and your phone is dead. Out of the corner of your eye you spot him,", slowSpeed);
             PrintShiaArt(art.Shia1, ConsoleColor.Red);
             typewriter.Type("He’s following you, about thirty feet back. He gets down on all fours and breaks into a sprint. He’s gaining on you!", moderateSpeed);
@@ -60,11 +62,17 @@ namespace LOD.Classes
             Thread.Sleep(300);
             typewriter.Type("After a horrific gasp, he falls to the ground, dead.", slowSpeed);
             Thread.Sleep(1100);
-            typewriter.GiveMeSpace();
-            Console.WriteLine("FAKE OPTION SCREEN HERE");
-            typewriter.GiveMeSpace();
+            Console.Clear();
+            Console.WriteLine("It's Over...");
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("*  <<< Go Back to forest entrance >>>");
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.White;
             Thread.Sleep(8000);
+            Console.ForegroundColor = ConsoleColor.Red;
             typewriter.Type("WAIT!", moderateSpeed);
+            Console.ForegroundColor = ConsoleColor.White;
             Thread.Sleep(300);
             typewriter.Type("He isn't dead!!", fastSpeed);
             PrintShiaArt(art.ShiaSurprise, ConsoleColor.Yellow);
@@ -86,10 +94,11 @@ namespace LOD.Classes
             Thread.Sleep(2000);
             typewriter.Type("His head topples to the floor, expressionless. You are finally safe... from", slowSpeed);
             PrintShiaArt(art.Shia8, ConsoleColor.Red);
+            return "From behind you the village elder appears. He exclaims, ‘Thank you for saving us from that ancient evil. Take this stone as a token of our eternal gratitude!";
         }
     }
 }
 
 // To call this scene:
-// TestDescription_ShiaScene shiaScene = new TestDescription_ShiaScene();
-// testDecription.PlayDarkWoodsScene_Victory();
+// ShiaScene shiaScene = new ShiaScene();
+// shiaScene.Victory();
