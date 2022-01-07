@@ -9,12 +9,12 @@ namespace LOD.Tools
     class Menu
     {
         private int SelectedIndex;
-        private string[] Options;
+        private List<string> Options;
         private string Prompt;
         private bool ShowCommonMenuPrompt;
         private int renderCounter;
 
-        public Menu(string prompt, string[] options, bool commonPrompt = false)
+        public Menu(string prompt, List<string> options, bool commonPrompt = false)
         {
             Prompt = prompt;
             Options = options;
@@ -36,7 +36,7 @@ namespace LOD.Tools
             {
                 Console.WriteLine(Prompt);
             }
-            for(int i = 0; i < Options.Length; i++)
+            for(int i = 0; i < Options.Count; i++)
             {
                 string currentOption = Options[i];
                 string prefix;
@@ -73,22 +73,22 @@ namespace LOD.Tools
                 keyPressed = keyInfo.Key;
                 if (keyPressed == ConsoleKey.UpArrow)
                 {
-                    if (SelectedIndex < Options.Length && SelectedIndex > 0)
+                    if (SelectedIndex < Options.Count && SelectedIndex > 0)
                     {
                         SelectedIndex--;
                     }
                     else if (SelectedIndex == 0)
                     {
-                        SelectedIndex = Options.Length - 1;
+                        SelectedIndex = Options.Count - 1;
                     }
                 }
                 else if (keyPressed == ConsoleKey.DownArrow) 
                 {
-                    if (SelectedIndex >= 0 && SelectedIndex < Options.Length - 1)
+                    if (SelectedIndex >= 0 && SelectedIndex < Options.Count - 1)
                     {
                         SelectedIndex++;
                     }
-                    else if (SelectedIndex == Options.Length - 1)
+                    else if (SelectedIndex == Options.Count - 1)
                     {
                         SelectedIndex = 0;
                     }
