@@ -10,9 +10,9 @@ namespace LOD.Classes
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public string[] Options { get; set; }
+        public List<string> Options { get; set; }
         public Dictionary<string, Room> Choices { get; set; }
-        public Room(string name, string description, string[] options = null)
+        public Room(string name, string description, List<string> options = null)
         {
             Name = name;
             Description = description;
@@ -20,7 +20,7 @@ namespace LOD.Classes
             Choices = new Dictionary<string, Room>();
         }
 
-        public Room ShowMenu(string prompt, string[] options)
+        public Room ShowMenu(string prompt, List<string> options)
         {
             bool showCommonPrompt = Name == "mountain_top" ? true : false;
             Menu roomMenu = new Menu(prompt, options, showCommonPrompt);

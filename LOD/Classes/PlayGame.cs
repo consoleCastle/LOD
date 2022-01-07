@@ -108,18 +108,18 @@ namespace LOD.Classes
                 gamerooms.forest_village.Description = "A peaceful village of forest elves lives in the trees! Their elder approaches you: ‘Thank you for saving our village traveler! You are always welcome here.";
                 
                 gamerooms.forest_village.Choices.Clear();
-                Array.Clear(gamerooms.forest_village.Options, 0, gamerooms.forest_village.Options.Length);
+                gamerooms.forest_village.Options.Clear();
                 gamerooms.forest_village.Choices.Add("1", gamerooms.forest_entrance);
-                gamerooms.forest_village.Options[0] = "Go back to the forest entrance";
                 gamerooms.forest_village.Choices.Add("2", gamerooms.dojo);
-                gamerooms.forest_village.Options[1] = "Go into the dojo";
+                string[] newForestVillageOptions = { "Go back to the forest entrance", "Go into the dojo" };
+                gamerooms.forest_village.Options.AddRange(newForestVillageOptions);
 
                 gamerooms.dojo.Choices.Clear();
-                Array.Clear(gamerooms.dojo.Options, 0, gamerooms.dojo.Options.Length);
+                gamerooms.dojo.Options.Clear();
                 gamerooms.dojo.Choices.Add("1", gamerooms.forest_village);
-                gamerooms.dojo.Options[0] = "Go back to the village";
                 gamerooms.dojo.Choices.Add("2", gamerooms.open_mind_room);
-                gamerooms.dojo.Options[1] = "Meditate for an open mind";
+                string[] newDojoOptions = { "Go back to the village", "Meditate for an open mind" };
+                gamerooms.dojo.Options.AddRange(newDojoOptions);
             }
             if (playerFlags.Slightly_JiuJitsu_Proficient)
             {
