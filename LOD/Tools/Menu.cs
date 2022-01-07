@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using LOD.Utils;
+using LOD.Tools;
 
 namespace LOD.Tools
 {
@@ -24,9 +25,12 @@ namespace LOD.Tools
 
         private void ShowMenu()
         {
-            if (renderCounter > 1)
+            Typewriter typewriter = new Typewriter();
+            int fastSpeed = (int)Typewriter.Speed.fast;
+
+            if (renderCounter == 1)
             {
-                Console.WriteLine("Future Typewriter");
+                typewriter.Type(Prompt, fastSpeed);
             }
             else
             {
