@@ -8,27 +8,6 @@ namespace LOD.Tests
 {
     public class UnitTests
     {
-        public int Add(int y, int x)
-        {
-            return y + x;
-        }
-        public bool IsOdd(int x)
-        {
-            return x % 2 == 1;
-        }
-
-        [Fact]
-        public void PassingTest()
-        {
-            Assert.Equal(4, Add(2, 2));
-        }
-
-        [Fact]
-        public void FailingTest()
-        {
-            Assert.NotEqual(5, Add(2, 2));
-        }
-
         [Fact]
         public void PlayerFlagsAreAbleToChange()
         {
