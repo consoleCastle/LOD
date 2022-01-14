@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Xunit;
+using LOD.Classes;
 
 namespace LOD.Tests
 {
