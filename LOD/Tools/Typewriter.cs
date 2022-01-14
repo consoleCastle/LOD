@@ -28,7 +28,7 @@ namespace LOD.Tools
         public void Skip(string message)
         {
             Console.Clear();
-            Console.WriteLine(message);
+            skipWithLineBreaks(0, message);
         }
 
         public void LetUserKnowTheyCanSkip()
@@ -84,6 +84,25 @@ namespace LOD.Tools
                 }
                 Console.WriteLine("");
                 TypeWithLineBreaks(endIndex + 1, message, speed);
+            }
+        }
+        public void skipWithLineBreaks(int indexStart, string message)
+        {
+            if(message.Length - indexStart <= Console.WindowWidth)
+            {
+                string remainingMessage = message.Substring(indexStart);
+                Console.WriteLine(remainingMessage);
+            }
+            else
+            {
+                int endIndex = indexStart + Console.WindowWidth;
+                while (message[endIndex] != ' ')
+                {
+                    endIndex--;
+                }
+                string currentMessageSubstring = message.Substring(indexStart, endIndex);
+                Console.WriteLine(currentMessageSubstring);
+                skipWithLineBreaks(endIndex + 1, message);
             }
         }
 
