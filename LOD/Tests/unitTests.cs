@@ -6,7 +6,7 @@ using LOD.Classes;
 
 namespace LOD.Tests
 {
-    class unitTests
+    public class UnitTests
     {
         public int Add(int y, int x)
         {
