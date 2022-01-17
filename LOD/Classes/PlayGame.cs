@@ -123,7 +123,7 @@ namespace LOD.Classes
             }
             if (playerFlags.Slightly_JiuJitsu_Proficient)
             {
-                gamerooms.dojo.Description = "You enter the school. There are many students in white uniforms punching logs and throwing rocks. The school leader approaches you: ‘IF YOU CAN DODGE A ROCK, YOU CAN BODY SLAM A MONSTER!’ She hurls a rock at you but you barely get out of the way in time. ‘You have learned much, young grasshopper. You remind me of another student I once had… he had incredible power. I accidentally called him by the wrong name once and he went wild with rage!";
+                gamerooms.dojo.Description = "You enter the school. There are many students in white uniforms punching logs and throwing rocks. The school leader approaches you: IF YOU CAN DODGE A ROCK, YOU CAN BODYSLAM A MONSTER! She hurls a rock at you but you barely get out of the way in time. ‘You have learned much, young grasshopper. You remind me of another student I once had. He possessed incredible power and terrible fury. I accidentally called him by the wrong name once and he went wild with rage!";
             }
             if (GameData.CurrentRoom.Name == "dark_woods" && playerFlags.Slightly_JiuJitsu_Proficient)
             {

@@ -80,7 +80,7 @@ namespace LOD.Classes
         );
         public Room dojo = new Room(
             "dojo", 
-            "You enter the school. There are many students in white uniforms punching logs and throwing rocks. The sensei approaches you: ‘IF YOU CAN DODGE A ROCK, YOU CAN BODY SLAM A MONSTER!’ She hurls a rock into your stomach and you double over in pain. She is disappointed, and your training begins. You push yourself through an 80’s style training montage and become slightly more proficient in Jiu-Jitsu.\n",
+            "You enter the school. There are many students in white uniforms punching logs and throwing rocks. The sensei approaches you: ‘IF YOU CAN DODGE a rOCK, YOU CAN BODY SLAM A MONSTER!’ She hurls a rock into your stomach and you double over in pain. She is disappointed, and your training begins. You push yourself through an 80’s style training montage and become slightly more proficient in Jiu-Jitsu.\n",
             new List<string>
             {
                 "Go back to the Village"
