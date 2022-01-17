@@ -15,6 +15,12 @@ namespace LOD.Tools
         }
         public void Type(string message, int speed)
         {
+            LetUserKnowTheyCanSkip();
+            TypeWithLineBreaks(0, message, speed);
+        }
+
+        public void TypeWithoutSkipMsg(string message, int speed)
+        {
             TypeWithLineBreaks(0, message, speed);
         }
 
@@ -66,7 +72,6 @@ namespace LOD.Tools
                 {
                     endIndex--;
                 }
-                LetUserKnowTheyCanSkip();
                 for (var i = indexStart; i <= endIndex; i++)
                 {
                     if (Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.S)
@@ -100,7 +105,8 @@ namespace LOD.Tools
                 {
                     endIndex--;
                 }
-                string currentMessageSubstring = message.Substring(indexStart, endIndex);
+                int substringLength = endIndex - indexStart;
+                string currentMessageSubstring = message.Substring(indexStart, substringLength);
                 Console.WriteLine(currentMessageSubstring);
                 skipWithLineBreaks(endIndex + 1, message);
             }
