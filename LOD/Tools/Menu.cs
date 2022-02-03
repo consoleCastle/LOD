@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using LOD.Utils;
-using LOD.Tools;
+using LOD.Interfaces;
 
 namespace LOD.Tools
 {
-    class Menu
+    class Menu : IMenu
     {
         private int SelectedIndex;
         private List<string> Options;

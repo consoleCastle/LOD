@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using LOD.Interfaces;
 using LOD.Tools;
-using LOD.Utils;
+
 
 namespace LOD.Classes
 {
-    class Room
+    class Room : IRoom
     {
         public string Name { get; set; }
         public string Description { get; set; }
