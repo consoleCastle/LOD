@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Threading;
+using LOD.Interfaces;
 using LOD.Tools;
 using LOD.Utils;
 
 namespace LOD.Classes
 {
-    class ShiaScene
+    class ShiaScene : IShiaScene
     {
         AsciiArt art = new AsciiArt();
 

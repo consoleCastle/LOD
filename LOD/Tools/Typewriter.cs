@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Threading;
-using System.Collections.Generic;
-using System.Text;
+using LOD.Interfaces;
 
 namespace LOD.Tools
 {
-    class Typewriter
+    class Typewriter : ITypewriter
     {
         public enum Speed
         {

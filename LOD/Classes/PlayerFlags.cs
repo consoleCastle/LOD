@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using LOD.Interfaces;
 
 namespace LOD.Classes
 {
-    class PlayerFlags
+    class PlayerFlags : IPlayerFlags
     {
         public bool Three_Stones_Collected { get; set; }
         public bool Farores_Wind_Collected { get; set; }
