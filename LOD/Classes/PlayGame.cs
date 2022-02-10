@@ -48,22 +48,7 @@ namespace LOD.Classes
                 Console.WriteLine("");
                 GameData.CurrentRoom = GameData.CurrentRoom.ShowMenu(GameData.CurrentRoom.Description, GameData.CurrentRoom.Options);
 
-<<<<<<< HEAD
-                var i = 0;
-                foreach (KeyValuePair<string, Room> choice in GameData.CurrentRoom.Choices)
-                {
-                    Console.WriteLine(choice.Key + ". " + GameData.CurrentRoom.Options[i]);
-                    i++;
-                }
-                Console.WriteLine("");
-                //Console.WriteLine(GameData.CurrentRoom.Name);
-                //Console.WriteLine(playerFlags.Open_Mind);
-                //Console.WriteLine(playerFlags.Slightly_JiuJitsu_Proficient);
-                string userCommand = Console.ReadLine();
-                CheckStatement(userCommand);
-=======
-                CheckRoom(playerFlags, newEnd);
->>>>>>> master
+                CheckRoom(playerFlags, newEnd, gamerooms);
                 CheckFlags(playerFlags, newEnd, gamerooms);
                 CheckRoom(playerFlags, newEnd, gamerooms);
                 if (IsDead(playerFlags))
@@ -147,7 +132,6 @@ namespace LOD.Classes
                 case "dojo":
                     playerflags.Slightly_JiuJitsu_Proficient = true;
                     break;
-<<<<<<< HEAD
                 case "taunt":
                     gamerooms.vilage_wall.Description = $"A great stone wall looms over you. Through the village entrance, you can see what seems to be moving rocks scattered about the village. It may be a mirage? As you approach, an immense, iron-wrought gate crashes shut over the entrance with a CLANG. Atop the gate a man in chainmail armor and a well-groomed mustache appears. In an outrageous French accent, the man shouts down at you: ‘{TauntGenerator.Taunt()}’. The taunt cuts deep and you have no retort. The frustration is too much to bear and you feel that you must turn back to compose yourself.";
                     gamerooms.taunt.Description = $"{TauntGenerator.Taunt()}";
@@ -205,13 +189,11 @@ namespace LOD.Classes
                         playerflags.Rock_Champion = true;
                         playerflags.Dins_Fire_Collected = true;
                         GameData.CurrentRoom = gamerooms.desert_vilage;
-=======
                 case "dark_woods":
                     if (playerflags.Slightly_JiuJitsu_Proficient)
                     {
                         playerflags.Shia_Defeated = true;
                         playerflags.Farores_Wind_Collected = true;
->>>>>>> master
                     }
                     break;
             }
@@ -225,7 +207,6 @@ namespace LOD.Classes
             if (playerFlags.Shia_Defeated)
             {
                 gamerooms.forest_entrance.Description = "You have entered a lush and peaceful forest. The evil has been purged and the trees sigh in relief. You can see a tree village deeper in the forest. You also see a path leading back up the mountain.";
-<<<<<<< HEAD
                 gamerooms.forest_vilage.Description = "A peaceful village of forest elves lives in the trees! Their elder approaches you: ‘Thank you for saving our village traveler! You are always welcome here.";
                 gamerooms.forest_vilage.Choices.Clear();
                 Array.Clear(gamerooms.forest_vilage.Options, 0, gamerooms.forest_vilage.Options.Length);
@@ -240,7 +221,6 @@ namespace LOD.Classes
                 gamerooms.dojo.Options[0] = "Go back to the village";
                 gamerooms.dojo.Choices.Add("2", gamerooms.open_mind_room);
                 gamerooms.dojo.Options[1] = "Open your mind";
-=======
                 gamerooms.forest_village.Description = "A peaceful village of forest elves lives in the trees! Their elder approaches you: ‘Thank you for saving our village traveler! You are always welcome here.";
                 
                 gamerooms.forest_village.Choices.Clear();
@@ -256,7 +236,6 @@ namespace LOD.Classes
                 gamerooms.dojo.Choices.Add("2", gamerooms.open_mind_room);
                 string[] newDojoOptions = { "Go back to the village", "Meditate for an open mind" };
                 gamerooms.dojo.Options.AddRange(newDojoOptions);
->>>>>>> master
             }
             if (playerFlags.Slightly_JiuJitsu_Proficient)
             {
