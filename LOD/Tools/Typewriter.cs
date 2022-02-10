@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Threading;
-using System.Collections.Generic;
-using System.Text;
+using LOD.Interfaces;
 
 namespace LOD.Tools
 {
-    class Typewriter
+    class Typewriter : ITypewriter
     {
         public enum Speed
         {
@@ -14,6 +13,12 @@ namespace LOD.Tools
             fast = 33
         }
         public void Type(string message, int speed)
+        {
+            LetUserKnowTheyCanSkip();
+            TypeWithLineBreaks(0, message, speed);
+        }
+
+        public void TypeWithoutSkipMsg(string message, int speed)
         {
             TypeWithLineBreaks(0, message, speed);
         }
@@ -25,12 +30,30 @@ namespace LOD.Tools
             Thread.Sleep(500);
         }
 
+        public void Skip(string message)
+        {
+            Console.Clear();
+            skipWithLineBreaks(0, message);
+        }
+
+        public void LetUserKnowTheyCanSkip()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine("Press s to skip...");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
         public void TypeWithLineBreaks(int indexStart, string message, int speed)
         {
             if (message.Length - indexStart <= Console.WindowWidth)
             {
                 for (var i = indexStart; i < message.Length; i++)
                 {
+                    if (Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.S)
+                    {
+                        Skip(message);
+                        return;
+                    }
                     char currentChar = message[i];
                     Console.Write(currentChar);
                     if ((currentChar == '.') || (currentChar == '?') || (currentChar == '!') || (currentChar == ','))
@@ -50,6 +73,11 @@ namespace LOD.Tools
                 }
                 for (var i = indexStart; i <= endIndex; i++)
                 {
+                    if (Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.S)
+                    {
+                        Skip(message);
+                        return;
+                    }
                     char currentChar = message[i];
                     Console.Write(currentChar);
                     if ((currentChar == '.') || (currentChar == '?') || (currentChar == '!') || (currentChar == ','))
@@ -60,6 +88,26 @@ namespace LOD.Tools
                 }
                 Console.WriteLine("");
                 TypeWithLineBreaks(endIndex + 1, message, speed);
+            }
+        }
+        public void skipWithLineBreaks(int indexStart, string message)
+        {
+            if(message.Length - indexStart <= Console.WindowWidth)
+            {
+                string remainingMessage = message.Substring(indexStart);
+                Console.WriteLine(remainingMessage);
+            }
+            else
+            {
+                int endIndex = indexStart + Console.WindowWidth;
+                while (message[endIndex] != ' ')
+                {
+                    endIndex--;
+                }
+                int substringLength = endIndex - indexStart;
+                string currentMessageSubstring = message.Substring(indexStart, substringLength);
+                Console.WriteLine(currentMessageSubstring);
+                skipWithLineBreaks(endIndex + 1, message);
             }
         }
 

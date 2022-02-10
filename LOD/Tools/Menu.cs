@@ -1,27 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using LOD.Utils;
+using LOD.Interfaces;
 
 namespace LOD.Tools
 {
-    class Menu
+    class Menu : IMenu
     {
         private int SelectedIndex;
-        private string[] Options;
+        private List<string> Options;
         private string Prompt;
+        private bool ShowCommonMenuPrompt;
+        private int renderCounter;
 
-        public Menu(string prompt, string[] options)
+        public Menu(string prompt, List<string> options, bool commonPrompt = false)
         {
             Prompt = prompt;
             Options = options;
+            ShowCommonMenuPrompt = commonPrompt;
             SelectedIndex = 0;
+            renderCounter = 1;
         }
 
         private void ShowMenu()
         {
-            Console.WriteLine(Prompt);
-            for(int i = 0; i < Options.Length; i++)
+            Typewriter typewriter = new Typewriter();
+            int fastSpeed = (int)Typewriter.Speed.fast;
+
+            if (renderCounter == 1)
+            {
+                typewriter.Type(Prompt, fastSpeed);
+            }
+            else
+            {
+                Console.WriteLine(Prompt);
+            }
+            for(int i = 0; i < Options.Count; i++)
             {
                 string currentOption = Options[i];
                 string prefix;
@@ -40,6 +53,7 @@ namespace LOD.Tools
                 Console.WriteLine($"{prefix} << {currentOption} >>");
             }
             Console.ResetColor();
+            renderCounter++;
         }
 
         public int Run()
@@ -49,7 +63,7 @@ namespace LOD.Tools
             {
                 Console.Clear();
                 ShowMenu();
-                if (GameData.CurrentRoom.Name == "test_starting_room")
+                if (ShowCommonMenuPrompt)
                 {
                     Console.WriteLine("Press 'm' to show Common Menu.");
                 }
@@ -57,22 +71,22 @@ namespace LOD.Tools
                 keyPressed = keyInfo.Key;
                 if (keyPressed == ConsoleKey.UpArrow)
                 {
-                    if (SelectedIndex < Options.Length && SelectedIndex > 0)
+                    if (SelectedIndex < Options.Count && SelectedIndex > 0)
                     {
                         SelectedIndex--;
                     }
                     else if (SelectedIndex == 0)
                     {
-                        SelectedIndex = Options.Length - 1;
+                        SelectedIndex = Options.Count - 1;
                     }
                 }
                 else if (keyPressed == ConsoleKey.DownArrow) 
                 {
-                    if (SelectedIndex >= 0 && SelectedIndex < Options.Length - 1)
+                    if (SelectedIndex >= 0 && SelectedIndex < Options.Count - 1)
                     {
                         SelectedIndex++;
                     }
-                    else if (SelectedIndex == Options.Length - 1)
+                    else if (SelectedIndex == Options.Count - 1)
                     {
                         SelectedIndex = 0;
                     }

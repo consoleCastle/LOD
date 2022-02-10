@@ -8,7 +8,7 @@ namespace LOD.Tools
     class CommonMenu
     {
         private static string prompt = "Welcome to the Menu";
-        private static string[] options = { "Show Map", "Close Menu" };
+        private static List<string> options = new List<string> { "Show Map", "Close Menu" };
         public static void ShowCommonMenu()
         {
             Menu commonMenu = new Menu(prompt, options);
