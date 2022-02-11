@@ -82,7 +82,7 @@ namespace LOD.Classes
         );
         public Room dojo = new Room(
             "dojo", 
-            "You enter the school. There are many students in white uniforms punching logs and throwing rocks. The sensei approaches you: ‘IF YOU CAN DODGE a rOCK, YOU CAN BODY SLAM A MONSTER!’ She hurls a rock into your stomach and you double over in pain. She is disappointed, and your training begins. You push yourself through an 80’s style training montage and become slightly more proficient in Jiu-Jitsu.\n",
+            "You enter the school. There are many students in white uniforms punching logs and throwing rocks. The sensei approaches you: ‘IF YOU CAN DODGE A ROCK, YOU CAN BODY SLAM A MONSTER!’ She hurls a rock into your stomach and you double over in pain. She is disappointed, and your training begins. You push yourself through an 80’s style training montage and become slightly more proficient in Jiu-Jitsu.\n",
             new List<string>
             {
                 "Go back to the Village"
@@ -97,8 +97,21 @@ namespace LOD.Classes
             }
         );
         public Room village_wall = new Room(
-            "village_wall", 
-            ""
+            "village_wall",
+            "A great stone wall looms over you. Through the village entrance, you can see what seems to be moving rocks scattered about the village. It may be a mirage? As you approach, an immense, iron-wrought gate crashes shut over the entrance with a CLANG. Atop the gate a man in chainmail armor and a well-groomed mustache appears. In an outrageous French accent, the man shouts down at you: ‘[RANDOMLY GENERATED TAUNT]’. The taunt cuts deep and you have no retort. The frustration is too much to bear and you feel that you must turn back to compose yourself.",
+            new List<string>
+            {
+                "Go back to the desert",
+                "Try to reason with the man"
+            }
+        );
+        public Room taunt = new Room(
+            "taunt",
+            "The man taunts you",
+            new List<string>
+            {
+                "Gather yourself and try again"
+            }
         );
         public GameRooms()
         {
@@ -127,6 +140,11 @@ namespace LOD.Classes
 
             desert.Choices.Add("1", mountain_top);
             desert.Choices.Add("2", village_wall);
+
+            village_wall.Choices.Add("1", desert);
+            village_wall.Choices.Add("2", taunt);
+
+            taunt.Choices.Add("1", village_wall);
         }
     }
 }

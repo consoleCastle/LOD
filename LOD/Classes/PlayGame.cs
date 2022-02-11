@@ -123,7 +123,11 @@ namespace LOD.Classes
                     playerflags.Open_Mind = true;
                     break;
                 case "dark_woods":
-                    if (playerflags.Slightly_JiuJitsu_Proficient) playerflags.Shia_Defeated = true;
+                    if (playerflags.Slightly_JiuJitsu_Proficient)
+                    {
+                        playerflags.Shia_Defeated = true;
+                        playerflags.Farores_Wind_Collected = true;
+                    }
                     break;
                 case "open_door":
                     newEnd.IsGameover = true;
@@ -133,7 +137,7 @@ namespace LOD.Classes
                     playerflags.Slightly_JiuJitsu_Proficient = true;
                     break;
                 case "taunt":
-                    gamerooms.vilage_wall.Description = $"A great stone wall looms over you. Through the village entrance, you can see what seems to be moving rocks scattered about the village. It may be a mirage? As you approach, an immense, iron-wrought gate crashes shut over the entrance with a CLANG. Atop the gate a man in chainmail armor and a well-groomed mustache appears. In an outrageous French accent, the man shouts down at you: ‘{TauntGenerator.Taunt()}’. The taunt cuts deep and you have no retort. The frustration is too much to bear and you feel that you must turn back to compose yourself.";
+                    gamerooms.village_wall.Description = $"A great stone wall looms over you. Through the village entrance, you can see what seems to be moving rocks scattered about the village. It may be a mirage? As you approach, an immense, iron-wrought gate crashes shut over the entrance with a CLANG. Atop the gate a man in chainmail armor and a well-groomed mustache appears. In an outrageous French accent, the man shouts down at you: ‘{TauntGenerator.Taunt()}’. The taunt cuts deep and you have no retort. The frustration is too much to bear and you feel that you must turn back to compose yourself.";
                     gamerooms.taunt.Description = $"{TauntGenerator.Taunt()}";
                     break;
                 case "rock_room":
@@ -174,7 +178,7 @@ namespace LOD.Classes
                     if (rockGame.winner == "golem")
                     {
                         Console.WriteLine("The golem says 'Better luck next time, sucker!'");
-                        GameData.CurrentRoom = gamerooms.desert_vilage;
+                        GameData.CurrentRoom = gamerooms.desert_village;
                     }
                     if (rockGame.winner == "player")
                     {
@@ -188,12 +192,7 @@ namespace LOD.Classes
                         }
                         playerflags.Rock_Champion = true;
                         playerflags.Dins_Fire_Collected = true;
-                        GameData.CurrentRoom = gamerooms.desert_vilage;
-                case "dark_woods":
-                    if (playerflags.Slightly_JiuJitsu_Proficient)
-                    {
-                        playerflags.Shia_Defeated = true;
-                        playerflags.Farores_Wind_Collected = true;
+                        GameData.CurrentRoom = gamerooms.desert_village;
                     }
                     break;
             }
@@ -203,21 +202,33 @@ namespace LOD.Classes
             if (playerFlags.Three_Stones_Collected)
             {
                 gamerooms.temple_door.Choices.Add("3", gamerooms.open_door);
+                gamerooms.temple_door.Options = new List<string>
+                {
+                    "Go back outside",
+                    "Read the wall",
+                    "Open the door"
+                };
             }
             if (playerFlags.Shia_Defeated)
             {
                 gamerooms.forest_entrance.Description = "You have entered a lush and peaceful forest. The evil has been purged and the trees sigh in relief. You can see a tree village deeper in the forest. You also see a path leading back up the mountain.";
-                gamerooms.forest_vilage.Description = "A peaceful village of forest elves lives in the trees! Their elder approaches you: ‘Thank you for saving our village traveler! You are always welcome here.";
-                gamerooms.forest_vilage.Choices.Clear();
-                Array.Clear(gamerooms.forest_vilage.Options, 0, gamerooms.forest_vilage.Options.Length);
-                gamerooms.forest_vilage.Choices.Add("1", gamerooms.forest_entrance);
-                gamerooms.forest_vilage.Options[0] = "Go back to the forest entrance";
-                gamerooms.forest_vilage.Choices.Add("2", gamerooms.dojo);
-                gamerooms.forest_vilage.Options[1] = "Go into the dojo";
+                gamerooms.forest_village.Description = "A peaceful village of forest elves lives in the trees! Their elder approaches you: ‘Thank you for saving our village traveler! You are always welcome here.";
+                gamerooms.forest_village.Choices.Clear();
+
+                //Array.Clear(gamerooms.forest_village.Options, 0, gamerooms.forest_village.Options.Length);
+                gamerooms.forest_village.Options.Clear();
+
+                gamerooms.forest_village.Choices.Add("1", gamerooms.forest_entrance);
+                gamerooms.forest_village.Options[0] = "Go back to the forest entrance";
+                gamerooms.forest_village.Choices.Add("2", gamerooms.dojo);
+                gamerooms.forest_village.Options[1] = "Go into the dojo";
                 
                 gamerooms.dojo.Choices.Clear();
-                Array.Clear(gamerooms.dojo.Options, 0, gamerooms.dojo.Options.Length);
-                gamerooms.dojo.Choices.Add("1", gamerooms.forest_vilage);
+
+                //Array.Clear(gamerooms.dojo.Options, 0, gamerooms.dojo.Options.Length);
+                gamerooms.dojo.Options.Clear();
+
+                gamerooms.dojo.Choices.Add("1", gamerooms.forest_village);
                 gamerooms.dojo.Options[0] = "Go back to the village";
                 gamerooms.dojo.Choices.Add("2", gamerooms.open_mind_room);
                 gamerooms.dojo.Options[1] = "Open your mind";
@@ -250,17 +261,17 @@ namespace LOD.Classes
             if (playerFlags.Open_Mind)
             {
                 gamerooms.open_mind_room.Description = "“You already know the way, now go punch something.";
-                gamerooms.vilage_wall.Description = "A great stone wall looms over you. Through the village entrance, you can see what seems to be moving rocks scattered about the village. It may be a mirage? As you approach, an immense, iron-wrought gate crashes shut over the entrance with a CLANG. Atop the gate a man in chainmail armor and a well-groomed mustache appears. The man begins to taunt you with an outrageous French accent but the enlightenment you received at the dojo tells you that he is merely projecting his own insecurities upon you. You remain composed and eventually the man gets bored and allows you to pass through.";
-                gamerooms.vilage_wall.Choices.Clear();
-                Array.Clear(gamerooms.vilage_wall.Options, 0, gamerooms.vilage_wall.Options.Length);
-                gamerooms.vilage_wall.Choices.Add("1", gamerooms.desert);
-                gamerooms.vilage_wall.Options[0] = "Go back to the desert";
-                gamerooms.vilage_wall.Choices.Add("2", gamerooms.desert_vilage);
-                gamerooms.vilage_wall.Options[1] = "Go past the wall into the desert vilage";
+                gamerooms.village_wall.Description = "A great stone wall looms over you. Through the village entrance, you can see what seems to be moving rocks scattered about the village. It may be a mirage? As you approach, an immense, iron-wrought gate crashes shut over the entrance with a CLANG. Atop the gate a man in chainmail armor and a well-groomed mustache appears. The man begins to taunt you with an outrageous French accent but the enlightenment you received at the dojo tells you that he is merely projecting his own insecurities upon you. You remain composed and eventually the man gets bored and allows you to pass through.";
+                gamerooms.village_wall.Choices.Clear();
+                Array.Clear(gamerooms.vilage_wall.Options, 0, gamerooms.village_wall.Options.Length);
+                gamerooms.village_wall.Choices.Add("1", gamerooms.desert);
+                gamerooms.village_wall.Options[0] = "Go back to the desert";
+                gamerooms.village_wall.Choices.Add("2", gamerooms.desert_village);
+                gamerooms.village_wall.Options[1] = "Go past the wall into the desert vilage";
             }
             if (playerFlags.Rock_Champion)
             {
-                gamerooms.desert_vilage.Description = "You walk among dilapidated buildings and several boulders that are randomly strewn about. Suddenly they come alive! It is a society of stone golems! Their leader approaches you. He says to you: ‘only one other person has ever beat me at rock game… his name was… Dallen.";
+                gamerooms.desert_village.Description = "You walk among dilapidated buildings and several boulders that are randomly strewn about. Suddenly they come alive! It is a society of stone golems! Their leader approaches you. He says to you: ‘only one other person has ever beat me at rock game… his name was… Dallen.";
                 
             }
         }
