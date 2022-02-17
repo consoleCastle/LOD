@@ -86,8 +86,8 @@ namespace LOD.Classes
                 "Go back to the Village"
             }
         );
-        public Room open_mind_room = new Room(
-            "open_mind_room", 
+        public Room open_mind = new Room(
+            "open_mind", 
             "You must look within yourself to save yourself from your other self. Only then will your true self reveal itself.\n",
             new List<string>
             {
@@ -119,7 +119,7 @@ namespace LOD.Classes
 
             dojo.Choices.Add("1", forest_village);
 
-            open_mind_room.Choices.Add("1", forest_village);
+            open_mind.Choices.Add("1", forest_village);
 
             dark_woods.Choices.Add("1", forest_village);
 

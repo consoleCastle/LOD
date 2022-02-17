@@ -48,7 +48,7 @@ namespace LOD.Classes
                 Console.WriteLine("");
                 GameData.CurrentRoom = GameData.CurrentRoom.ShowMenu(GameData.CurrentRoom.Description, GameData.CurrentRoom.Options);
 
-                CheckRoom(playerFlags, newEnd);
+                CheckRoom(playerFlags, newEnd, gamerooms);
                 CheckFlags(playerFlags, newEnd, gamerooms);
                 if (IsDead(playerFlags))
                 {
@@ -76,7 +76,7 @@ namespace LOD.Classes
                     break;
             }
         }
-        public void CheckRoom(PlayerFlags playerflags, EndType newEnd)
+        public void CheckRoom(PlayerFlags playerflags, EndType newEnd, GameRooms gamerooms)
         {
             switch(GameData.CurrentRoom.Name)
             {
@@ -85,6 +85,7 @@ namespace LOD.Classes
                     newEnd.IsGoodEnding = true;
                     break;
                 case "dojo":
+                    gamerooms.dojo.IncrementCounter();
                     playerflags.Slightly_JiuJitsu_Proficient = true;
                     break;
                 case "dark_woods":
@@ -93,6 +94,10 @@ namespace LOD.Classes
                         playerflags.Shia_Defeated = true;
                         playerflags.Farores_Wind_Collected = true;
                     }
+                    break;
+                case "open_mind":
+                    gamerooms.open_mind.IncrementCounter();
+                    playerflags.Open_Mind = true;
                     break;
             }
         }
@@ -117,11 +122,11 @@ namespace LOD.Classes
                 gamerooms.dojo.Choices.Clear();
                 gamerooms.dojo.Options.Clear();
                 gamerooms.dojo.Choices.Add("1", gamerooms.forest_village);
-                gamerooms.dojo.Choices.Add("2", gamerooms.open_mind_room);
+                gamerooms.dojo.Choices.Add("2", gamerooms.open_mind);
                 string[] newDojoOptions = { "Go back to the village", "Meditate for an open mind" };
                 gamerooms.dojo.Options.AddRange(newDojoOptions);
             }
-            if (playerFlags.Slightly_JiuJitsu_Proficient)
+            if (playerFlags.Slightly_JiuJitsu_Proficient && (gamerooms.dojo.Counter > 1))
             {
                 gamerooms.dojo.Description = "You enter the school. There are many students in white uniforms punching logs and throwing rocks. The school leader approaches you: IF YOU CAN DODGE A ROCK, YOU CAN BODYSLAM A MONSTER! She hurls a rock at you but you barely get out of the way in time. ‘You have learned much, young grasshopper. You remind me of another student I once had. He possessed incredible power and terrible fury. I accidentally called him by the wrong name once and he went wild with rage!";
             }
@@ -131,9 +136,9 @@ namespace LOD.Classes
                 //gamerooms.dark_woods.Description = "Short victory for testing";
                 gamerooms.dark_woods.Description = shiaScene.Victory();
             }
-            if (playerFlags.Open_Mind)
+            if (playerFlags.Open_Mind && (gamerooms.open_mind.Counter > 1))
             {
-                gamerooms.open_mind_room.Description = "“You already know the way, now go punch something.";
+                gamerooms.open_mind.Description = "“You already know the way, now go punch something.";
             }
         }
         public Boolean IsDead(PlayerFlags playerFlags)
