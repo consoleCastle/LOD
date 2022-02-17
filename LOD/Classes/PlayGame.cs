@@ -235,7 +235,7 @@ namespace LOD.Classes
 
                 gamerooms.dojo.Choices.Add("1", gamerooms.forest_village);
                 gamerooms.dojo.Options[0] = "Go back to the village";
-                gamerooms.dojo.Choices.Add("2", gamerooms.open_mind_room);
+                gamerooms.dojo.Choices.Add("2", gamerooms.open_mind);
                 gamerooms.dojo.Options[1] = "Open your mind";
                 gamerooms.forest_village.Description = "A peaceful village of forest elves lives in the trees! Their elder approaches you: ‘Thank you for saving our village traveler! You are always welcome here.";
                 
@@ -265,7 +265,7 @@ namespace LOD.Classes
             }
             if (playerFlags.Open_Mind && (gamerooms.open_mind.Counter > 1))
             {
-                gamerooms.open_mind_room.Description = "“You already know the way, now go punch something.";
+                gamerooms.open_mind.Description = "“You already know the way, now go punch something.";
                 gamerooms.village_wall.Description = "A great stone wall looms over you. Through the village entrance, you can see what seems to be moving rocks scattered about the village. It may be a mirage? As you approach, an immense, iron-wrought gate crashes shut over the entrance with a CLANG. Atop the gate a man in chainmail armor and a well-groomed mustache appears. The man begins to taunt you with an outrageous French accent but the enlightenment you received at the dojo tells you that he is merely projecting his own insecurities upon you. You remain composed and eventually the man gets bored and allows you to pass through.";
                 gamerooms.village_wall.Choices.Clear();
 
