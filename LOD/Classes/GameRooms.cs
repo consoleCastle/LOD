@@ -113,6 +113,15 @@ namespace LOD.Classes
                 "Gather yourself and try again"
             }
         );
+        public Room desert_village = new Room(
+            "desert_village",
+            "You walk among dilapidated buildings and several boulders that are randomly strewn about. Suddenly they come alive! It is a society of stone golems! Their leader approaches you:‘Hey.You look tasty.Want play game ? If win - you get good!’ He shows you the traditional game of his people.It’s called ‘take the last rock to win.’ The rules are pretty simple.",
+            new List<string>
+            {
+                "Play the rock game",
+                "Go back to the desert"
+            }
+            );
         public GameRooms()
         {
             mountain_top.Choices.Add("1", temple_door);
