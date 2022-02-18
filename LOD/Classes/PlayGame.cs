@@ -218,27 +218,7 @@ namespace LOD.Classes
             {
                 gamerooms.forest_entrance.Description = "You have entered a lush and peaceful forest. The evil has been purged and the trees sigh in relief. You can see a tree village deeper in the forest. You also see a path leading back up the mountain.";
                 gamerooms.forest_village.Description = "A peaceful village of forest elves lives in the trees! Their elder approaches you: ‘Thank you for saving our village traveler! You are always welcome here.";
-                //gamerooms.forest_village.Choices.Clear();
-
-/*                //Array.Clear(gamerooms.forest_village.Options, 0, gamerooms.forest_village.Options.Length);
-                gamerooms.forest_village.Options.Clear();
-
-                gamerooms.forest_village.Choices.Add("1", gamerooms.forest_entrance);
-                gamerooms.forest_village.Options[0] = "Go back to the forest entrance";
-                gamerooms.forest_village.Choices.Add("2", gamerooms.dojo);
-                gamerooms.forest_village.Options[1] = "Go into the dojo";
-
-                gamerooms.dojo.Choices.Clear();
-
-                //Array.Clear(gamerooms.dojo.Options, 0, gamerooms.dojo.Options.Length);
-                gamerooms.dojo.Options.Clear();
-
-                gamerooms.dojo.Choices.Add("1", gamerooms.forest_village);
-                gamerooms.dojo.Options[0] = "Go back to the village";
-                gamerooms.dojo.Choices.Add("2", gamerooms.open_mind);
-                gamerooms.dojo.Options[1] = "Open your mind";
-                gamerooms.forest_village.Description = "A peaceful village of forest elves lives in the trees! Their elder approaches you: ‘Thank you for saving our village traveler! You are always welcome here.";
-*/
+ 
                 gamerooms.forest_village.Choices.Clear();
                 gamerooms.forest_village.Options.Clear();
                 gamerooms.forest_village.Choices.Add("1", gamerooms.forest_entrance);
@@ -267,11 +247,9 @@ namespace LOD.Classes
             {
                 gamerooms.open_mind.Description = "“You already know the way, now go punch something.";
                 gamerooms.village_wall.Description = "A great stone wall looms over you. Through the village entrance, you can see what seems to be moving rocks scattered about the village. It may be a mirage? As you approach, an immense, iron-wrought gate crashes shut over the entrance with a CLANG. Atop the gate a man in chainmail armor and a well-groomed mustache appears. The man begins to taunt you with an outrageous French accent but the enlightenment you received at the dojo tells you that he is merely projecting his own insecurities upon you. You remain composed and eventually the man gets bored and allows you to pass through.";
+                
                 gamerooms.village_wall.Choices.Clear();
-
-                //Array.Clear(gamerooms.village_wall.Options, 0, gamerooms.village_wall.Options.Length);
                 gamerooms.village_wall.Options.Clear();
-
                 gamerooms.village_wall.Choices.Add("1", gamerooms.desert);
                 gamerooms.village_wall.Choices.Add("2", gamerooms.desert_village);
                 string[] newVillageWallOptions = { "Go back to the desert", "Go past the wall into the desert vilage" };
