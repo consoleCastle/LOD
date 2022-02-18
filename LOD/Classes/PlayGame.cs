@@ -50,6 +50,7 @@ namespace LOD.Classes
 
                 CheckRoom(playerFlags, newEnd, gamerooms);
                 CheckFlags(playerFlags, newEnd, gamerooms);
+                CheckRoom(playerFlags, newEnd, gamerooms);
                 if (IsDead(playerFlags))
                 {
                     newEnd.IsGameover = true;
@@ -59,7 +60,7 @@ namespace LOD.Classes
 
             End(newEnd);
         }
-        public void CheckStatement(PlayerFlags playerFlags, string userCommand)
+        public void CheckStatement(string userCommand)
         {
             switch (userCommand)
             {
@@ -76,10 +77,58 @@ namespace LOD.Classes
                     break;
             }
         }
+        public void CheckStatement(string userCommand, RockGame rockGame)
+        {
+            if (!rockGame.firstRockTaken)
+            {
+                switch (userCommand)
+                {
+                    case "1":
+                        Console.WriteLine("How many rocks will you take?");
+                        Console.WriteLine("1. 1");
+                        Console.WriteLine("2. 2");
+                        rockGame.firstRockTaken = true;
+                        string newUserCommand = Console.ReadLine();
+                        CheckStatement(newUserCommand, rockGame);
+                        break;
+                    case "2":
+                        break;
+                    default:
+                        Console.WriteLine("That is not a valid choice.");
+                        string newNewUserCommand = Console.ReadLine();
+                        CheckStatement(newNewUserCommand, rockGame);
+                        break;
+                }
+            }
+            switch (userCommand)
+            {
+                case "1":
+                    rockGame.PlayerTake("player", 1);
+                    break;
+                case "2":
+                    rockGame.PlayerTake("player", 2);
+                    break;
+                default:
+                    Console.WriteLine("That is not a valid choice.");
+                    string newUserCommand = Console.ReadLine();
+                    CheckStatement(newUserCommand, rockGame);
+                    break;
+            }
+        }
         public void CheckRoom(PlayerFlags playerflags, EndType newEnd, GameRooms gamerooms)
         {
             switch(GameData.CurrentRoom.Name)
             {
+                case "open_mind_room":
+                    playerflags.Open_Mind = true;
+                    break;
+                case "dark_woods":
+                    if (playerflags.Slightly_JiuJitsu_Proficient)
+                    {
+                        playerflags.Shia_Defeated = true;
+                        playerflags.Farores_Wind_Collected = true;
+                    }
+                    break;
                 case "open_door":
                     newEnd.IsGameover = true;
                     newEnd.IsGoodEnding = true;
@@ -88,11 +137,63 @@ namespace LOD.Classes
                     gamerooms.dojo.IncrementCounter();
                     playerflags.Slightly_JiuJitsu_Proficient = true;
                     break;
-                case "dark_woods":
-                    if (playerflags.Slightly_JiuJitsu_Proficient)
+                case "taunt":
+                    gamerooms.village_wall.Description = $"A great stone wall looms over you. Through the village entrance, you can see what seems to be moving rocks scattered about the village. It may be a mirage? As you approach, an immense, iron-wrought gate crashes shut over the entrance with a CLANG. Atop the gate a man in chainmail armor and a well-groomed mustache appears. In an outrageous French accent, the man shouts down at you: ‘{TauntGenerator.Taunt()}’. The taunt cuts deep and you have no retort. The frustration is too much to bear and you feel that you must turn back to compose yourself.";
+                    gamerooms.taunt.Description = $"{TauntGenerator.Taunt()}";
+                    break;
+                case "rock_room":
+                    RockGame rockGame = new RockGame();
+                    Console.WriteLine($"There are {rockGame.rockCount} rocks. Do you want to take rocks first?");
+                    Console.WriteLine("1. Yes");
+                    Console.WriteLine("2. No");
+                    string userCommand = Console.ReadLine();
+                    CheckStatement(userCommand, rockGame);
+                    while(rockGame.winner == "none")
                     {
-                        playerflags.Shia_Defeated = true;
-                        playerflags.Farores_Wind_Collected = true;
+                        if(rockGame.rockCount % 3 == 2)
+                        {
+                            rockGame.PlayerTake("golem", 2);
+                            Console.WriteLine("The golem takes 2 rocks.");
+                        }
+                        else if(rockGame.rockCount % 3 == 1)
+                        {
+                            rockGame.PlayerTake("golem", 1);
+                            Console.WriteLine("The golem takes 1 rock.");
+                        }
+                        else
+                        {
+                            Random random = new Random();
+                            int choice = random.Next(1, 3);
+                            rockGame.PlayerTake("golem", choice);
+                            if (choice == 1) Console.WriteLine("The golem takes 1 rock.");
+                            if (choice == 2) Console.WriteLine("The golem takes 2 rocks.");
+                        }
+                        Console.WriteLine($"There are {rockGame.rockCount} rocks left.");
+                        if (rockGame.rockCount == 0) break;
+                        Console.WriteLine("How many rocks will you take?");
+                        Console.WriteLine("1. 1 rock");
+                        Console.WriteLine("2. 2 rocks");
+                        string newUserCommand = Console.ReadLine();
+                        CheckStatement(newUserCommand, rockGame);
+                    }
+                    if (rockGame.winner == "golem")
+                    {
+                        Console.WriteLine("The golem says 'Better luck next time, sucker!'");
+                        GameData.CurrentRoom = gamerooms.desert_village;
+                    }
+                    if (rockGame.winner == "player")
+                    {
+                        if (playerflags.Dins_Fire_Collected)
+                        {
+                            Console.WriteLine("The golem says 'You already have Din's fire, but you are stil brilliant!'");
+                        }
+                        else
+                        {
+                            Console.WriteLine("The golem says 'You beat me! Take this magic stone!'");
+                        }
+                        playerflags.Rock_Champion = true;
+                        playerflags.Dins_Fire_Collected = true;
+                        GameData.CurrentRoom = gamerooms.desert_village;
                     }
                     break;
                 case "open_mind":
@@ -106,10 +207,36 @@ namespace LOD.Classes
             if (playerFlags.Three_Stones_Collected)
             {
                 gamerooms.temple_door.Choices.Add("3", gamerooms.open_door);
+                gamerooms.temple_door.Options = new List<string>
+                {
+                    "Go back outside",
+                    "Read the wall",
+                    "Open the door"
+                };
             }
             if (playerFlags.Shia_Defeated)
             {
                 gamerooms.forest_entrance.Description = "You have entered a lush and peaceful forest. The evil has been purged and the trees sigh in relief. You can see a tree village deeper in the forest. You also see a path leading back up the mountain.";
+                gamerooms.forest_village.Description = "A peaceful village of forest elves lives in the trees! Their elder approaches you: ‘Thank you for saving our village traveler! You are always welcome here.";
+                gamerooms.forest_village.Choices.Clear();
+
+                //Array.Clear(gamerooms.forest_village.Options, 0, gamerooms.forest_village.Options.Length);
+                gamerooms.forest_village.Options.Clear();
+
+                gamerooms.forest_village.Choices.Add("1", gamerooms.forest_entrance);
+                gamerooms.forest_village.Options[0] = "Go back to the forest entrance";
+                gamerooms.forest_village.Choices.Add("2", gamerooms.dojo);
+                gamerooms.forest_village.Options[1] = "Go into the dojo";
+                
+                gamerooms.dojo.Choices.Clear();
+
+                //Array.Clear(gamerooms.dojo.Options, 0, gamerooms.dojo.Options.Length);
+                gamerooms.dojo.Options.Clear();
+
+                gamerooms.dojo.Choices.Add("1", gamerooms.forest_village);
+                gamerooms.dojo.Options[0] = "Go back to the village";
+                gamerooms.dojo.Choices.Add("2", gamerooms.open_mind);
+                gamerooms.dojo.Options[1] = "Open your mind";
                 gamerooms.forest_village.Description = "A peaceful village of forest elves lives in the trees! Their elder approaches you: ‘Thank you for saving our village traveler! You are always welcome here.";
                 
                 gamerooms.forest_village.Choices.Clear();
@@ -139,6 +266,21 @@ namespace LOD.Classes
             if (playerFlags.Open_Mind && (gamerooms.open_mind.Counter > 1))
             {
                 gamerooms.open_mind.Description = "“You already know the way, now go punch something.";
+                gamerooms.village_wall.Description = "A great stone wall looms over you. Through the village entrance, you can see what seems to be moving rocks scattered about the village. It may be a mirage? As you approach, an immense, iron-wrought gate crashes shut over the entrance with a CLANG. Atop the gate a man in chainmail armor and a well-groomed mustache appears. The man begins to taunt you with an outrageous French accent but the enlightenment you received at the dojo tells you that he is merely projecting his own insecurities upon you. You remain composed and eventually the man gets bored and allows you to pass through.";
+                gamerooms.village_wall.Choices.Clear();
+
+                //Array.Clear(gamerooms.village_wall.Options, 0, gamerooms.village_wall.Options.Length);
+                gamerooms.village_wall.Options.Clear();
+
+                gamerooms.village_wall.Choices.Add("1", gamerooms.desert);
+                gamerooms.village_wall.Options[0] = "Go back to the desert";
+                gamerooms.village_wall.Choices.Add("2", gamerooms.desert_village);
+                gamerooms.village_wall.Options[1] = "Go past the wall into the desert vilage";
+            }
+            if (playerFlags.Rock_Champion)
+            {
+                gamerooms.desert_village.Description = "You walk among dilapidated buildings and several boulders that are randomly strewn about. Suddenly they come alive! It is a society of stone golems! Their leader approaches you. He says to you: ‘only one other person has ever beat me at rock game… his name was… Dallen.";
+                
             }
         }
         public Boolean IsDead(PlayerFlags playerFlags)
