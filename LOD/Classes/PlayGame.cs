@@ -218,16 +218,16 @@ namespace LOD.Classes
             {
                 gamerooms.forest_entrance.Description = "You have entered a lush and peaceful forest. The evil has been purged and the trees sigh in relief. You can see a tree village deeper in the forest. You also see a path leading back up the mountain.";
                 gamerooms.forest_village.Description = "A peaceful village of forest elves lives in the trees! Their elder approaches you: ‘Thank you for saving our village traveler! You are always welcome here.";
-                gamerooms.forest_village.Choices.Clear();
+                //gamerooms.forest_village.Choices.Clear();
 
-                //Array.Clear(gamerooms.forest_village.Options, 0, gamerooms.forest_village.Options.Length);
+/*                //Array.Clear(gamerooms.forest_village.Options, 0, gamerooms.forest_village.Options.Length);
                 gamerooms.forest_village.Options.Clear();
 
                 gamerooms.forest_village.Choices.Add("1", gamerooms.forest_entrance);
                 gamerooms.forest_village.Options[0] = "Go back to the forest entrance";
                 gamerooms.forest_village.Choices.Add("2", gamerooms.dojo);
                 gamerooms.forest_village.Options[1] = "Go into the dojo";
-                
+
                 gamerooms.dojo.Choices.Clear();
 
                 //Array.Clear(gamerooms.dojo.Options, 0, gamerooms.dojo.Options.Length);
@@ -238,7 +238,7 @@ namespace LOD.Classes
                 gamerooms.dojo.Choices.Add("2", gamerooms.open_mind);
                 gamerooms.dojo.Options[1] = "Open your mind";
                 gamerooms.forest_village.Description = "A peaceful village of forest elves lives in the trees! Their elder approaches you: ‘Thank you for saving our village traveler! You are always welcome here.";
-                
+*/
                 gamerooms.forest_village.Choices.Clear();
                 gamerooms.forest_village.Options.Clear();
                 gamerooms.forest_village.Choices.Add("1", gamerooms.forest_entrance);
@@ -260,8 +260,8 @@ namespace LOD.Classes
             if (GameData.CurrentRoom.Name == "dark_woods" && playerFlags.Slightly_JiuJitsu_Proficient)
             {
                 ShiaScene shiaScene = new ShiaScene();
-                //gamerooms.dark_woods.Description = "Short victory for testing";
-                gamerooms.dark_woods.Description = shiaScene.Victory();
+                gamerooms.dark_woods.Description = "Short victory for testing";
+                //gamerooms.dark_woods.Description = shiaScene.Victory();
             }
             if (playerFlags.Open_Mind && (gamerooms.open_mind.Counter > 1))
             {
@@ -273,9 +273,9 @@ namespace LOD.Classes
                 gamerooms.village_wall.Options.Clear();
 
                 gamerooms.village_wall.Choices.Add("1", gamerooms.desert);
-                gamerooms.village_wall.Options[0] = "Go back to the desert";
                 gamerooms.village_wall.Choices.Add("2", gamerooms.desert_village);
-                gamerooms.village_wall.Options[1] = "Go past the wall into the desert vilage";
+                string[] newVillageWallOptions = { "Go back to the desert", "Go past the wall into the desert vilage" };
+                gamerooms.village_wall.Options.AddRange(newVillageWallOptions);
             }
             if (playerFlags.Rock_Champion)
             {
