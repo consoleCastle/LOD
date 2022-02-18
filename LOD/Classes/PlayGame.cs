@@ -243,9 +243,12 @@ namespace LOD.Classes
                 gamerooms.dark_woods.Description = "Short victory for testing";
                 //gamerooms.dark_woods.Description = shiaScene.Victory();
             }
-            if (playerFlags.Open_Mind && (gamerooms.open_mind.Counter > 1))
+            if (playerFlags.Open_Mind)
             {
-                gamerooms.open_mind.Description = "“You already know the way, now go punch something.";
+                if(gamerooms.open_mind.Counter > 1)
+                {
+                    gamerooms.open_mind.Description = "You already know the way, now go punch something.";
+                }
                 gamerooms.village_wall.Description = "A great stone wall looms over you. Through the village entrance, you can see what seems to be moving rocks scattered about the village. It may be a mirage? As you approach, an immense, iron-wrought gate crashes shut over the entrance with a CLANG. Atop the gate a man in chainmail armor and a well-groomed mustache appears. The man begins to taunt you with an outrageous French accent but the enlightenment you received at the dojo tells you that he is merely projecting his own insecurities upon you. You remain composed and eventually the man gets bored and allows you to pass through.";
                 
                 gamerooms.village_wall.Choices.Clear();
