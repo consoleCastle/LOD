@@ -16,11 +16,11 @@ namespace LOD.Classes
                 "Go to the Temple",
                 "Go to the Forest",
                 "Go to the Desert",
-                "Go to the Icy Tundra (NOT YET BUILT)"
+                "Go to the Icy Tundra"
             }
         );
         public Room temple_door = new Room(
-            "temple_door", 
+            "temple_door",
             "Dust and cobwebs cover everything, this place is very old. There is a massive stone door and ancient writing on the wall. What will you do?\n",
             new List<string>
             {
@@ -29,7 +29,7 @@ namespace LOD.Classes
             }
         );
         public Room forest_entrance = new Room(
-            "forest_entrance", 
+            "forest_entrance",
             "You have entered a lush and peaceful forest… yet you can’t shake the feeling that you are being watched. You can see a tree village deeper in the forest. You also see a path leading back up the mountain.\n",
             new List<string>
             {
@@ -38,7 +38,7 @@ namespace LOD.Classes
             }
         );
         public Room desert = new Room(
-            "desert", 
+            "desert",
             "You stand upon the sand dunes of the desert. The sun overhead is very hot and you are parched, you had better get moving soon. There is a pathway leading back up to the top of the mountain behind you. Ahead of you, in the distance you see a large wall encircling what seems like an abandoned village.\n",
             new List<string>
             {
@@ -46,12 +46,8 @@ namespace LOD.Classes
                 "Go to the wall"
             }
         );
-        public Room icy_tundra = new Room(
-            "icy_tundra", 
-            ""
-        );
         public Room read_the_wall = new Room(
-            "read_the_wall", 
+            "read_the_wall",
             "The wall reads: ‘Before time began and before spirits and life existed, the universe was in chaos. Then, three Golden Goddesses descended upon the chaos and began the creation of the world, each of them creating a different facet of the realm. Din created the material realm, Nayru gave the realm law and order, and Farore created all life forms that would follow the order. When their labors completed, the Goddesses departed for the heavens leaving behind three sacred stones, each representing a small portion of the essence of the goddesses.’ You notice a pedestal before the great stone door with three empty divots in it.\n",
             new List<string>
             {
@@ -59,11 +55,11 @@ namespace LOD.Classes
             }
         );
         public Room open_door = new Room(
-            "open_door", 
+            "open_door",
             "The great stone door cracks open slowly to a heavenly bright light. You step over the threshold. You have escaped the strange world!\n"
         );
         public Room forest_village = new Room(
-            "forest_village", 
+            "forest_village",
             "A peaceful village of forest elves lives in the trees! Their elder approaches you: ‘Greetings traveler, welcome to our village. Magic stones you say? Yes I have one, I would be willing to give it to you if you can defeat the monster in the dark woods that has been terrorizing my people. I recommend Jiu-Jitsu training from our local dojo.\n",
             new List<string>
             {
@@ -73,7 +69,7 @@ namespace LOD.Classes
             }
         );
         public Room dark_woods = new Room(
-            "dark_woods", 
+            "dark_woods",
             "placeholder\n",
             new List<string>
             {
@@ -81,7 +77,7 @@ namespace LOD.Classes
             }
         );
         public Room dojo = new Room(
-            "dojo", 
+            "dojo",
             "You enter the school. There are many students in white uniforms punching logs and throwing rocks. The sensei approaches you: ‘IF YOU CAN DODGE A ROCK, YOU CAN BODY SLAM A MONSTER!’ She hurls a rock into your stomach and you double over in pain. She is disappointed, and your training begins. You push yourself through an 80’s style training montage and become slightly more proficient in Jiu-Jitsu.\n",
             new List<string>
             {
@@ -89,7 +85,7 @@ namespace LOD.Classes
             }
         );
         public Room open_mind = new Room(
-            "open_mind", 
+            "open_mind",
             "You must look within yourself to save yourself from your other self. Only then will your true self reveal itself.\n",
             new List<string>
             {
@@ -121,7 +117,51 @@ namespace LOD.Classes
                 "Play the rock game",
                 "Go back to the desert"
             }
-            );
+        );
+        public Room icy_tundra = new Room(
+            "icy_tundra",
+            "Your eyes are blinded by a brewing blizzard. Everything is covered with ice and snow and you feel your body freezing over. In the distance you see a dark ominous castle. On the path ahead of you stands a stone with a carved inscription: ‘Only one with the stone of life and stone of fire can reach the chamber of the King’.",
+            new List<string>
+            {
+                "Go back up the Mountain",
+                "Go into the Dark Castle"
+            }
+        );
+        public Room castle_entrance = new Room(
+            "castle_entrance",
+            "As you enter the castle you notice that it is completely dark, you can't even see your hand in front of your face. It is bitterly cold and you hear water dripping off in the distance.",
+            new List<string>
+            {
+                "Go back to the icy tundra entrance",
+                "Go blindly forward into the castle"
+            }
+        );
+        public Room skeleton_room = new Room(
+            "skeleton_room",
+            "You enter a room with a skeleton! It stands and stares at you blankly. It speaks: ‘Welcome to Castle Dallen my friend! You will find our lord sitting on his throne further on.’ You look to the next room and see a young man with a crown on his head sitting on a tall pile of skulls. He looks deep in thought. ‘You could also go into that room over there. I wouldn't though.’ You look to the other doorway but can see nothing past the cobways that enshroud the entrance.",
+            new List<string>
+            {
+                "Go back to the castle entrance",
+                "Go into the throne room",
+                "Go into the spider room"
+            }
+        );
+        public Room spider_room = new Room(
+            "spider_room",
+            "You walk into a room full of webs and spiders. You immediately get stuck and thrash around. A millions spiders swarm over you, paralyze you with their venom and drain your precious life juices. Bummer.",
+            new List<string>
+            {
+                "Go back to the skeleton room"
+            }
+        );
+        public Room throne_room = new Room(
+            "throne_room",
+            "You approach King Dallen walking over a path paved with bones. He sits on a skull-adorned throne, and sips wine out of a matching skull goblet. ‘Greetings traveler!’ He says, ‘If you can guess my true name I may let you live! Otherwise I’d love to add your skull to my collection. What say you?’",
+            new List<string>
+            {
+                "Go back to the skeleton room"
+            }
+        );
         public GameRooms()
         {
             mountain_top.Choices.Add("1", temple_door);
@@ -154,6 +194,20 @@ namespace LOD.Classes
             village_wall.Choices.Add("2", taunt);
 
             taunt.Choices.Add("1", village_wall);
+
+            icy_tundra.Choices.Add("1", mountain_top);
+            icy_tundra.Choices.Add("2", castle_entrance);
+
+            castle_entrance.Choices.Add("1", icy_tundra);
+            castle_entrance.Choices.Add("2", skeleton_room);
+
+            skeleton_room.Choices.Add("1", castle_entrance);
+            skeleton_room.Choices.Add("2", throne_room);
+            skeleton_room.Choices.Add("3", spider_room);
+
+            spider_room.Choices.Add("1", skeleton_room);
+
+            throne_room.Choices.Add("1", skeleton_room);
         }
     }
 }

@@ -214,6 +214,17 @@ namespace LOD.Classes
                     "Open the door"
                 };
             }
+            if (playerFlags.Farores_Wind_Collected)
+            {
+                gamerooms.spider_room.Description = "You walk into a room full of webs and spiders. Suddenly, Farore's Wind comes to life and a whirlwind fills the room! All of the webs and spiders are swept away, revealing a simple stone slab that you didn't see before. It simply reads 'john'. You feel like this is really important.";
+            }
+            if (playerFlags.Dins_Fire_Collected)
+            {
+                gamerooms.castle_entrance.Description = "As you enter the castle you notice that it is completely dark. Suddenly, Din's Fire glows brightly! The room is illuminated, you are in a very old courtyard. There is a rickety rope bridge that goes over a deep ravine to another room.";
+                gamerooms.castle_entrance.Options.Clear();
+                string[] newCastleEntranceOptions = { "Go back to the icy tundra entrance", "Go over the rickety bridge" };
+                gamerooms.castle_entrance.Options.AddRange(newCastleEntranceOptions);
+            }
             if (playerFlags.Shia_Defeated)
             {
                 gamerooms.forest_entrance.Description = "You have entered a lush and peaceful forest. The evil has been purged and the trees sigh in relief. You can see a tree village deeper in the forest. You also see a path leading back up the mountain.";
@@ -269,20 +280,27 @@ namespace LOD.Classes
             if (GameData.CurrentRoom.Name == "dark_woods" && !playerFlags.Slightly_JiuJitsu_Proficient)
             {
                 ShiaScene shiaScene = new ShiaScene();
-                //GameData.CurrentRoom.Description = "Short defeat for testing";
-                GameData.CurrentRoom.Description = shiaScene.Defeat();
+                GameData.CurrentRoom.Description = "Short defeat for testing";
+                //GameData.CurrentRoom.Description = shiaScene.Defeat();
+                return true;
+            }
+            if (GameData.CurrentRoom.Name == "skeleton_room" && !playerFlags.Dins_Fire_Collected)
+            {
+                string deathMsg = "You step into the darkness and immediately find yourself falling into a void of freezing darkness. You are impaled on spikes at the bottom of a pitch black chasm.";
+                GameData.CurrentRoom.Description = deathMsg;
+                return true;
+            }
+            if (GameData.CurrentRoom.Name == "spider_room" && !playerFlags.Farores_Wind_Collected)
+            {
                 return true;
             }
             return false;
         }
 
-        public void ThanksForPlaying()
-        {
-            Console.WriteLine("Thanks for playing!!!");
-        }
         public void End(EndType endType)
         {
-            Console.WriteLine(endType.CauseMessage);
+            int moderateSpeed = (int)Typewriter.Speed.moderate;
+            typewriter.Type(endType.CauseMessage, moderateSpeed);
             typewriter.GiveMeSpace();
 
             if (!endType.IsGoodEnding)
@@ -311,6 +329,11 @@ namespace LOD.Classes
             {
                 ThanksForPlaying();
             }
+        }
+
+        public void ThanksForPlaying()
+        {
+            Console.WriteLine("Thanks for playing!!!");
         }
 
     }
