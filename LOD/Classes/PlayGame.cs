@@ -137,10 +137,6 @@ namespace LOD.Classes
                     gamerooms.dojo.IncrementCounter();
                     playerflags.Slightly_JiuJitsu_Proficient = true;
                     break;
-                case "taunt":
-                    gamerooms.village_wall.Description = $"A great stone wall looms over you. Through the village entrance, you can see what seems to be moving rocks scattered about the village. It may be a mirage? As you approach, an immense, iron-wrought gate crashes shut over the entrance with a CLANG. Atop the gate a man in chainmail armor and a well-groomed mustache appears. In an outrageous French accent, the man shouts down at you: ‘{TauntGenerator.Taunt()}’. The taunt cuts deep and you have no retort. The frustration is too much to bear and you feel that you must turn back to compose yourself.";
-                    gamerooms.taunt.Description = $"{TauntGenerator.Taunt()}";
-                    break;
                 case "rock_room":
                     RockGame rockGame = new RockGame();
                     Console.WriteLine($"There are {rockGame.rockCount} rocks. Do you want to take rocks first?");
@@ -216,19 +212,19 @@ namespace LOD.Classes
             }
             if (playerFlags.Farores_Wind_Collected)
             {
-                gamerooms.spider_room.Description = "You walk into a room full of webs and spiders. Suddenly, Farore's Wind comes to life and a whirlwind fills the room! All of the webs and spiders are swept away, revealing a simple stone slab that you didn't see before. It simply reads 'john'. You feel like this is really important.";
+                gamerooms.spider_room.Description = RoomDescriptions.SpiderRoomWithFaroresWind;
             }
             if (playerFlags.Dins_Fire_Collected)
             {
-                gamerooms.castle_entrance.Description = "As you enter the castle you notice that it is completely dark. Suddenly, Din's Fire glows brightly! The room is illuminated, you are in a very old courtyard. There is a rickety rope bridge that goes over a deep ravine to another room.";
+                gamerooms.castle_entrance.Description = RoomDescriptions.CastleEntranceWithDinsFire;
                 gamerooms.castle_entrance.Options.Clear();
                 string[] newCastleEntranceOptions = { "Go back to the icy tundra entrance", "Go over the rickety bridge" };
                 gamerooms.castle_entrance.Options.AddRange(newCastleEntranceOptions);
             }
             if (playerFlags.Shia_Defeated)
             {
-                gamerooms.forest_entrance.Description = "You have entered a lush and peaceful forest. The evil has been purged and the trees sigh in relief. You can see a tree village deeper in the forest. You also see a path leading back up the mountain.";
-                gamerooms.forest_village.Description = "A peaceful village of forest elves lives in the trees! Their elder approaches you: ‘Thank you for saving our village traveler! You are always welcome here.";
+                gamerooms.forest_entrance.Description = RoomDescriptions.ForestEntranceShiaDefeated;
+                gamerooms.forest_village.Description = RoomDescriptions.ForestVillageShiaDefeated;
  
                 gamerooms.forest_village.Choices.Clear();
                 gamerooms.forest_village.Options.Clear();
@@ -246,7 +242,7 @@ namespace LOD.Classes
             }
             if (playerFlags.Slightly_JiuJitsu_Proficient && (gamerooms.dojo.Counter > 1))
             {
-                gamerooms.dojo.Description = "You enter the school. There are many students in white uniforms punching logs and throwing rocks. The school leader approaches you: IF YOU CAN DODGE A ROCK, YOU CAN BODYSLAM A MONSTER! She hurls a rock at you but you barely get out of the way in time. ‘You have learned much, young grasshopper. You remind me of another student I once had. He possessed incredible power and terrible fury. I accidentally called him by the wrong name once and he went wild with rage!";
+                gamerooms.dojo.Description = RoomDescriptions.DojoWithJiuJitsu;
             }
             if (GameData.CurrentRoom.Name == "dark_woods" && playerFlags.Slightly_JiuJitsu_Proficient)
             {
@@ -260,7 +256,7 @@ namespace LOD.Classes
                 {
                     gamerooms.open_mind.Description = "You already know the way, now go punch something.";
                 }
-                gamerooms.village_wall.Description = "A great stone wall looms over you. Through the village entrance, you can see what seems to be moving rocks scattered about the village. It may be a mirage? As you approach, an immense, iron-wrought gate crashes shut over the entrance with a CLANG. Atop the gate a man in chainmail armor and a well-groomed mustache appears. The man begins to taunt you with an outrageous French accent but the enlightenment you received at the dojo tells you that he is merely projecting his own insecurities upon you. You remain composed and eventually the man gets bored and allows you to pass through.";
+                gamerooms.village_wall.Description = RoomDescriptions.VillageWallWithOpenMind;
                 
                 gamerooms.village_wall.Choices.Clear();
                 gamerooms.village_wall.Options.Clear();
@@ -271,7 +267,7 @@ namespace LOD.Classes
             }
             if (playerFlags.Rock_Champion)
             {
-                gamerooms.desert_village.Description = "You walk among dilapidated buildings and several boulders that are randomly strewn about. Suddenly they come alive! It is a society of stone golems! Their leader approaches you. He says to you: ‘only one other person has ever beat me at rock game… his name was… Dallen.";
+                gamerooms.desert_village.Description = RoomDescriptions.DesertVillageAsRockChampion;
                 
             }
         }
