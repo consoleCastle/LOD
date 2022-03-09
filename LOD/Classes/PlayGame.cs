@@ -7,45 +7,27 @@ namespace LOD.Classes
 {
     class PlayGame
     {
-        AsciiArt art = new AsciiArt();
-        Typewriter typewriter = new Typewriter();
+        private AsciiArt art;
+        private Typewriter typewriter;
+        private GameRooms gameRooms;
+        private PlayerFlags playerFlags;
+        private EndType newEnd;
+
         public void Start()
         {
-            Console.Clear();
+            InitializeGame();
+            StartScreen();
+            Exposition();
 
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            typewriter.GiveMeSpace();
-            Console.WriteLine(art.TitleArt);
-            typewriter.GiveMeSpace();
-
-            PlayerFlags playerFlags = new PlayerFlags();
-            playerFlags.Reset();
-            EndType newEnd = new EndType();
-
-            Console.WriteLine("Press ENTER to begin...");
-            while (Console.ReadKey().Key != ConsoleKey.Enter) { }
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.Clear();
-
-            int fastSpeed = (int)Typewriter.Speed.fast;
-
-            typewriter.Type(art.Exposition, fastSpeed);
-            typewriter.GiveMeSpace();
-
-            Console.WriteLine("Press ENTER to proceed to the mountain top...");
-            while (Console.ReadKey().Key != ConsoleKey.Enter) { }
-
-            GameRooms gamerooms = new GameRooms();
-            GameData.CurrentRoom = gamerooms.mountain_top;
             while (!newEnd.IsGameover)
             {
                 Console.WriteLine(GameData.CurrentRoom.Description);
                 Console.WriteLine("");
                 GameData.CurrentRoom = GameData.CurrentRoom.ShowMenu(GameData.CurrentRoom.Description, GameData.CurrentRoom.Options);
 
-                Checker.CheckRoom(playerFlags, newEnd, gamerooms);
-                Checker.CheckFlags(playerFlags, gamerooms);
-                Checker.CheckRoom(playerFlags, newEnd, gamerooms);
+                Checker.CheckRoom(playerFlags, newEnd, gameRooms);
+                Checker.CheckFlags(playerFlags, gameRooms);
+                Checker.CheckRoom(playerFlags, newEnd, gameRooms);
                 if (IsDead(playerFlags))
                 {
                     newEnd.IsGameover = true;
@@ -54,6 +36,44 @@ namespace LOD.Classes
             }
 
             End(newEnd);
+        }
+
+        private void InitializeGame()
+        {
+            art = new AsciiArt();
+            typewriter = new Typewriter();
+            gameRooms = new GameRooms();
+            playerFlags = new PlayerFlags();
+            playerFlags.Reset();
+            newEnd = new EndType();
+
+            Console.Clear();
+
+            GameData.CurrentRoom = gameRooms.mountain_top;
+        }
+
+        private void StartScreen()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            typewriter.GiveMeSpace();
+            Console.WriteLine(art.TitleArt);
+            typewriter.GiveMeSpace();
+            Console.WriteLine("Press ENTER to begin...");
+
+            while (Console.ReadKey().Key != ConsoleKey.Enter) { }
+            Console.ForegroundColor = ConsoleColor.White;
+
+            Console.Clear();
+        }
+
+        private void Exposition()
+        {
+            int fastSpeed = (int)Typewriter.Speed.fast;
+            typewriter.Type(art.Exposition, fastSpeed);
+            typewriter.GiveMeSpace();
+
+            Console.WriteLine("Press ENTER to proceed to the mountain top...");
+            while (Console.ReadKey().Key != ConsoleKey.Enter) { }
         }
 
         public bool IsDead(PlayerFlags playerFlags)
@@ -116,6 +136,5 @@ namespace LOD.Classes
         {
             Console.WriteLine("Thanks for playing!!!");
         }
-
     }
 }
