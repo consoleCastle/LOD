@@ -251,8 +251,8 @@ namespace LOD.Classes
             if (GameData.CurrentRoom.Name == "dark_woods" && playerFlags.Slightly_JiuJitsu_Proficient)
             {
                 ShiaScene shiaScene = new ShiaScene();
-                gamerooms.dark_woods.Description = "Short victory for testing";
                 //gamerooms.dark_woods.Description = shiaScene.Victory();
+                gamerooms.dark_woods.Description = shiaScene.VictorySkip();
             }
             if (playerFlags.Open_Mind)
             {
@@ -280,8 +280,8 @@ namespace LOD.Classes
             if (GameData.CurrentRoom.Name == "dark_woods" && !playerFlags.Slightly_JiuJitsu_Proficient)
             {
                 ShiaScene shiaScene = new ShiaScene();
-                GameData.CurrentRoom.Description = "Short defeat for testing";
-                //GameData.CurrentRoom.Description = shiaScene.Defeat();
+                GameData.CurrentRoom.Description = shiaScene.Defeat();
+                //GameData.CurrentRoom.Description = shiaScene.DefeatSkip();
                 return true;
             }
             if (GameData.CurrentRoom.Name == "skeleton_room" && !playerFlags.Dins_Fire_Collected)
