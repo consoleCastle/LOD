@@ -19,6 +19,16 @@ namespace LOD.Classes
             Thread.Sleep(900);
         }
 
+        public void PrintContinueMsg()
+        {
+            Typewriter typewriter = new Typewriter();
+
+            typewriter.GiveMeSpace();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Press ANY KEY to continue.");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
         public string Defeat()
         {
             Typewriter typewriter = new Typewriter();
@@ -30,7 +40,7 @@ namespace LOD.Classes
                 + art.Shia1 + 
                 "\nHe’s following you, about thirty feet back. He gets down on all fours and breaks into a sprint. He’s gaining on you!\n"
                 + art.Shia2 + 
-                "\nYou try to find your way but you’re all turned around. He’s almost upon you now and you can see there's blood on his face and\nAHHH!\nYour leg!\nIt's caught in a bear trap!\n Press ANY KEY to continue";
+                "\nYou try to find your way but you’re all turned around. He’s almost upon you now and you can see there's blood on his face and\nAHHH!\nYour leg!\nIt's caught in a bear trap!\n Press ANY KEY to continue.";
 
             Console.Clear();
             try
@@ -45,6 +55,9 @@ namespace LOD.Classes
                 typewriter.Type("Your Leg!", fastSpeed, true, true);
                 Thread.Sleep(300);
                 typewriter.Type("It's caught in a bear trap!", fastSpeed, true, true);
+                PrintContinueMsg();
+                Console.ReadLine();
+                return "You are eaten by ACTUAL CANNIBAL Shia LeBeuof.";
             }
             catch
             {
@@ -52,7 +65,6 @@ namespace LOD.Classes
                 Console.ReadLine();
                 return "You are eaten by ACTUAL CANNIBAL Shia LeBeuof.";
             }
-            return "You are eaten by ACTUAL CANNIBAL Shia LeBeuof.";
         }
         public string Victory()
         {
@@ -81,12 +93,12 @@ namespace LOD.Classes
                 "\nHis head topples to the floor, expressionless. You are finally safe... from\n"
                 + art.Shia8 +
                 "\nFrom behind you the village elder appears. He exclaims, ‘Thank you for saving us from that ancient evil. Take this stone as a token of our eternal gratitude!'\n"
-                + "Press ANY KEY to Continue";
+                + "Press ANY KEY to Continue.";
 
             Console.Clear();
             try
             {
-                typewriter.Type("You’re walking in the woods. There’s no one around and your phone is dead. Out of the corner of your eye you spot him,", slowSpeed, true, true);
+                typewriter.Type("You’re walking in the woods. There’s no one around and your phone is dead. Out of the corner of your eye you spot him,", slowSpeed, false, true);
                 PrintShiaArt(art.Shia1, ConsoleColor.Red);
                 typewriter.Type("He’s following you, about thirty feet back. He gets down on all fours and breaks into a sprint. He’s gaining on you!", moderateSpeed, true, true);
                 PrintShiaArt(art.Shia2, ConsoleColor.Red);
@@ -101,7 +113,7 @@ namespace LOD.Classes
                 typewriter.Type("After a horrific gasp, he falls to the ground, dead.", slowSpeed, true, true);
                 Thread.Sleep(1100);
                 Console.Clear();
-                Console.WriteLine("It's Over...");
+                typewriter.Type("It's Over...", slowSpeed, true, true);
                 Console.BackgroundColor = ConsoleColor.White;
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.WriteLine("*  <<< Go Back to forest entrance >>>");
@@ -112,7 +124,7 @@ namespace LOD.Classes
                 typewriter.Type("WAIT!", moderateSpeed, true, true);
                 Console.ForegroundColor = ConsoleColor.White;
                 Thread.Sleep(300);
-                typewriter.Type("He isn't dead!!", fastSpeed);
+                typewriter.Type("He isn't dead!!", fastSpeed, true, true);
                 PrintShiaArt(art.ShiaSurprise, ConsoleColor.Yellow);
                 typewriter.Type("There's a gun to your head", fastSpeed, true, true);
                 Thread.Sleep(400);
@@ -132,6 +144,8 @@ namespace LOD.Classes
                 Thread.Sleep(2000);
                 typewriter.Type("His head topples to the floor, expressionless. You are finally safe... from", slowSpeed, true, true);
                 PrintShiaArt(art.Shia8, ConsoleColor.Red);
+                PrintContinueMsg();
+                Console.ReadLine();
                 return "From behind you the village elder appears. He exclaims, ‘Thank you for saving us from that ancient evil. Take this stone as a token of our eternal gratitude!'";
             }
             catch
