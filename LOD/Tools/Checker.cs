@@ -122,6 +122,22 @@ namespace LOD.Tools
                     gamerooms.open_mind.IncrementCounter();
                     playerflags.Open_Mind = true;
                     break;
+                case "throne_room":
+                    //TODO Make this work. Right now it makes you guess his name twice and I do not know why. 
+                    //Console.Clear();
+                    //Console.WriteLine(GameData.CurrentRoom.Description);
+                    string dallenNameGuess = Console.ReadLine();
+                    Console.WriteLine($"You guessed '{dallenNameGuess}'");
+                    if (dallenNameGuess.ToLower() == "john")
+                    {
+                        playerflags.Nayrus_Love_Collected = true;
+                        Console.WriteLine("You guessed my name! 'JOHN'! Not only will I let you live, but I will give you this magic stone! Now go away.");
+                        Console.WriteLine("");
+                        Console.WriteLine("You got Naryu's Love! Press ANY KEY to continue.");
+                        Console.ReadLine();
+                        GameData.CurrentRoom = gamerooms.skeleton_room;
+                    }
+                    break;
             }
         }
 
@@ -196,6 +212,10 @@ namespace LOD.Tools
             {
                 gamerooms.desert_village.Description = RoomDescriptions.DesertVillageAsRockChampion;
 
+            }
+            if (playerFlags.Nayrus_Love_Collected)
+            {
+                gamerooms.skeleton_room.Description = RoomDescriptions.SkeletonRoomAfterNaryusLove;
             }
         }
     }
