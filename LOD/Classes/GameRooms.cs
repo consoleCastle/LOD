@@ -116,6 +116,38 @@ namespace LOD.Classes
                 "Go back to the desert"
             }
         );
+        public Room rock_game = new Room(
+            "rock_game",
+            RoomDescriptions.RockGame,
+            new List<string>
+            {
+
+            }
+        );
+        public Room rock_game_lose = new Room(
+            "rock_game_lose",
+            RoomDescriptions.RockGameLose,
+            new List<string>
+            {
+                "Go back to the desert village"
+            }
+        );
+        public Room rock_game_win = new Room(
+            "rock_game_win",
+            RoomDescriptions.RockGameWin,
+            new List<string>
+            {
+                "Go back to the desert village"
+            }
+        );
+        public Room rock_game_win_again = new Room(
+            "rock_game_win_again",
+            RoomDescriptions.RockGameWinAgain,
+            new List<string>
+            {
+                "Go back to the desert village"
+            }
+        );
         public Room icy_tundra = new Room(
             "icy_tundra",
             RoomDescriptions.IcyTundra,
@@ -187,6 +219,15 @@ namespace LOD.Classes
 
             desert.Choices.Add("1", mountain_top);
             desert.Choices.Add("2", village_wall);
+
+            desert_village.Choices.Add("1", rock_game);
+            desert_village.Choices.Add("2", village_wall);
+
+            rock_game_lose.Choices.Add("1", desert_village);
+
+            rock_game_win.Choices.Add("1", desert_village);
+
+            rock_game_win_again.Choices.Add("1", desert_village);
 
             village_wall.Choices.Add("1", desert);
             village_wall.Choices.Add("2", taunt);

@@ -14,7 +14,7 @@ namespace LOD.Tools
                 switch (userCommand)
                 {
                     case "1":
-                        Console.WriteLine("How many rocks will you take?");
+                        Console.WriteLine("How many rocks will you take first?");
                         Console.WriteLine("1. 1");
                         Console.WriteLine("2. 2");
                         rockGame.firstRockTaken = true;
@@ -30,7 +30,7 @@ namespace LOD.Tools
                         break;
                 }
             }
-            switch (userCommand)
+            else switch (userCommand)
             {
                 case "1":
                     rockGame.PlayerTake("player", 1);
@@ -68,7 +68,7 @@ namespace LOD.Tools
                     gamerooms.dojo.IncrementCounter();
                     playerflags.Slightly_JiuJitsu_Proficient = true;
                     break;
-                case "rock_room":
+                case "rock_game":
                     RockGame rockGame = new RockGame();
                     Console.WriteLine($"There are {rockGame.rockCount} rocks. Do you want to take rocks first?");
                     Console.WriteLine("1. Yes");
@@ -97,7 +97,7 @@ namespace LOD.Tools
                         }
                         Console.WriteLine($"There are {rockGame.rockCount} rocks left.");
                         if (rockGame.rockCount == 0) break;
-                        Console.WriteLine("How many rocks will you take?");
+                        Console.WriteLine("How many rocks will you take now?");
                         Console.WriteLine("1. 1 rock");
                         Console.WriteLine("2. 2 rocks");
                         string newUserCommand = Console.ReadLine();
@@ -105,22 +105,20 @@ namespace LOD.Tools
                     }
                     if (rockGame.winner == "golem")
                     {
-                        Console.WriteLine("The golem says 'Better luck next time, sucker!'");
-                        GameData.CurrentRoom = gamerooms.desert_village;
+                        GameData.CurrentRoom = gamerooms.rock_game_lose;
                     }
                     if (rockGame.winner == "player")
                     {
-                        if (playerflags.Dins_Fire_Collected)
+                        playerflags.Rock_Champion = true;
+                        if (!playerflags.Dins_Fire_Collected)
                         {
-                            Console.WriteLine("The golem says 'You already have Din's fire, but you are still brilliant!'");
+                            GameData.CurrentRoom = gamerooms.rock_game_win;
                         }
                         else
                         {
-                            Console.WriteLine("The golem says 'You beat me! Take this magic stone!'");
+                            GameData.CurrentRoom = gamerooms.rock_game_win_again;
                         }
-                        playerflags.Rock_Champion = true;
                         playerflags.Dins_Fire_Collected = true;
-                        GameData.CurrentRoom = gamerooms.desert_village;
                     }
                     break;
                 case "open_mind":
