@@ -81,8 +81,7 @@ namespace LOD.Classes
             if (GameData.CurrentRoom.Name == "dark_woods" && !playerFlags.Slightly_JiuJitsu_Proficient)
             {
                 ShiaScene shiaScene = new ShiaScene();
-                GameData.CurrentRoom.Description = "Short defeat for testing";
-                //GameData.CurrentRoom.Description = shiaScene.Defeat();
+                GameData.CurrentRoom.Description = shiaScene.Defeat();
                 return true;
             }
             if (GameData.CurrentRoom.Name == "skeleton_room" && !playerFlags.Dins_Fire_Collected)

@@ -12,15 +12,13 @@ namespace LOD.Tools
             moderate = 60,
             fast = 33
         }
-        public void Type(string message, int speed)
+        public void Type(string message, int speed, bool hideSkip = false, bool isBrokenMsg = false)
         {
-            LetUserKnowTheyCanSkip();
-            TypeWithLineBreaks(0, message, speed);
-        }
-
-        public void TypeWithoutSkipMsg(string message, int speed)
-        {
-            TypeWithLineBreaks(0, message, speed);
+            if (!hideSkip)
+            {
+                LetUserKnowTheyCanSkip();
+            }
+            TypeWithLineBreaks(0, message, speed, isBrokenMsg);
         }
 
         public void GiveMeSpace()
@@ -43,7 +41,7 @@ namespace LOD.Tools
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        public void TypeWithLineBreaks(int indexStart, string message, int speed)
+        public void TypeWithLineBreaks(int indexStart, string message, int speed, bool isBrokenMsg = false)
         {
             if (message.Length - indexStart <= Console.WindowWidth)
             {
@@ -51,8 +49,15 @@ namespace LOD.Tools
                 {
                     if (Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.S)
                     {
-                        Skip(message);
-                        return;
+                        if (isBrokenMsg)
+                        {
+                            throw new Exception("User wants to skip typing scene"); 
+                        } 
+                        else
+                        {
+                            Skip(message);
+                            return;
+                        }
                     }
                     char currentChar = message[i];
                     Console.Write(currentChar);

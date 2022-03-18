@@ -19,6 +19,16 @@ namespace LOD.Classes
             Thread.Sleep(900);
         }
 
+        public void PrintContinueMsg()
+        {
+            Typewriter typewriter = new Typewriter();
+
+            typewriter.GiveMeSpace();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Press ANY KEY to continue.");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
         public string Defeat()
         {
             Typewriter typewriter = new Typewriter();
@@ -26,18 +36,35 @@ namespace LOD.Classes
             int moderateSpeed = (int)Typewriter.Speed.moderate;
             int fastSpeed = (int)Typewriter.Speed.fast;
 
+            string defeatMsg = "You’re walking in the woods. There’s no one around and your phone is dead. Out of the corner of your eye you spot him,\n"
+                + art.Shia1 + 
+                "\nHe’s following you, about thirty feet back. He gets down on all fours and breaks into a sprint. He’s gaining on you!\n"
+                + art.Shia2 + 
+                "\nYou try to find your way but you’re all turned around. He’s almost upon you now and you can see there's blood on his face and\nAHHH!\nYour leg!\nIt's caught in a bear trap!\n Press ANY KEY to continue.";
+
             Console.Clear();
-            typewriter.TypeWithoutSkipMsg("You’re walking in the woods. There’s no one around and your phone is dead. Out of the corner of your eye you spot him,", slowSpeed);
-            PrintShiaArt(art.Shia1, ConsoleColor.Red);
-            typewriter.TypeWithoutSkipMsg("He’s following you, about thirty feet back. He gets down on all fours and breaks into a sprint. He’s gaining on you!", moderateSpeed);
-            PrintShiaArt(art.Shia2, ConsoleColor.Red);
-            typewriter.TypeWithoutSkipMsg("You try to find your way but you’re all turned around. He’s almost upon you now and you can see there's blood on his face and", fastSpeed);
-            typewriter.TypeWithoutSkipMsg("AHH!", fastSpeed);
-            Thread.Sleep(300);
-            typewriter.TypeWithoutSkipMsg("Your Leg!", fastSpeed);
-            Thread.Sleep(300);
-            typewriter.TypeWithoutSkipMsg("It's caught in a bear trap!", fastSpeed);
-            return "You are eaten by ACTUAL CANNIBAL Shia LeBeuof.";
+            try
+            {
+                typewriter.Type("You’re walking in the woods. There’s no one around and your phone is dead. Out of the corner of your eye you spot him,", slowSpeed, true, true);
+                PrintShiaArt(art.Shia1, ConsoleColor.Red);
+                typewriter.Type("He’s following you, about thirty feet back. He gets down on all fours and breaks into a sprint. He’s gaining on you!", moderateSpeed, true, true);
+                PrintShiaArt(art.Shia2, ConsoleColor.Red);
+                typewriter.Type("You try to find your way but you’re all turned around. He’s almost upon you now and you can see there's blood on his face and", fastSpeed, true, true);
+                typewriter.Type("AHH!", fastSpeed, true, true);
+                Thread.Sleep(300);
+                typewriter.Type("Your Leg!", fastSpeed, true, true);
+                Thread.Sleep(300);
+                typewriter.Type("It's caught in a bear trap!", fastSpeed, true, true);
+                PrintContinueMsg();
+                Console.ReadLine();
+                return "You are eaten by ACTUAL CANNIBAL Shia LeBeuof.";
+            }
+            catch
+            {
+                Console.WriteLine(defeatMsg);
+                Console.ReadLine();
+                return "You are eaten by ACTUAL CANNIBAL Shia LeBeuof.";
+            }
         }
         public string Victory()
         {
@@ -46,54 +73,87 @@ namespace LOD.Classes
             int moderateSpeed = (int)Typewriter.Speed.moderate;
             int fastSpeed = (int)Typewriter.Speed.fast;
 
+            string victoryMsg = "You’re walking in the woods. There’s no one around and your phone is dead. Out of the corner of your eye you spot him,\n"
+                + art.Shia1 +
+                "\nHe’s following you, about thirty feet back. He gets down on all fours and breaks into a sprint. He’s gaining on you!\n"
+                + art.Shia2 +
+                "\nYou try to find your way but you’re all turned around. He’s almost upon you now and you can see there's blood on his face, MY GOD there's blood EVERYWHERE! Acting on raw instinct, you wrestle a knife from Hollywood’s\n"
+                + art.Shia3 +
+                "\nSlicing downwards you are able to stab him in his kidney. After a horrific gasp, he falls to the ground, dead.\nWAIT! He isn't dead!\n"
+                + art.ShiaSurprise +
+                "\nThere's a gun to your head- and death in his eyes, but you can do jiu-jitsuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu and you bodyslam superstar\n"
+                + art.Shia4 +
+                "\nLegendary fight with\n"
+                + art.Shia5 +
+                "\nnormal Tuesday night for\n"
+                + art.Shia6 +
+                "\nHe’s dodging every swipe, he parries to the left, you counter to the right, you catch him in the neck. You have just decapitated\n"
+                + art.Shia7 + "\n"
+                + art.Confetti +
+                "\nHis head topples to the floor, expressionless. You are finally safe... from\n"
+                + art.Shia8 +
+                "\nFrom behind you the village elder appears. He exclaims, ‘Thank you for saving us from that ancient evil. Take this stone as a token of our eternal gratitude!'\n"
+                + "Press ANY KEY to Continue.";
+
             Console.Clear();
-            typewriter.TypeWithoutSkipMsg("You’re walking in the woods. There’s no one around and your phone is dead. Out of the corner of your eye you spot him,", slowSpeed);
-            PrintShiaArt(art.Shia1, ConsoleColor.Red);
-            typewriter.TypeWithoutSkipMsg("He’s following you, about thirty feet back. He gets down on all fours and breaks into a sprint. He’s gaining on you!", moderateSpeed);
-            PrintShiaArt(art.Shia2, ConsoleColor.Red);
-            typewriter.TypeWithoutSkipMsg("You try to find your way but you’re all turned around. He’s almost upon you now and you can see there's blood on his face,", fastSpeed);
-            Thread.Sleep(300);
-            typewriter.TypeWithoutSkipMsg("MY GOD there's blood EVERYWHERE!", fastSpeed);
-            Thread.Sleep(500);
-            typewriter.TypeWithoutSkipMsg("Acting on raw instinct, you wrestle a knife from Hollywood’s", moderateSpeed);
-            PrintShiaArt(art.Shia3, ConsoleColor.Red);
-            typewriter.TypeWithoutSkipMsg("Slicing downwards you are able to stab him in his kidney.", moderateSpeed);
-            Thread.Sleep(300);
-            typewriter.TypeWithoutSkipMsg("After a horrific gasp, he falls to the ground, dead.", slowSpeed);
-            Thread.Sleep(1100);
-            Console.Clear();
-            Console.WriteLine("It's Over...");
-            Console.BackgroundColor = ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine("*  <<< Go Back to forest entrance >>>");
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.ForegroundColor = ConsoleColor.White;
-            Thread.Sleep(8000);
-            Console.ForegroundColor = ConsoleColor.Red;
-            typewriter.TypeWithoutSkipMsg("WAIT!", moderateSpeed);
-            Console.ForegroundColor = ConsoleColor.White;
-            Thread.Sleep(300);
-            typewriter.TypeWithoutSkipMsg("He isn't dead!!", fastSpeed);
-            PrintShiaArt(art.ShiaSurprise, ConsoleColor.Yellow);
-            typewriter.TypeWithoutSkipMsg("There's a gun to your head", fastSpeed);
-            Thread.Sleep(400);
-            typewriter.TypeWithoutSkipMsg("and death in his eyes,", fastSpeed);
-            Thread.Sleep(400);
-            typewriter.TypeWithoutSkipMsg("but you can do jiu-jitsuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu and you bodyslam superstar", fastSpeed);
-            PrintShiaArt(art.Shia4, ConsoleColor.Red);
-            typewriter.TypeWithoutSkipMsg("Legendary fight with", moderateSpeed);
-            PrintShiaArt(art.Shia5, ConsoleColor.Red);
-            typewriter.TypeWithoutSkipMsg("normal Tuesday night for", moderateSpeed);
-            PrintShiaArt(art.Shia6, ConsoleColor.Red);
-            typewriter.TypeWithoutSkipMsg("He’s dodging every swipe, he parries to the left, you counter to the right, you catch him in the neck. You have just decapitated", fastSpeed);
-            PrintShiaArt(art.Shia7, ConsoleColor.DarkYellow);
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(art.confetti);
-            Console.ForegroundColor = ConsoleColor.White;
-            Thread.Sleep(2000);
-            typewriter.TypeWithoutSkipMsg("His head topples to the floor, expressionless. You are finally safe... from", slowSpeed);
-            PrintShiaArt(art.Shia8, ConsoleColor.Red);
-            return "From behind you the village elder appears. He exclaims, ‘Thank you for saving us from that ancient evil. Take this stone as a token of our eternal gratitude!'";
+            try
+            {
+                typewriter.Type("You’re walking in the woods. There’s no one around and your phone is dead. Out of the corner of your eye you spot him,", slowSpeed, false, true);
+                PrintShiaArt(art.Shia1, ConsoleColor.Red);
+                typewriter.Type("He’s following you, about thirty feet back. He gets down on all fours and breaks into a sprint. He’s gaining on you!", moderateSpeed, true, true);
+                PrintShiaArt(art.Shia2, ConsoleColor.Red);
+                typewriter.Type("You try to find your way but you’re all turned around. He’s almost upon you now and you can see there's blood on his face,", fastSpeed, true, true);
+                Thread.Sleep(300);
+                typewriter.Type("MY GOD there's blood EVERYWHERE!", fastSpeed, true, true);
+                Thread.Sleep(500);
+                typewriter.Type("Acting on raw instinct, you wrestle a knife from Hollywood’s", moderateSpeed, true, true);
+                PrintShiaArt(art.Shia3, ConsoleColor.Red);
+                typewriter.Type("Slicing downwards you are able to stab him in his kidney.", moderateSpeed, true, true);
+                Thread.Sleep(300);
+                typewriter.Type("After a horrific gasp, he falls to the ground, dead.", slowSpeed, true, true);
+                Thread.Sleep(1100);
+                Console.Clear();
+                typewriter.Type("It's Over...", slowSpeed, true, true);
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine("*  <<< Go Back to forest entrance >>>");
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = ConsoleColor.White;
+                Thread.Sleep(8000);
+                Console.ForegroundColor = ConsoleColor.Red;
+                typewriter.Type("WAIT!", moderateSpeed, true, true);
+                Console.ForegroundColor = ConsoleColor.White;
+                Thread.Sleep(300);
+                typewriter.Type("He isn't dead!!", fastSpeed, true, true);
+                PrintShiaArt(art.ShiaSurprise, ConsoleColor.Yellow);
+                typewriter.Type("There's a gun to your head", fastSpeed, true, true);
+                Thread.Sleep(400);
+                typewriter.Type("and death in his eyes,", fastSpeed, true, true);
+                Thread.Sleep(400);
+                typewriter.Type("but you can do jiu-jitsuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu and you bodyslam superstar", fastSpeed, true, true);
+                PrintShiaArt(art.Shia4, ConsoleColor.Red);
+                typewriter.Type("Legendary fight with", moderateSpeed, true, true);
+                PrintShiaArt(art.Shia5, ConsoleColor.Red);
+                typewriter.Type("normal Tuesday night for", moderateSpeed, true, true);
+                PrintShiaArt(art.Shia6, ConsoleColor.Red);
+                typewriter.Type("He’s dodging every swipe, he parries to the left, you counter to the right, you catch him in the neck. You have just decapitated", fastSpeed, true, true);
+                PrintShiaArt(art.Shia7, ConsoleColor.DarkYellow);
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine(art.Confetti);
+                Console.ForegroundColor = ConsoleColor.White;
+                Thread.Sleep(2000);
+                typewriter.Type("His head topples to the floor, expressionless. You are finally safe... from", slowSpeed, true, true);
+                PrintShiaArt(art.Shia8, ConsoleColor.Red);
+                PrintContinueMsg();
+                Console.ReadLine();
+                return "From behind you the village elder appears. He exclaims, ‘Thank you for saving us from that ancient evil. Take this stone as a token of our eternal gratitude!'";
+            }
+            catch
+            {
+                Console.WriteLine(victoryMsg);
+                Console.ReadLine();
+                return "From behind you the village elder appears. He exclaims, ‘Thank you for saving us from that ancient evil. Take this stone as a token of our eternal gratitude!'";
+            }
         }
     }
 }
