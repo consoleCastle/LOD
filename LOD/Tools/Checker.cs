@@ -50,9 +50,6 @@ namespace LOD.Tools
         {
             switch (GameData.CurrentRoom.Name)
             {
-                case "open_mind_room":
-                    playerflags.Open_Mind = true;
-                    break;
                 case "dark_woods":
                     if (playerflags.Slightly_JiuJitsu_Proficient)
                     {
