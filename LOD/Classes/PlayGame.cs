@@ -82,7 +82,6 @@ namespace LOD.Classes
             {
                 ShiaScene shiaScene = new ShiaScene();
                 GameData.CurrentRoom.Description = shiaScene.Defeat();
-                //GameData.CurrentRoom.Description = shiaScene.DefeatSkip();
                 return true;
             }
             if (GameData.CurrentRoom.Name == "skeleton_room" && !playerFlags.Dins_Fire_Collected)
