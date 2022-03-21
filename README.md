@@ -12,7 +12,7 @@
 
 Below is a basic flow chart of the action that can be taken by the player, while also including events that can end the game. 
 
-![GameFlowImage](https://github.com/consoleCastle/LOD/blob/master/LOD/Utils/ReadMe_GameFlowImg.jpg)
+![GameFlowImage](https://github.com/consoleCastle/LOD/blob/master/LOD/Utils/LOD.jpg)
 
 ### SetUp
 
