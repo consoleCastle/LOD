@@ -113,7 +113,7 @@ namespace LOD.Classes
             new List<string>
             {
                 "Play the rock game",
-                "Go back to the desert"
+                "Go back to the desert wall"
             }
         );
         public Room rock_game = new Room(
@@ -154,7 +154,34 @@ namespace LOD.Classes
             new List<string>
             {
                 "Go back up the Mountain",
-                "Go into the Dark Castle"
+                "Go into the Dark Castle",
+                "Go into the Ravine"
+            }
+        );
+        public Room ravine = new Room(
+            "ravine",
+            RoomDescriptions.Ravine,
+            new List<string>
+            {
+                "Go back down the stairs and leave the Ravine",
+                "Enter the Tunnel"
+            }
+        );
+        public Room shelobs_lair = new Room(
+            "shelobs_lair",
+            RoomDescriptions.ShelobsLair,
+            new List<string>
+            {
+                "Leave the Tunnel",
+                "Read the Scribbling on Wall"
+            }
+        );
+        public Room read_scribbles = new Room(
+            "read_scribbles",
+            RoomDescriptions.ReadScribbles,
+            new List<string>
+            {
+                "Leave the Tunnel"
             }
         );
         public Room castle_entrance = new Room(
@@ -172,16 +199,39 @@ namespace LOD.Classes
             new List<string>
             {
                 "Go back to the castle entrance",
-                "Go into the throne room",
-                "Go into the spider room"
+                "Tell a Skeleton Joke"
             }
         );
-        public Room spider_room = new Room(
-            "spider_room",
-            RoomDescriptions.SpiderRoom,
+        public Room skeleton_joke = new Room(
+            "skeleton_joke",
+            RoomDescriptions.SkeletonJoke,
             new List<string>
             {
-                "Go back to the skeleton room"
+                "What was the skeleton's favorite musical instrument? The trom-bone.",
+                "What do you call a funny bone? A humerus.",
+                "What do bone-y people use to get into their homes? Skeleton Keys!"
+            }
+        );
+        public Room joke_fail = new Room(
+            "joke_fail",
+            RoomDescriptions.JokeFail
+        );
+        public Room joke_no_reaction = new Room(
+            "joke_no_reaction",
+            RoomDescriptions.JokeNoReaction,
+            new List<string>
+            {
+                "Leave the Castle",
+                "Try Again"
+            }
+        );
+        public Room joke_success = new Room(
+            "joke_success",
+            RoomDescriptions.JokeSuccess,
+            new List<string>
+            {
+                "Leave the Castle",
+                "Enter the Throne Room"
             }
         );
         public Room throne_room = new Room(
@@ -236,15 +286,31 @@ namespace LOD.Classes
 
             icy_tundra.Choices.Add("1", mountain_top);
             icy_tundra.Choices.Add("2", castle_entrance);
+            icy_tundra.Choices.Add("3", ravine);
+
+            ravine.Choices.Add("1", icy_tundra);
+            ravine.Choices.Add("2", shelobs_lair);
+
+            shelobs_lair.Choices.Add("1", icy_tundra);
+            shelobs_lair.Choices.Add("2", read_scribbles);
+
+            read_scribbles.Choices.Add("1", icy_tundra);
 
             castle_entrance.Choices.Add("1", icy_tundra);
             castle_entrance.Choices.Add("2", skeleton_room);
 
             skeleton_room.Choices.Add("1", castle_entrance);
-            skeleton_room.Choices.Add("2", throne_room);
-            skeleton_room.Choices.Add("3", spider_room);
+            skeleton_room.Choices.Add("2", skeleton_joke);
 
-            spider_room.Choices.Add("1", skeleton_room);
+            skeleton_joke.Choices.Add("1", joke_fail);
+            skeleton_joke.Choices.Add("2", joke_no_reaction);
+            skeleton_joke.Choices.Add("3", joke_success);
+
+            joke_no_reaction.Choices.Add("1", icy_tundra);
+            joke_no_reaction.Choices.Add("2", skeleton_joke);
+
+            joke_success.Choices.Add("1", icy_tundra);
+            joke_success.Choices.Add("2", throne_room);
 
             throne_room.Choices.Add("1", skeleton_room);
         }
