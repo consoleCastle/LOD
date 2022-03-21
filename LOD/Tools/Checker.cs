@@ -69,61 +69,74 @@ namespace LOD.Tools
                     playerflags.Slightly_JiuJitsu_Proficient = true;
                     break;
                 case "rock_game":
-                    RockGame rockGame = new RockGame();
-                    Console.WriteLine($"There are {rockGame.rockCount} rocks. Do you want to take rocks first?");
-                    Console.WriteLine("1. Yes");
-                    Console.WriteLine("2. No");
-                    string userCommand = Console.ReadLine();
-                    CheckStatement(userCommand, rockGame);
-                    while (rockGame.winner == "none")
+                    playerflags.Rock_Champion = true;
+                    if (!playerflags.Dins_Fire_Collected)
                     {
-                        if (rockGame.rockCount % 3 == 2)
-                        {
-                            rockGame.PlayerTake("golem", 2);
-                            Console.WriteLine("The golem takes 2 rocks.");
-                        }
-                        else if (rockGame.rockCount % 3 == 1)
-                        {
-                            rockGame.PlayerTake("golem", 1);
-                            Console.WriteLine("The golem takes 1 rock.");
-                        }
-                        else
-                        {
-                            Random random = new Random();
-                            int choice = random.Next(1, 3);
-                            rockGame.PlayerTake("golem", choice);
-                            if (choice == 1) Console.WriteLine("The golem takes 1 rock.");
-                            if (choice == 2) Console.WriteLine("The golem takes 2 rocks.");
-                        }
-                        Console.WriteLine($"There are {rockGame.rockCount} rocks left.");
-                        if (rockGame.rockCount == 0) break;
-                        Console.WriteLine("How many rocks will you take now?");
-                        Console.WriteLine("1. 1 rock");
-                        Console.WriteLine("2. 2 rocks");
-                        string newUserCommand = Console.ReadLine();
-                        CheckStatement(newUserCommand, rockGame);
+                        GameData.CurrentRoom = gamerooms.rock_game_win;
                     }
-                    if (rockGame.winner == "golem")
+                    else
                     {
-                        GameData.CurrentRoom = gamerooms.rock_game_lose;
+                        GameData.CurrentRoom = gamerooms.rock_game_win_again;
                     }
-                    if (rockGame.winner == "player")
-                    {
-                        playerflags.Rock_Champion = true;
-                        if (!playerflags.Dins_Fire_Collected)
-                        {
-                            GameData.CurrentRoom = gamerooms.rock_game_win;
-                        }
-                        else
-                        {
-                            GameData.CurrentRoom = gamerooms.rock_game_win_again;
-                        }
-                        playerflags.Dins_Fire_Collected = true;
-                    }
+                    playerflags.Dins_Fire_Collected = true;
+                    /*                    RockGame rockGame = new RockGame();
+                                        Console.WriteLine($"There are {rockGame.rockCount} rocks. Do you want to take rocks first?");
+                                        Console.WriteLine("1. Yes");
+                                        Console.WriteLine("2. No");
+                                        string userCommand = Console.ReadLine();
+                                        CheckStatement(userCommand, rockGame);
+                                        while (rockGame.winner == "none")
+                                        {
+                                            if (rockGame.rockCount % 3 == 2)
+                                            {
+                                                rockGame.PlayerTake("golem", 2);
+                                                Console.WriteLine("The golem takes 2 rocks.");
+                                            }
+                                            else if (rockGame.rockCount % 3 == 1)
+                                            {
+                                                rockGame.PlayerTake("golem", 1);
+                                                Console.WriteLine("The golem takes 1 rock.");
+                                            }
+                                            else
+                                            {
+                                                Random random = new Random();
+                                                int choice = random.Next(1, 3);
+                                                rockGame.PlayerTake("golem", choice);
+                                                if (choice == 1) Console.WriteLine("The golem takes 1 rock.");
+                                                if (choice == 2) Console.WriteLine("The golem takes 2 rocks.");
+                                            }
+                                            Console.WriteLine($"There are {rockGame.rockCount} rocks left.");
+                                            if (rockGame.rockCount == 0) break;
+                                            Console.WriteLine("How many rocks will you take now?");
+                                            Console.WriteLine("1. 1 rock");
+                                            Console.WriteLine("2. 2 rocks");
+                                            string newUserCommand = Console.ReadLine();
+                                            CheckStatement(newUserCommand, rockGame);
+                                        }
+                                        if (rockGame.winner == "golem")
+                                        {
+                                            GameData.CurrentRoom = gamerooms.rock_game_lose;
+                                        }
+                                        if (rockGame.winner == "player")
+                                        {
+                                            playerflags.Rock_Champion = true;
+                                            if (!playerflags.Dins_Fire_Collected)
+                                            {
+                                                GameData.CurrentRoom = gamerooms.rock_game_win;
+                                            }
+                                            else
+                                            {
+                                                GameData.CurrentRoom = gamerooms.rock_game_win_again;
+                                            }
+                                            playerflags.Dins_Fire_Collected = true;
+                                        }*/
                     break;
                 case "open_mind":
                     gamerooms.open_mind.IncrementCounter();
                     playerflags.Open_Mind = true;
+                    break;
+                case "shelobs_lair":
+                    gamerooms.shelobs_lair.IncrementCounter();
                     break;
             }
         }
@@ -142,7 +155,13 @@ namespace LOD.Tools
             }
             if (playerFlags.Farores_Wind_Collected)
             {
-                gamerooms.spider_room.Description = RoomDescriptions.SpiderRoomWithFaroresWind;
+                if(gamerooms.shelobs_lair.Counter > 1)
+                {
+                    gamerooms.shelobs_lair.Description = RoomDescriptions.ShelobsLairAfterSuccess;
+                } else
+                {
+                    gamerooms.shelobs_lair.Description = RoomDescriptions.ShelobsLairWithFaroresWind;
+                }
             }
             if (playerFlags.Dins_Fire_Collected)
             {
@@ -199,6 +218,17 @@ namespace LOD.Tools
             {
                 gamerooms.desert_village.Description = RoomDescriptions.DesertVillageAsRockChampion;
 
+            }
+            if (GameData.CurrentRoom.Name == "joke_success")
+            {
+                gamerooms.skeleton_room.Description = RoomDescriptions.SkeletonRoomSuccess;
+
+                gamerooms.skeleton_room.Choices.Clear();
+                gamerooms.skeleton_room.Options.Clear();
+                gamerooms.skeleton_room.Choices.Add("1", gamerooms.icy_tundra);
+                gamerooms.skeleton_room.Choices.Add("2", gamerooms.throne_room);
+                string[] newSkeletonRoomOptions = { "Leave the Castle", "Enter the Throne Room" };
+                gamerooms.skeleton_room.Options.AddRange(newSkeletonRoomOptions);
             }
         }
     }

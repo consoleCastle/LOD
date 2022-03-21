@@ -92,7 +92,7 @@ namespace LOD.Classes
                 + art.Confetti +
                 "\nHis head topples to the floor, expressionless. You are finally safe... from\n"
                 + art.Shia8 +
-                "\nFrom behind you the village elder appears. He exclaims, ‘Thank you for saving us from that ancient evil. Take this stone as a token of our eternal gratitude!'\n"
+                "\nFrom behind you the village elder appears. He exclaims, ‘Thank you for saving us from that ancient evil. Take this stone as a token of our eternal gratitude!' You receive an emerald stone that softly shines with the warmth of a summer forest. As you hold it a pleasant wind blows.\n"
                 + "Press ANY KEY to Continue.";
 
             Console.Clear();
@@ -146,13 +146,13 @@ namespace LOD.Classes
                 PrintShiaArt(art.Shia8, ConsoleColor.Red);
                 PrintContinueMsg();
                 Console.ReadLine();
-                return "From behind you the village elder appears. He exclaims, ‘Thank you for saving us from that ancient evil. Take this stone as a token of our eternal gratitude!'";
+                return "From behind you the village elder appears. He exclaims, ‘Thank you for saving us from that ancient evil. Take this stone as a token of our eternal gratitude!' You receive an emerald stone that softly shines with the warmth of a summer forest. As you hold it a pleasant wind blows.";
             }
             catch
             {
                 Console.WriteLine(victoryMsg);
                 Console.ReadLine();
-                return "From behind you the village elder appears. He exclaims, ‘Thank you for saving us from that ancient evil. Take this stone as a token of our eternal gratitude!'";
+                return "From behind you the village elder appears. He exclaims, ‘Thank you for saving us from that ancient evil. Take this stone as a token of our eternal gratitude!' You receive an emerald stone that softly shines with the warmth of a summer forest. As you hold it a pleasant wind blows.";
             }
         }
     }

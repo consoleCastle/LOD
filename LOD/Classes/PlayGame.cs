@@ -86,11 +86,15 @@ namespace LOD.Classes
             }
             if (GameData.CurrentRoom.Name == "skeleton_room" && !playerFlags.Dins_Fire_Collected)
             {
-                string deathMsg = "You step into the darkness and immediately find yourself falling into a void of freezing darkness. You are impaled on spikes at the bottom of a pitch black chasm.";
+                string deathMsg = "You step into the darkness and immediately find yourself falling into a void of freezing darkness. You are impaled in DARKNESS on spikes at the bottom of a pitch black chasm. Its a shame it was so Dark.";
                 GameData.CurrentRoom.Description = deathMsg;
                 return true;
             }
-            if (GameData.CurrentRoom.Name == "spider_room" && !playerFlags.Farores_Wind_Collected)
+            if (GameData.CurrentRoom.Name == "shelobs_lair" && !playerFlags.Farores_Wind_Collected)
+            {
+                return true;
+            }
+            if (GameData.CurrentRoom.Name == "joke_fail")
             {
                 return true;
             }
