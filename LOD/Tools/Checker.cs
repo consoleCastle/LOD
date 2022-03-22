@@ -50,6 +50,12 @@ namespace LOD.Tools
         {
             switch (GameData.CurrentRoom.Name)
             {
+                case "taunt":
+                    gamerooms.taunt.Description = TauntGenerator.Taunt();
+                    break;
+                case "village_wall":
+                    gamerooms.village_wall.Description = $"A great stone wall looms over you. Through the village entrance, you can see what seems to be moving rocks scattered about the village. It may be a mirage? As you approach, an immense, iron-wrought gate crashes shut over the entrance with a CLANG. Atop the gate a man in chain mail armor and a well-groomed mustache appears. In an outrageous French accent, the man shouts down at you: ‘{TauntGenerator.Taunt()}’. The taunt cuts deep and you have no retort. The frustration is too much to bear and you feel that you must turn back to compose yourself.";
+                    break;
                 case "open_mind_room":
                     playerflags.Open_Mind = true;
                     break;
