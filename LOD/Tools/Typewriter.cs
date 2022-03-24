@@ -43,7 +43,7 @@ namespace LOD.Tools
 
         public void TypeWithLineBreaks(int indexStart, string message, int speed, bool isBrokenMsg = false)
         {
-            if (message.Length - indexStart <= Console.WindowWidth)
+            if (message.Length - indexStart < Console.WindowWidth)
             {
                 for (var i = indexStart; i < message.Length; i++)
                 {
@@ -71,7 +71,7 @@ namespace LOD.Tools
             }
             else
             {
-                int endIndex = indexStart + Console.WindowWidth;
+                int endIndex = indexStart + Console.WindowWidth - 1;
                 while (message[endIndex] != ' ')
                 {
                     endIndex--;
