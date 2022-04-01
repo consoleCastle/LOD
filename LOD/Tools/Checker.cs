@@ -148,7 +148,6 @@ namespace LOD.Tools
             if (GameData.CurrentRoom.Name == "dark_woods" && playerFlags.Slightly_JiuJitsu_Proficient)
             {
                 ShiaScene shiaScene = new ShiaScene();
-                //gamerooms.dark_woods.Description = "Short victory for testing";
                 gamerooms.dark_woods.Description = shiaScene.Victory();
             }
             if (playerFlags.Open_Mind)
