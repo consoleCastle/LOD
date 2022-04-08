@@ -157,7 +157,3 @@ namespace LOD.Classes
         }
     }
 }
-
-// To call this scene:
-// ShiaScene shiaScene = new ShiaScene();
-// shiaScene.Victory();
