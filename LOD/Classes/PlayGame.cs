@@ -8,6 +8,7 @@ namespace LOD.Classes
     class PlayGame
     {
         private AsciiArt art;
+        private MapBuilder mapBuilder;
         private Typewriter typewriter;
         private GameRooms gameRooms;
         private PlayerFlags playerFlags;

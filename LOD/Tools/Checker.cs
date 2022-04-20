@@ -51,44 +51,67 @@ namespace LOD.Tools
         {
             switch (GameData.CurrentRoom.Name)
             {
-                case "taunt":
-                    gamerooms.taunt.Description = TauntGenerator.Taunt();
+                case "read_the_wall":
+                    Counter.read_the_wall++;
                     break;
-                case "village_wall":
-                    if (!playerflags.Open_Mind)
-                    {
-                        gamerooms.village_wall.Description = $"A great stone wall looms over you. Through the village entrance, you can see what seems to be moving rocks scattered about the village. It may be a mirage? As you approach, an immense, iron-wrought gate crashes shut over the entrance with a CLANG. Atop the gate a man in chain mail armor and a well-groomed mustache appears. In an outrageous French accent, the man shouts down at you: ‘{TauntGenerator.Taunt()}’. The taunt cuts deep and you have no retort. The frustration is too much to bear and you feel that you must turn back to compose yourself.";
-                    }
+                case "open_door":
+                    newEnd.IsGameover = true;
+                    newEnd.IsGoodEnding = true;
                     break;
-                case "open_mind_room":
+                case "forest_village":
+                    Counter.forest_village++;
+                    break;
+                case "dojo":
+                    Counter.dojo++;
+                    playerflags.Slightly_JiuJitsu_Proficient = true;
+                    break;
+                case "open_mind":
+                    Counter.open_mind++;
                     playerflags.Open_Mind = true;
                     break;
                 case "dark_woods":
+                    Counter.dark_woods++;
                     if (playerflags.Slightly_JiuJitsu_Proficient)
                     {
                         playerflags.Shia_Defeated = true;
                         playerflags.Farores_Wind_Collected = true;
                     }
                     break;
-                case "open_door":
-                    newEnd.IsGameover = true;
-                    newEnd.IsGoodEnding = true;
+                case "taunt":
+                    gamerooms.taunt.Description = TauntGenerator.Taunt();
                     break;
-                case "dojo":
-                    gamerooms.dojo.IncrementCounter();
-                    playerflags.Slightly_JiuJitsu_Proficient = true;
+                case "village_wall":
+                    Counter.desert_wall++ ;
+                    if (!playerflags.Open_Mind)
+                    {
+                        gamerooms.village_wall.Description = $"A great stone wall looms over you. Through the village entrance, you can see what seems to be moving rocks scattered about the village. It may be a mirage? As you approach, an immense, iron-wrought gate crashes shut over the entrance with a CLANG. Atop the gate a man in chain mail armor and a well-groomed mustache appears. In an outrageous French accent, the man shouts down at you: ‘{TauntGenerator.Taunt()}’. The taunt cuts deep and you have no retort. The frustration is too much to bear and you feel that you must turn back to compose yourself.";
+                    }
+                    break;
+                case "desert_village":
+                    Counter.desert_village++;
                     break;
                 case "rock_game":
                     PlayRockGame playrockgame = new PlayRockGame();
                     //playrockgame.Play(gamerooms, playerflags);
                     playrockgame.PlayTest(gamerooms, playerflags);
                     break;
-                case "open_mind":
-                    gamerooms.open_mind.IncrementCounter();
-                    playerflags.Open_Mind = true;
+                case "icy_tundra":
+                    Counter.icy_tundra++;
+                    break;
+                case "ravine":
+                    Counter.ravine++;
                     break;
                 case "shelobs_lair":
-                    gamerooms.shelobs_lair.IncrementCounter();
+                    Counter.shelobs_lair++;
+                    break;
+                case "castle_entrance":
+                    Counter.castle_entrance++;
+                    break;
+                case "skeleton_room":
+                    Counter.skeleton_room++;
+                    break;
+                case "throne_room":
+                    Counter.throne_room++;
                     break;
             }
         }
@@ -107,7 +130,7 @@ namespace LOD.Tools
             }
             if (playerFlags.Farores_Wind_Collected)
             {
-                if(gamerooms.shelobs_lair.Counter > 1)
+                if(Counter.shelobs_lair > 1)
                 {
                     gamerooms.shelobs_lair.Description = RoomDescriptions.ShelobsLairAfterSuccess;
                 } else
@@ -141,7 +164,7 @@ namespace LOD.Tools
                 string[] newDojoOptions = { "Go back to the village", "Meditate for an open mind" };
                 gamerooms.dojo.Options.AddRange(newDojoOptions);
             }
-            if (playerFlags.Slightly_JiuJitsu_Proficient && (gamerooms.dojo.Counter > 1))
+            if (playerFlags.Slightly_JiuJitsu_Proficient && (Counter.dojo > 1))
             {
                 gamerooms.dojo.Description = RoomDescriptions.DojoWithJiuJitsu;
             }
@@ -152,7 +175,7 @@ namespace LOD.Tools
             }
             if (playerFlags.Open_Mind)
             {
-                if (gamerooms.open_mind.Counter > 1)
+                if (Counter.open_mind > 1)
                 {
                     gamerooms.open_mind.Description = "You already know the way, now go punch something.";
                 }
