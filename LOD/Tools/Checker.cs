@@ -1,4 +1,5 @@
 ﻿using LOD.Classes;
+using LOD.Tools;
 using LOD.Utils;
 using System;
 using System.Collections.Generic;
@@ -50,6 +51,21 @@ namespace LOD.Tools
         {
             switch (GameData.CurrentRoom.Name)
             {
+<<<<<<< HEAD
+=======
+                case "taunt":
+                    gamerooms.taunt.Description = TauntGenerator.Taunt();
+                    break;
+                case "village_wall":
+                    if (!playerflags.Open_Mind)
+                    {
+                        gamerooms.village_wall.Description = $"A great stone wall looms over you. Through the village entrance, you can see what seems to be moving rocks scattered about the village. It may be a mirage? As you approach, an immense, iron-wrought gate crashes shut over the entrance with a CLANG. Atop the gate a man in chain mail armor and a well-groomed mustache appears. In an outrageous French accent, the man shouts down at you: ‘{TauntGenerator.Taunt()}’. The taunt cuts deep and you have no retort. The frustration is too much to bear and you feel that you must turn back to compose yourself.";
+                    }
+                    break;
+                case "open_mind_room":
+                    playerflags.Open_Mind = true;
+                    break;
+>>>>>>> master
                 case "dark_woods":
                     if (playerflags.Slightly_JiuJitsu_Proficient)
                     {
@@ -66,62 +82,15 @@ namespace LOD.Tools
                     playerflags.Slightly_JiuJitsu_Proficient = true;
                     break;
                 case "rock_game":
-                    RockGame rockGame = new RockGame();
-                    Console.WriteLine($"There are {rockGame.rockCount} rocks. Do you want to take rocks first?");
-                    Console.WriteLine("1. Yes");
-                    Console.WriteLine("2. No");
-                    string userCommand = Console.ReadLine();
-                    CheckStatement(userCommand, rockGame);
-                    while (rockGame.winner == "none")
-                    {
-                        if (rockGame.rockCount % 3 == 2)
-                        {
-                            rockGame.PlayerTake("golem", 2);
-                            Console.WriteLine("The golem takes 2 rocks.");
-                        }
-                        else if (rockGame.rockCount % 3 == 1)
-                        {
-                            rockGame.PlayerTake("golem", 1);
-                            Console.WriteLine("The golem takes 1 rock.");
-                        }
-                        else
-                        {
-                            Random random = new Random();
-                            int choice = random.Next(1, 3);
-                            rockGame.PlayerTake("golem", choice);
-                            if (choice == 1) Console.WriteLine("The golem takes 1 rock.");
-                            if (choice == 2) Console.WriteLine("The golem takes 2 rocks.");
-                        }
-                        Console.WriteLine($"There are {rockGame.rockCount} rocks left.");
-                        if (rockGame.rockCount == 0) break;
-                        Console.WriteLine("How many rocks will you take now?");
-                        Console.WriteLine("1. 1 rock");
-                        Console.WriteLine("2. 2 rocks");
-                        string newUserCommand = Console.ReadLine();
-                        CheckStatement(newUserCommand, rockGame);
-                    }
-                    if (rockGame.winner == "golem")
-                    {
-                        GameData.CurrentRoom = gamerooms.rock_game_lose;
-                    }
-                    if (rockGame.winner == "player")
-                    {
-                        playerflags.Rock_Champion = true;
-                        if (!playerflags.Dins_Fire_Collected)
-                        {
-                            GameData.CurrentRoom = gamerooms.rock_game_win;
-                        }
-                        else
-                        {
-                            GameData.CurrentRoom = gamerooms.rock_game_win_again;
-                        }
-                        playerflags.Dins_Fire_Collected = true;
-                    }
+                    PlayRockGame playrockgame = new PlayRockGame();
+                    //playrockgame.Play(gamerooms, playerflags);
+                    playrockgame.PlayTest(gamerooms, playerflags);
                     break;
                 case "open_mind":
                     gamerooms.open_mind.IncrementCounter();
                     playerflags.Open_Mind = true;
                     break;
+<<<<<<< HEAD
                 case "throne_room":
                     //TODO Make this work. Right now it makes you guess his name twice and I do not know why. 
                     //Console.Clear();
@@ -137,6 +106,10 @@ namespace LOD.Tools
                         Console.ReadLine();
                         GameData.CurrentRoom = gamerooms.skeleton_room;
                     }
+=======
+                case "shelobs_lair":
+                    gamerooms.shelobs_lair.IncrementCounter();
+>>>>>>> master
                     break;
             }
         }
@@ -155,7 +128,13 @@ namespace LOD.Tools
             }
             if (playerFlags.Farores_Wind_Collected)
             {
-                gamerooms.spider_room.Description = RoomDescriptions.SpiderRoomWithFaroresWind;
+                if(gamerooms.shelobs_lair.Counter > 1)
+                {
+                    gamerooms.shelobs_lair.Description = RoomDescriptions.ShelobsLairAfterSuccess;
+                } else
+                {
+                    gamerooms.shelobs_lair.Description = RoomDescriptions.ShelobsLairWithFaroresWind;
+                }
             }
             if (playerFlags.Dins_Fire_Collected)
             {
@@ -190,8 +169,7 @@ namespace LOD.Tools
             if (GameData.CurrentRoom.Name == "dark_woods" && playerFlags.Slightly_JiuJitsu_Proficient)
             {
                 ShiaScene shiaScene = new ShiaScene();
-                gamerooms.dark_woods.Description = "Short victory for testing";
-                //gamerooms.dark_woods.Description = shiaScene.Victory();
+                gamerooms.dark_woods.Description = shiaScene.Victory();
             }
             if (playerFlags.Open_Mind)
             {
@@ -213,9 +191,22 @@ namespace LOD.Tools
                 gamerooms.desert_village.Description = RoomDescriptions.DesertVillageAsRockChampion;
 
             }
+<<<<<<< HEAD
             if (playerFlags.Nayrus_Love_Collected)
             {
                 gamerooms.skeleton_room.Description = RoomDescriptions.SkeletonRoomAfterNaryusLove;
+=======
+            if (GameData.CurrentRoom.Name == "joke_success")
+            {
+                gamerooms.skeleton_room.Description = RoomDescriptions.SkeletonRoomSuccess;
+
+                gamerooms.skeleton_room.Choices.Clear();
+                gamerooms.skeleton_room.Options.Clear();
+                gamerooms.skeleton_room.Choices.Add("1", gamerooms.icy_tundra);
+                gamerooms.skeleton_room.Choices.Add("2", gamerooms.throne_room);
+                string[] newSkeletonRoomOptions = { "Leave the Castle", "Enter the Throne Room" };
+                gamerooms.skeleton_room.Options.AddRange(newSkeletonRoomOptions);
+>>>>>>> master
             }
         }
     }

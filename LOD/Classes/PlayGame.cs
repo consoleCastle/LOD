@@ -81,17 +81,19 @@ namespace LOD.Classes
             if (GameData.CurrentRoom.Name == "dark_woods" && !playerFlags.Slightly_JiuJitsu_Proficient)
             {
                 ShiaScene shiaScene = new ShiaScene();
-                GameData.CurrentRoom.Description = "Short defeat for testing";
-                //GameData.CurrentRoom.Description = shiaScene.Defeat();
+                GameData.CurrentRoom.Description = shiaScene.Defeat();
                 return true;
             }
             if (GameData.CurrentRoom.Name == "skeleton_room" && !playerFlags.Dins_Fire_Collected)
             {
-                string deathMsg = "You step into the darkness and immediately find yourself falling into a void of freezing darkness. You are impaled on spikes at the bottom of a pitch black chasm.";
-                GameData.CurrentRoom.Description = deathMsg;
+                GameData.CurrentRoom.Description = RoomDescriptions.FallDeathMsg;
                 return true;
             }
-            if (GameData.CurrentRoom.Name == "spider_room" && !playerFlags.Farores_Wind_Collected)
+            if (GameData.CurrentRoom.Name == "shelobs_lair" && !playerFlags.Farores_Wind_Collected)
+            {
+                return true;
+            }
+            if (GameData.CurrentRoom.Name == "joke_fail")
             {
                 return true;
             }

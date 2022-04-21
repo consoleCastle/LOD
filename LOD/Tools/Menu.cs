@@ -32,7 +32,7 @@ namespace LOD.Tools
             }
             else
             {
-                Console.WriteLine(Prompt);
+                typewriter.Skip(Prompt);
             }
             for(int i = 0; i < Options.Count; i++)
             {
