@@ -49,6 +49,7 @@ namespace LOD.Tools
 
         public static void CheckRoom(PlayerFlags playerflags, EndType newEnd, GameRooms gamerooms)
         {
+            Typewriter typewriter = new Typewriter();
             switch (GameData.CurrentRoom.Name)
             {
                 case "read_the_wall":
@@ -113,14 +114,37 @@ namespace LOD.Tools
                 case "throne_room":
                     Counter.throne_room++;
                     break;
+                case "throne_room":
+                    Console.Clear();
+                    typewriter.Type(gamerooms.throne_room.Description, 60);
+                    //Console.WriteLine(GameData.CurrentRoom.Description);
+                    string dallenNameGuess = Console.ReadLine();
+                    Console.WriteLine($"You guessed '{dallenNameGuess}'");
+                    if (dallenNameGuess.ToLower() == "john")
+                    {
+                        playerflags.Nayrus_Love_Collected = true;
+                        Console.WriteLine("You guessed my name! 'JOHN'! Not only will I let you live, but I will give you this magic stone! Now go away.");
+                        Console.WriteLine("");
+                        Console.WriteLine("You got Naryu's Love! Press ANY KEY to continue.");
+                        Console.ReadLine();
+                        GameData.CurrentRoom = gamerooms.skeleton_room;
+                    }
+                    break;
             }
         }
-
         public static void CheckFlags(PlayerFlags playerFlags, GameRooms gamerooms)
         {
+            if (playerFlags.Farores_Wind_Collected && playerFlags.Dins_Fire_Collected && playerFlags.Nayrus_Love_Collected)
+            {
+                playerFlags.Three_Stones_Collected = true;
+            }
             if (playerFlags.Three_Stones_Collected)
             {
+                gamerooms.temple_door.Choices.Clear();
+                gamerooms.temple_door.Choices.Add("1", gamerooms.mountain_top);
+                gamerooms.temple_door.Choices.Add("2", gamerooms.read_the_wall);
                 gamerooms.temple_door.Choices.Add("3", gamerooms.open_door);
+                gamerooms.temple_door.Options.Clear();
                 gamerooms.temple_door.Options = new List<string>
                 {
                     "Go back outside",
@@ -204,6 +228,11 @@ namespace LOD.Tools
                 string[] newSkeletonRoomOptions = { "Leave the Castle", "Enter the Throne Room" };
                 gamerooms.skeleton_room.Options.AddRange(newSkeletonRoomOptions);
             }
+            if (playerFlags.Nayrus_Love_Collected)
+            {
+                gamerooms.skeleton_room.Description = RoomDescriptions.SkeletonRoomAfterNaryusLove;
+            }
         }
-    }
-}
+            }
+        }
+

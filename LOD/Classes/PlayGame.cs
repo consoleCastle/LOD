@@ -98,6 +98,12 @@ namespace LOD.Classes
             {
                 return true;
             }
+            if (GameData.CurrentRoom.Name == "throne_room")
+            {
+                string deathMsg = "You guessed wrong! King Dallen rips your skull out and drinks your brain.";
+                GameData.CurrentRoom.Description = deathMsg;
+                return true;
+            }
             return false;
         }
 
