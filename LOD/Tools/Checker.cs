@@ -51,8 +51,6 @@ namespace LOD.Tools
         {
             switch (GameData.CurrentRoom.Name)
             {
-<<<<<<< HEAD
-=======
                 case "taunt":
                     gamerooms.taunt.Description = TauntGenerator.Taunt();
                     break;
@@ -65,7 +63,6 @@ namespace LOD.Tools
                 case "open_mind_room":
                     playerflags.Open_Mind = true;
                     break;
->>>>>>> master
                 case "dark_woods":
                     if (playerflags.Slightly_JiuJitsu_Proficient)
                     {
@@ -90,11 +87,12 @@ namespace LOD.Tools
                     gamerooms.open_mind.IncrementCounter();
                     playerflags.Open_Mind = true;
                     break;
-<<<<<<< HEAD
+                case "shelobs_lair":
+                    gamerooms.shelobs_lair.IncrementCounter();
+                    break;
                 case "throne_room":
-                    //TODO Make this work. Right now it makes you guess his name twice and I do not know why. 
-                    //Console.Clear();
-                    //Console.WriteLine(GameData.CurrentRoom.Description);
+                    Console.Clear();
+                    Console.WriteLine(GameData.CurrentRoom.Description);
                     string dallenNameGuess = Console.ReadLine();
                     Console.WriteLine($"You guessed '{dallenNameGuess}'");
                     if (dallenNameGuess.ToLower() == "john")
@@ -106,19 +104,22 @@ namespace LOD.Tools
                         Console.ReadLine();
                         GameData.CurrentRoom = gamerooms.skeleton_room;
                     }
-=======
-                case "shelobs_lair":
-                    gamerooms.shelobs_lair.IncrementCounter();
->>>>>>> master
                     break;
             }
         }
-
         public static void CheckFlags(PlayerFlags playerFlags, GameRooms gamerooms)
         {
+            if (playerFlags.Farores_Wind_Collected && playerFlags.Dins_Fire_Collected && playerFlags.Nayrus_Love_Collected)
+            {
+                playerFlags.Three_Stones_Collected = true;
+            }
             if (playerFlags.Three_Stones_Collected)
             {
+                gamerooms.temple_door.Choices.Clear();
+                gamerooms.temple_door.Choices.Add("1", gamerooms.mountain_top);
+                gamerooms.temple_door.Choices.Add("2", gamerooms.read_the_wall);
                 gamerooms.temple_door.Choices.Add("3", gamerooms.open_door);
+                gamerooms.temple_door.Options.Clear();
                 gamerooms.temple_door.Options = new List<string>
                 {
                     "Go back outside",
@@ -191,11 +192,6 @@ namespace LOD.Tools
                 gamerooms.desert_village.Description = RoomDescriptions.DesertVillageAsRockChampion;
 
             }
-<<<<<<< HEAD
-            if (playerFlags.Nayrus_Love_Collected)
-            {
-                gamerooms.skeleton_room.Description = RoomDescriptions.SkeletonRoomAfterNaryusLove;
-=======
             if (GameData.CurrentRoom.Name == "joke_success")
             {
                 gamerooms.skeleton_room.Description = RoomDescriptions.SkeletonRoomSuccess;
@@ -206,8 +202,12 @@ namespace LOD.Tools
                 gamerooms.skeleton_room.Choices.Add("2", gamerooms.throne_room);
                 string[] newSkeletonRoomOptions = { "Leave the Castle", "Enter the Throne Room" };
                 gamerooms.skeleton_room.Options.AddRange(newSkeletonRoomOptions);
->>>>>>> master
+            }
+            if (playerFlags.Nayrus_Love_Collected)
+            {
+                gamerooms.skeleton_room.Description = RoomDescriptions.SkeletonRoomAfterNaryusLove;
             }
         }
-    }
-}
+            }
+        }
+
