@@ -81,7 +81,6 @@ namespace LOD.Tools
             gameData = new GameData();
 
             int[] currentRoomCoor = GameData.CurrentRoom.Coordinate;
-            // int[] currentRoomCoor = { 8, 19 };
             int highlightRowIndex = currentRoomCoor[0];
             int highlightColIndex = currentRoomCoor[1];
             int highlightCounter = highlightColIndex;
