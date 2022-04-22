@@ -49,6 +49,7 @@ namespace LOD.Tools
 
         public static void CheckRoom(PlayerFlags playerflags, EndType newEnd, GameRooms gamerooms)
         {
+            Typewriter typewriter = new Typewriter();
             switch (GameData.CurrentRoom.Name)
             {
                 case "taunt":
@@ -92,7 +93,8 @@ namespace LOD.Tools
                     break;
                 case "throne_room":
                     Console.Clear();
-                    Console.WriteLine(GameData.CurrentRoom.Description);
+                    typewriter.Type(gamerooms.throne_room.Description, 60);
+                    //Console.WriteLine(GameData.CurrentRoom.Description);
                     string dallenNameGuess = Console.ReadLine();
                     Console.WriteLine($"You guessed '{dallenNameGuess}'");
                     if (dallenNameGuess.ToLower() == "john")
