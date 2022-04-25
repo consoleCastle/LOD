@@ -84,7 +84,7 @@ namespace LOD.Tools
             int highlightRowIndex = currentRoomCoor[0];
             int highlightColIndex = currentRoomCoor[1];
             int highlightCounter = highlightColIndex;
-            int endHighlightIndex = highlightColIndex + 15;
+            int endHighlightIndex = highlightColIndex + 16;
             bool highlighterOn = false;
 
             for (int i = 0; i < matrix.GetLength(0); i++)

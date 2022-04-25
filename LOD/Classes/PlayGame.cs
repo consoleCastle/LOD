@@ -8,7 +8,6 @@ namespace LOD.Classes
     class PlayGame
     {
         private AsciiArt art;
-        private MapBuilder mapBuilder;
         private Typewriter typewriter;
         private GameRooms gameRooms;
         private PlayerFlags playerFlags;
@@ -102,6 +101,10 @@ namespace LOD.Classes
             {
                 string deathMsg = "You guessed wrong! King Dallen rips your skull out and drinks your brain.";
                 GameData.CurrentRoom.Description = deathMsg;
+                return true;
+            }
+            if (GameData.CurrentRoom.Name == "open_door")
+            {
                 return true;
             }
             return false;

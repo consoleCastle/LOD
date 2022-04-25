@@ -271,6 +271,15 @@ namespace LOD.Classes
                 "Go back to the skeleton room"
             }
         );
+        public Room three_stones_collected = new Room(
+            "three_stones_collected",
+            RoomDescriptions.ThreeStonesCollected,
+            MapRoomMatrices.dummyCoor,
+            new List<string>
+            {
+                "Go back to the skeleton room"
+            }
+        );
         public GameRooms()
         {
             mountain_top.Choices.Add("1", temple_door);
@@ -342,6 +351,8 @@ namespace LOD.Classes
             joke_success.Choices.Add("2", throne_room);
 
             throne_room.Choices.Add("1", skeleton_room);
+
+            three_stones_collected.Choices.Add("1", skeleton_room);
         }
     }
 }

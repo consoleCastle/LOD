@@ -50,6 +50,8 @@ namespace LOD.Tools
         public static void CheckRoom(PlayerFlags playerflags, EndType newEnd, GameRooms gamerooms)
         {
             Typewriter typewriter = new Typewriter();
+            KingDallenScene kingDallenScene = new KingDallenScene();
+
             switch (GameData.CurrentRoom.Name)
             {
                 case "read_the_wall":
@@ -93,8 +95,7 @@ namespace LOD.Tools
                     break;
                 case "rock_game":
                     PlayRockGame playrockgame = new PlayRockGame();
-                    //playrockgame.Play(gamerooms, playerflags);
-                    playrockgame.PlayTest(gamerooms, playerflags);
+                    playrockgame.Play(gamerooms, playerflags);
                     break;
                 case "icy_tundra":
                     Counter.icy_tundra++;
@@ -112,23 +113,11 @@ namespace LOD.Tools
                     Counter.skeleton_room++;
                     break;
                 case "throne_room":
-                    Counter.throne_room++;
-                    break;
-                case "throne_room":
-                    Console.Clear();
-                    typewriter.Type(gamerooms.throne_room.Description, 60);
-                    //Console.WriteLine(GameData.CurrentRoom.Description);
-                    string dallenNameGuess = Console.ReadLine();
-                    Console.WriteLine($"You guessed '{dallenNameGuess}'");
-                    if (dallenNameGuess.ToLower() == "john")
+                    if (!playerflags.Nayrus_Love_Collected)
                     {
-                        playerflags.Nayrus_Love_Collected = true;
-                        Console.WriteLine("You guessed my name! 'JOHN'! Not only will I let you live, but I will give you this magic stone! Now go away.");
-                        Console.WriteLine("");
-                        Console.WriteLine("You got Naryu's Love! Press ANY KEY to continue.");
-                        Console.ReadLine();
-                        GameData.CurrentRoom = gamerooms.skeleton_room;
+                        kingDallenScene.Play();
                     }
+                    Counter.throne_room++;
                     break;
             }
         }
@@ -233,6 +222,6 @@ namespace LOD.Tools
                 gamerooms.skeleton_room.Description = RoomDescriptions.SkeletonRoomAfterNaryusLove;
             }
         }
-            }
-        }
+    }
+}
 
