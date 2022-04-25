@@ -103,6 +103,10 @@ namespace LOD.Classes
                 GameData.CurrentRoom.Description = deathMsg;
                 return true;
             }
+            if (GameData.CurrentRoom.Name == "open_door")
+            {
+                return true;
+            }
             return false;
         }
 

@@ -17,6 +17,7 @@ namespace LOD.Tools
             switch(selectedIndex)
             {
                 case 0:
+                    Console.Clear();
                     ShowMap();
                     break;
                 case 1:
@@ -27,8 +28,8 @@ namespace LOD.Tools
 
         private static void ShowMap()
         {
-            AsciiArt art = new AsciiArt();
-            Console.WriteLine(art.Map);
+            MapBuilder mapBuilder = new MapBuilder();
+            mapBuilder.PrintMap();
             Console.WriteLine("Press any key to return to the menu...");
             Console.ReadKey(true);
             ShowCommonMenu();

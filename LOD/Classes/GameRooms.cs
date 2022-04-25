@@ -6,9 +6,11 @@ namespace LOD.Classes
 {
     class GameRooms
     {
+
         public Room mountain_top = new Room(
             "mountain_top",
             RoomDescriptions.MountainTop,
+            MapRoomMatrices.mountainTopCoor,
             new List<string>
             {
                 "Go to the Temple",
@@ -20,6 +22,7 @@ namespace LOD.Classes
         public Room temple_door = new Room(
             "temple_door",
             RoomDescriptions.TempleDoor,
+            MapRoomMatrices.templeCoor,
             new List<string>
             {
                 "Go back outside",
@@ -29,6 +32,7 @@ namespace LOD.Classes
         public Room forest_entrance = new Room(
             "forest_entrance",
             RoomDescriptions.ForestEntrance,
+            MapRoomMatrices.forestCoor,
             new List<string>
             {
                 "Go to the Village",
@@ -38,6 +42,7 @@ namespace LOD.Classes
         public Room desert = new Room(
             "desert",
             RoomDescriptions.Desert,
+            MapRoomMatrices.desertCoor,
             new List<string>
             {
                 "Go back to the Mountain",
@@ -47,6 +52,7 @@ namespace LOD.Classes
         public Room read_the_wall = new Room(
             "read_the_wall",
             RoomDescriptions.ReadTheWall,
+            MapRoomMatrices.doorCoor,
             new List<string>
             {
                 "Go back"
@@ -54,11 +60,13 @@ namespace LOD.Classes
         );
         public Room open_door = new Room(
             "open_door",
-            RoomDescriptions.OpenDoor
+            RoomDescriptions.OpenDoor,
+            MapRoomMatrices.dummyCoor
         );
         public Room forest_village = new Room(
             "forest_village",
             RoomDescriptions.ForestVillage,
+            MapRoomMatrices.forestVillageCoor,
             new List<string>
             {
                 "Go back to the Forest Entrance",
@@ -69,6 +77,7 @@ namespace LOD.Classes
         public Room dark_woods = new Room(
             "dark_woods",
             RoomDescriptions.DarkWoods,
+            MapRoomMatrices.darkWoodsCoor,
             new List<string>
             {
                 "Go back to the Village"
@@ -77,6 +86,7 @@ namespace LOD.Classes
         public Room dojo = new Room(
             "dojo",
             RoomDescriptions.Dojo,
+            MapRoomMatrices.dojoCoor,
             new List<string>
             {
                 "Go back to the Village"
@@ -85,6 +95,7 @@ namespace LOD.Classes
         public Room open_mind = new Room(
             "open_mind",
             RoomDescriptions.OpenMind,
+            MapRoomMatrices.dummyCoor,
             new List<string>
             {
                 "Go back to the Village"
@@ -93,6 +104,7 @@ namespace LOD.Classes
         public Room village_wall = new Room(
             "village_wall",
             RoomDescriptions.VillageWall,
+            MapRoomMatrices.desertWallCoor,
             new List<string>
             {
                 "Go back to the desert",
@@ -102,6 +114,7 @@ namespace LOD.Classes
         public Room taunt = new Room(
             "taunt",
             RoomDescriptions.Taunt,
+            MapRoomMatrices.dummyCoor,
             new List<string>
             {
                 "Gather yourself and try again"
@@ -110,6 +123,7 @@ namespace LOD.Classes
         public Room desert_village = new Room(
             "desert_village",
             RoomDescriptions.DesertVillage,
+            MapRoomMatrices.desertVillageCoor,
             new List<string>
             {
                 "Play the rock game",
@@ -119,6 +133,7 @@ namespace LOD.Classes
         public Room rock_game = new Room(
             "rock_game",
             RoomDescriptions.RockGame,
+            MapRoomMatrices.dummyCoor,
             new List<string>
             {
 
@@ -127,6 +142,7 @@ namespace LOD.Classes
         public Room rock_game_lose = new Room(
             "rock_game_lose",
             RoomDescriptions.RockGameLose,
+            MapRoomMatrices.dummyCoor,
             new List<string>
             {
                 "Go back to the desert village"
@@ -135,6 +151,7 @@ namespace LOD.Classes
         public Room rock_game_win = new Room(
             "rock_game_win",
             RoomDescriptions.RockGameWin,
+            MapRoomMatrices.dummyCoor,
             new List<string>
             {
                 "Go back to the desert village"
@@ -143,6 +160,7 @@ namespace LOD.Classes
         public Room rock_game_win_again = new Room(
             "rock_game_win_again",
             RoomDescriptions.RockGameWinAgain,
+            MapRoomMatrices.dummyCoor,
             new List<string>
             {
                 "Go back to the desert village"
@@ -151,6 +169,7 @@ namespace LOD.Classes
         public Room icy_tundra = new Room(
             "icy_tundra",
             RoomDescriptions.IcyTundra,
+            MapRoomMatrices.tundraCoor,
             new List<string>
             {
                 "Go back up the Mountain",
@@ -161,6 +180,7 @@ namespace LOD.Classes
         public Room ravine = new Room(
             "ravine",
             RoomDescriptions.Ravine,
+            MapRoomMatrices.ravineCoor,
             new List<string>
             {
                 "Go back down the stairs and leave the Ravine",
@@ -170,6 +190,7 @@ namespace LOD.Classes
         public Room shelobs_lair = new Room(
             "shelobs_lair",
             RoomDescriptions.ShelobsLair,
+            MapRoomMatrices.tunnelCoor,
             new List<string>
             {
                 "Leave the Tunnel",
@@ -179,6 +200,7 @@ namespace LOD.Classes
         public Room read_scribbles = new Room(
             "read_scribbles",
             RoomDescriptions.ReadScribbles,
+            MapRoomMatrices.dummyCoor,
             new List<string>
             {
                 "Leave the Tunnel"
@@ -187,6 +209,7 @@ namespace LOD.Classes
         public Room castle_entrance = new Room(
             "castle_entrance",
             RoomDescriptions.CastleEntrance,
+            MapRoomMatrices.castleCoor,
             new List<string>
             {
                 "Go back to the icy tundra entrance",
@@ -196,6 +219,7 @@ namespace LOD.Classes
         public Room skeleton_room = new Room(
             "skeleton_room",
             RoomDescriptions.SkeletonRoom,
+            MapRoomMatrices.foyerCoor,
             new List<string>
             {
                 "Go back to the castle entrance",
@@ -205,6 +229,7 @@ namespace LOD.Classes
         public Room skeleton_joke = new Room(
             "skeleton_joke",
             RoomDescriptions.SkeletonJoke,
+            MapRoomMatrices.dummyCoor,
             new List<string>
             {
                 "What was the skeleton's favorite musical instrument? The trom-bone.",
@@ -214,11 +239,13 @@ namespace LOD.Classes
         );
         public Room joke_fail = new Room(
             "joke_fail",
-            RoomDescriptions.JokeFail
+            RoomDescriptions.JokeFail,
+            MapRoomMatrices.dummyCoor
         );
         public Room joke_no_reaction = new Room(
             "joke_no_reaction",
             RoomDescriptions.JokeNoReaction,
+            MapRoomMatrices.dummyCoor,
             new List<string>
             {
                 "Leave the Castle",
@@ -228,6 +255,7 @@ namespace LOD.Classes
         public Room joke_success = new Room(
             "joke_success",
             RoomDescriptions.JokeSuccess,
+            MapRoomMatrices.dummyCoor,
             new List<string>
             {
                 "Leave the Castle",
@@ -237,6 +265,16 @@ namespace LOD.Classes
         public Room throne_room = new Room(
             "throne_room",
             RoomDescriptions.ThroneRoom,
+            MapRoomMatrices.throneRoomCoor,
+            new List<string>
+            {
+                "Go back to the skeleton room"
+            }
+        );
+        public Room three_stones_collected = new Room(
+            "three_stones_collected",
+            RoomDescriptions.ThreeStonesCollected,
+            MapRoomMatrices.dummyCoor,
             new List<string>
             {
                 "Go back to the skeleton room"
@@ -313,6 +351,8 @@ namespace LOD.Classes
             joke_success.Choices.Add("2", throne_room);
 
             throne_room.Choices.Add("1", skeleton_room);
+
+            three_stones_collected.Choices.Add("1", skeleton_room);
         }
     }
 }
