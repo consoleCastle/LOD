@@ -10,9 +10,7 @@ namespace LOD.Classes
     class KingDallenScene
     {
         Typewriter typewriter = new Typewriter();
-        GameRooms gamerooms = new GameRooms();
-        PlayerFlags playerflags = new PlayerFlags();
-        public void Play()
+        public void Play(GameRooms gamerooms, PlayerFlags playerflags)
         {
             Console.Clear();
             typewriter.Type(gamerooms.throne_room.Description, 60);

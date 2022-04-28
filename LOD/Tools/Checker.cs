@@ -1,5 +1,4 @@
 ﻿using LOD.Classes;
-using LOD.Tools;
 using LOD.Utils;
 using System;
 using System.Collections.Generic;
@@ -115,7 +114,7 @@ namespace LOD.Tools
                 case "throne_room":
                     if (!playerflags.Nayrus_Love_Collected)
                     {
-                        kingDallenScene.Play();
+                        kingDallenScene.Play(gamerooms, playerflags);
                     }
                     Counter.throne_room++;
                     break;
