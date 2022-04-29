@@ -125,6 +125,8 @@ namespace LOD.Classes
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine(art.VictoryArt);
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine(art.Confetti);
             }
 
             Console.ForegroundColor = ConsoleColor.White;
